@@ -1,0 +1,21 @@
+@import 'variables';
+* {
+    margin: unset;
+    padding: unset;
+}
+
+.py-4 {
+    margin: 0;
+    padding: 0 !important;
+}
+
+.form-control {
+    border: unset;
+    border-radius: 6px;
+    background: $gray;
+}
+
+.btn {
+    border: unset;
+    border-radius: 6px;
+}

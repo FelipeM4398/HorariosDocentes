@@ -1,73 +1,39 @@
-@extends('layouts.app')
+@extends('layouts.login-layout')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="identificacion" class="col-md-4 col-form-label text-md-right">{{ __('Número de indentificación') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="identificacion" type="number" class="form-control @error('identificacion') is-invalid @enderror" name="identificacion" value="{{ old('identificacion') }}" required autofocus>
-
-                                @error('identificacion')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+@section('content-login')
+<div class="form-left-container">
+    <h2 class="form-subtitle">Bienvenido a</h2>
+    <h1 class="form-title">Horario Docente</h1>
+    <form class="form-left" method="POST" action="{{ route('login') }}">
+        @csrf
+        <div class="form-group">
+            <label for="identificacion">{{ __('Indentificación') }}</label>
+            <input id="identificacion" type="number" class="form-control @error('identificacion') is-invalid @enderror" placeholder="Ingrese su número de identificación" name="identificacion" value="{{ old('identificacion') }}" required>
+            @error('identificacion')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
-    </div>
+        <div class="form-group">
+            <label for="password">{{ __('Contraseña') }}</label>
+            <input id="password" type="password" placeholder="Ingrese su contraseña" class="form-control" name="password" required autocomplete="current-password">
+        </div>
+        <div class="form-group form-buttons">
+            <div class="buttons">
+                @if (Route::has('password.request'))
+                <a class="btn btn-link" href="{{ route('password.request') }}">
+                    {{ __('¿Olvidó su contraseña?') }}
+                </a>
+                @endif
+                <button type="submit" class="btn btn-primary">
+                    {{ __('Login') }}
+                </button>
+            </div>
+            @if (Route::has('register'))
+            <a class="btn btn-link registrarse" href="{{ route('register') }}">{{ __('¿No tiene una cuenta?') }}</a>
+            @endif
+        </div>
+    </form>
 </div>
 @endsection
