@@ -1,7 +1,6 @@
 @extends('layouts.login-layout')
 
 @section('content-login')
-
 <div class="form-left-container">
     <h2 class="form-subtitle">Restablecer</h2>
     <h1 class="form-title">Contraseña</h1>
@@ -24,7 +23,7 @@
 
         </div>
         <div class="form-group buttons">
-            <span></span>
+            <a class="btn btn-link registrarse" href="{{ route('login') }}">{{ __('Volver al login') }}</a>
             <button type="submit" class="btn btn-primary">
                 {{ __('Enviar enlace') }}
             </button>

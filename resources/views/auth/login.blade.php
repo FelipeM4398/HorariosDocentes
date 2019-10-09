@@ -31,7 +31,7 @@
                 </button>
             </div>
             @if (Route::has('register'))
-            <a class="btn btn-link registrarse" href="{{ route('register') }}">{{ __('¿No tiene una cuenta?') }}</a>
+            <a class="btn btn-link registrarse" href="{{ route('register') }}">{{ __('¿No tienes una cuenta?') }}</a>
             @endif
         </div>
     </form>

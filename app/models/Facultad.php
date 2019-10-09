@@ -4,15 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Facultad extends Model {
+class Facultad extends Model
+{
     protected $table = 'facultades';
     public $timestamps = false;
 
-    public function decano(){
+    public function decano()
+    {
         return $this->belongsTo('App\Usuario', 'foreign_key', 'id_decano');
     }
 
-    public function programas(){
+    public function programas()
+    {
         return $this->hasMany('App\Programa', 'foreign_key');
     }
 }
