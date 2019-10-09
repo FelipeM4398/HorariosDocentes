@@ -7,6 +7,7 @@
 
 .login .left {
     display: grid;
+    padding: 2.5rem 0;
     align-items: center;
 }
 
@@ -26,6 +27,12 @@
     font-size: 3.3rem;
 }
 
+.login .form-left-container .group-inputs-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
 .login .form-left-container .buttons {
     display: flex;
     justify-content: space-between;
@@ -37,5 +44,15 @@
 }
 
 .login .rigth {
-    background-image: url('img/BackgroundLogin.png');
+    background: url('img/BackgroundLogin.png') fixed no-repeat 118% 0%;
+}
+
+.hidden {
+    display: none;
+}
+
+#decano,
+#director,
+#docente {
+    display: none;
 }

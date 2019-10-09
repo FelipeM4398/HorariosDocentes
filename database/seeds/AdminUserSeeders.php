@@ -12,13 +12,16 @@ class AdminUserSeeders extends Seeder
      */
     public function run()
     {
-        DB::table('usuarios')->insert(['id' => 1,
-                                       'identificacion' => 1144205319,
-                                       'nombres' => 'Luis Felipe',
-                                       'apellidos' => 'Muñoz Castañeda',
-                                       'telefono' => '3177287425',
-                                       'email' => 'luisf4398@hotmail.com',
-                                       'password' => Hash::make('Felipe7'),
-                                       'id_tipo_usuario' => 1]);
+        DB::table('users')->insert([
+            'id' => 1,
+            'identificacion' => 1144205319,
+            'nombres' => 'Luis Felipe',
+            'apellidos' => 'Muñoz Castañeda',
+            'telefono' => '3177287425',
+            'verificado' => true,
+            'email' => 'luisf4398@hotmail.com',
+            'password' => Hash::make('Felipe7'),
+            'id_tipo_usuario' => 1
+        ]);
     }
 }
