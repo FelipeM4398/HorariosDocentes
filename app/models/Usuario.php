@@ -20,7 +20,7 @@ class Usuario extends Model implements AuthenticatableContract, CanResetPassword
 
     public function tipoUsuario()
     {
-        return $this->belongsTo('App\TipoUsuario', 'foreign_key', 'id_tipo_usuario');
+        return $this->belongsTo('App\TipoUsuario', 'id_tipo_usuario');
     }
 
     public function tipoContrato()
