@@ -1,22 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
-@section('content')
+@section('contenido')
 <div class="container">
     @if (session('status'))
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-succes alert-dismissible fade show" role="alert">
         {{ session('status') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
     @endif
 
-    <h1 style="text-align: center">Bienvenido(a), {{ Auth::user()->nombres }}</h1>
-    @if(Auth::user()->id_tipo_usuario == 1)
-    <h2 style="text-align: center">Eres un administrador</h2>
-    @endif
-    @if(Auth::user()->id_tipo_usuario == 4)
-    <h2 style="text-align: center">Eres un docente</h2>
-    @endif
-    @if(Auth::user()->id_tipo_usuario == null)
-    <h2 style="text-align: center">Espera a que te asignen un rol</h2>
-    @endif
+    <h1 style="text-align: center">Bienvenido(a), {{Auth::user()->nombres}} {{Auth::user()->apellidos}}</h1>
 </div>
 @endsection
