@@ -20,6 +20,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="{{ asset('fontawesome/css/all.css') }}" rel="stylesheet">
 </head>
@@ -30,6 +31,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="{{ asset('js/dashboard.js') }}"></script>
     @yield('scripts')
 </body>
 

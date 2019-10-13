@@ -1,0 +1,96 @@
+@import 'variables';
+
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    height: 100vh;
+}
+
+.content {
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.navbar-left {
+    display: grid;
+    grid-auto-rows: auto auto auto 1fr;
+    height: 100vh;
+}
+
+.header-navbar {
+    font-weight: 600;
+    font-size: 18px;
+    color: $blue;
+    padding: 0.5rem 0;
+    text-align: center;
+}
+
+.user-container {
+    color: #fff;
+    background: $blue;
+    text-align: center;
+    border-top-right-radius: 3rem;
+    padding: 1.5rem 0;
+}
+
+.avatar {
+    width: 5rem;
+    height: 5rem;
+    background: $indigo;
+    border-radius: 6rem;
+    margin: auto;
+    margin-bottom: 0.7rem;
+}
+
+.menu {
+    color: #fff;
+    display: grid;
+}
+
+.menu .item {
+    background: $blue;
+}
+
+.menu .item a {
+    padding: 0.5rem 1rem;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+    height: 100%;
+    margin-left: 2.5rem;
+    display: grid;
+    align-items: center;
+    color: #fff;
+    transition: background 0.1s linear 0.1s;
+}
+
+.menu .item a:hover {
+    text-decoration: none;
+    background: $indigo;
+}
+
+.item a.active,
+.item a.active:hover {
+    text-decoration: none;
+    background: #fff;
+    color: $blue;
+}
+
+.logout {
+    background: $blue;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    align-items: center;
+}
+
+.logout a {
+    padding: 0.5rem 1rem;
+    border-radius: 3rem;
+    color: #fff;
+    margin: 0 2.5rem;
+    display: block;
+}
+
+.logout a:hover {
+    background: $indigo;
+    text-decoration: none;
+}

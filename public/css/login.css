@@ -44,7 +44,8 @@
 }
 
 .login .rigth {
-  background: url(/images/BackgroundLogin.png?93bddfcadab9ab89dff477c5f8bb7f40) fixed no-repeat 118% 0%;
+  background: url(/images/BackgroundLogin.png?93bddfcadab9ab89dff477c5f8bb7f40) no-repeat;
+  width: 100%;
 }
 
 .hidden {

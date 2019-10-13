@@ -11,7 +11,7 @@
     </div>
     @endif
 
-    <h1 style="text-align: center">Bienvenido(a), {{Auth::user()->nombres}} {{Auth::user()->apellidos}}</h1>
+    <h1 style="text-align: center; margin: 1rem;">Bienvenido(a), {{Auth::user()->nombres}} {{Auth::user()->apellidos}}</h1>
 
 </div>
 @endsection
