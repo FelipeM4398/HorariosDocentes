@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class TipoPrograma extends Model {
-    protected $table = 'tipos_programa';
+    protected $table = 'tipos_programas';
     public $timestamps = false;
 
     public function programas(){

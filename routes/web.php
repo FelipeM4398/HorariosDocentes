@@ -23,3 +23,4 @@ Route::get('/register', 'Auth\RegisterController@index')->name('register');
 Route::resource('/asignaturas', 'AsignaturasController');
 Route::resource('/informacion', 'InformacionController');
 Route::resource('/usuarios', 'UsuariosController');
+Route::resource('/programas', 'ProgramasController');
