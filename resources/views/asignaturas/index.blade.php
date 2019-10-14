@@ -5,7 +5,7 @@
     <div class="row">
         <div class="mt-4">
             <a href="{{ route('asignaturas.create') }}" class="btn btn-block btn-info mb-3 text-white">Crear</a>
-            <table class="table table-hover table-dark">
+            <table class="table table-hover table-ligth">
                 <thead>
                     <tr>
                         <th scope="col">#</th>

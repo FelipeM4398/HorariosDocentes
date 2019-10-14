@@ -16,7 +16,7 @@ class Asignatura extends Model
 
     public function docentes()
     {
-        return $this->belongsToMany('App\Usuario')->as('docentes_asignaturas');
+        return $this->belongsToMany('App\Usuario', 'docentes_asignaturas', 'id_asignatura', 'id_docente');
     }
 
     public function horario()

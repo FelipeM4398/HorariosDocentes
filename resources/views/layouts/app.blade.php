@@ -23,6 +23,8 @@
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="{{ asset('fontawesome/css/all.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/informacion.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/usuarios.css') }}" rel="stylesheet">
 </head>
 
 <body>

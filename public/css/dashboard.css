@@ -7,6 +7,7 @@
 .content {
   height: 100vh;
   overflow-y: auto;
+  padding: 0 3rem;
 }
 
 .navbar-left {
@@ -91,5 +92,40 @@
 .logout a:hover {
   background: #004c94;
   text-decoration: none;
+}
+
+.navbar-horizontal {
+  display: grid;
+  grid-template-columns: 60px 60px;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 20px;
+  color: #0050a0;
+  padding: 0.5rem 0;
+  text-align: center;
+  justify-content: end;
+  align-items: center;
+}
+
+.navbar-horizontal .item i {
+  transition: opacity 0.1s ease-in-out 0.05s;
+}
+
+.navbar-horizontal .item i:hover {
+  color: #004c94;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.badge-notify {
+  position: relative;
+  right: 7px;
+  top: -10px;
+  background: #f5d42e;
+  color: #212529;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 1px 3px;
+  border-radius: 10px;
 }
 

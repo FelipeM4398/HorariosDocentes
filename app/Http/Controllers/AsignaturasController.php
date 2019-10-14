@@ -49,9 +49,7 @@ class AsignaturasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Asignatura $asignatura)
-    {
-
-    }
+    { }
 
     /**
      * Show the form for editing the specified resource.

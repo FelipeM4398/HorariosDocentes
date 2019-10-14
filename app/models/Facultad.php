@@ -11,7 +11,7 @@ class Facultad extends Model
 
     public function decano()
     {
-        return $this->belongsTo('App\Usuario', 'foreign_key', 'id_decano');
+        return $this->belongsTo('App\Usuario', 'id_decano');
     }
 
     public function programas()

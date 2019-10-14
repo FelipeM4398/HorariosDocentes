@@ -27,13 +27,13 @@
   font-size: 3.3rem;
 }
 
-.login .form-left-container .group-inputs-2 {
+.group-inputs-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
-.login .form-left-container .buttons {
+.buttons {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1.3rem;
@@ -44,17 +44,11 @@
 }
 
 .login .rigth {
-  background: url(/images/BackgroundLogin.png?93bddfcadab9ab89dff477c5f8bb7f40) no-repeat;
+  background: url(/images/BackgroundLogin.png?93bddfcadab9ab89dff477c5f8bb7f40) no-repeat fixed 115% 0%;
   width: 100%;
 }
 
 .hidden {
-  display: none;
-}
-
-#decano,
-#director,
-#docente {
   display: none;
 }
 
