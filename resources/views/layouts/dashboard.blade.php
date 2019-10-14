@@ -20,7 +20,7 @@
             <div class="item"><a class="{{Request::is('home') ? 'active' : ''}}" href="{{route('home')}}">Inicio</a></div>
             <div class="item"><a href="#">Usuarios</a></div>
             <div class="item"><a href="#">Facultades</a></div>
-            <div class="item"><a href="#">Programas</a></div>
+            <div class="item"><a class="{{Request::is('programas') ? 'active' : ''}}" href="{{route('programas.index')}}">programas</a></div>
             <div class="item"><a href="#">Horarios</a></div>
             <div class="item"><a class="{{Request::is('asignaturas*') ? 'active' : ''}}" href="{{route('asignaturas.index')}}">Asignaturas</a></div>
             <div class="item"><a href="#">Salones</a></div>
