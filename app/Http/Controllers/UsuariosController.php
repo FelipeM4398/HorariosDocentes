@@ -37,7 +37,7 @@ class UsuariosController extends Controller
             ->nombre($nombre)
             ->apellido($apellido)
             ->rol($rol)
-            ->paginate(10);
+            ->paginate(6);
 
         $request->flash();
         return view('usuarios.usuarios', compact('usuarios'));

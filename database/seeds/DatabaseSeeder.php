@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             TiposUsuariosSeeders::class,
             TiposContratosSeeders::class,
-            AdminUserSeeders::class,
+            UserSeeders::class,
             DiasSeeders::class,
             JornadasSeeders::class,
             FacultadesSeeders::class,
@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             ProgramasSeeders::class,
             SalonesSeeders::class,
             AsignaturasSeeders::class,
+            AsigDocentesSeeders::class,
             GruposSeeders::class,
         ]);
     }

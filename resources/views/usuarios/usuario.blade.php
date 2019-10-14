@@ -34,7 +34,11 @@
         <span><b>Correo:</b> {{$usuario->email}}</span>
 
         @if($usuario->hasRole('Docente'))
+        @if($usuario->tipoContrato()->count() != 0)
         <span><b>Tipo de contrato:</b> {{$usuario->tipoContrato()->first()->nombre}}</span>
+        @else
+        <span><b>Tipo de contrato:</b> No ha seleccionado un contrato</span>
+        @endif
         <span><b>Disponiblidad:</b> <a class="btn btn-warning btn-sm asignar" href="#">Consultar</a></span>
         <span style="margin-top: 1rem;"><b>Asignaturas que dicta:</b></span>
         @if($usuario->asignaturas()->count() != 0)

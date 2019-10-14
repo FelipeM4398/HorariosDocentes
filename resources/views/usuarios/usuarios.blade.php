@@ -14,7 +14,7 @@
                 <div class="title-filtro">{{ __('Filtros') }}</div>
                 <div class="group-inputs-3">
                     <input id="identificacion" type="number" class="form-control" name="identificacion" placeholder="Buscar por identificación" value="{{ old('identificacion') }}">
-                    <input id="nombre" type="text" class="form-control" name="nombre" placeholder="Buscar por nombre" value="{{ old('apellido') }}" autocomplete="off">
+                    <input id="nombre" type="text" class="form-control" name="nombre" placeholder="Buscar por nombre" value="{{ old('nombre') }}" autocomplete="off">
                     <input id="apellido" type="text" class="form-control" name="apellido" placeholder="Buscar por apellido" value="{{ old('apellido') }}" autocomplete="off">
                 </div>
             </div>
