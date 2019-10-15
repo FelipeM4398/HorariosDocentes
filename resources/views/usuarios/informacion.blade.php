@@ -114,7 +114,7 @@
             <div class="text">
                 <h3>Ver mi</h3>
                 <h2>Disponibilidad</h2>
-                <a class="btn-link" href="#">
+                <a class="btn-link" href="{{route('disponibilidad.index')}}">
                     {{ __('¡Para ver su disponibilidad haz click aquí!') }}
                 </a>
             </div>

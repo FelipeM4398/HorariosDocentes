@@ -25,13 +25,13 @@
     <link href="{{ asset('fontawesome/css/all.css') }}" rel="stylesheet">
     <link href="{{ asset('css/informacion.css') }}" rel="stylesheet">
     <link href="{{ asset('css/usuarios.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/disponibilidad.css') }}" rel="stylesheet">
 </head>
 
 <body>
     <div id="app">
         @yield('content')
     </div>
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
     @yield('scripts')

@@ -49517,6 +49517,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/disponibilidad.scss":
+/*!********************************************!*\
+  !*** ./resources/sass/disponibilidad.scss ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/informacion.scss":
 /*!*****************************************!*\
   !*** ./resources/sass/informacion.scss ***!
@@ -49562,15 +49573,16 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 0:
-/*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/login.scss ./resources/sass/usuarios.scss ./resources/sass/dashboard.scss ./resources/sass/informacion.scss ./resources/sass/styles.scss ***!
-  \***********************************************************************************************************************************************************************************************************************/
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/login.scss ./resources/sass/disponibilidad.scss ./resources/sass/usuarios.scss ./resources/sass/dashboard.scss ./resources/sass/informacion.scss ./resources/sass/styles.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\xampp\htdocs\ScheduleSoft\scheduleapp\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! C:\xampp\htdocs\ScheduleSoft\scheduleapp\resources\sass\app.scss */"./resources/sass/app.scss");
 __webpack_require__(/*! C:\xampp\htdocs\ScheduleSoft\scheduleapp\resources\sass\login.scss */"./resources/sass/login.scss");
+__webpack_require__(/*! C:\xampp\htdocs\ScheduleSoft\scheduleapp\resources\sass\disponibilidad.scss */"./resources/sass/disponibilidad.scss");
 __webpack_require__(/*! C:\xampp\htdocs\ScheduleSoft\scheduleapp\resources\sass\usuarios.scss */"./resources/sass/usuarios.scss");
 __webpack_require__(/*! C:\xampp\htdocs\ScheduleSoft\scheduleapp\resources\sass\dashboard.scss */"./resources/sass/dashboard.scss");
 __webpack_require__(/*! C:\xampp\htdocs\ScheduleSoft\scheduleapp\resources\sass\informacion.scss */"./resources/sass/informacion.scss");

@@ -75,9 +75,14 @@ class Usuario extends Model implements AuthenticatableContract, CanResetPassword
         return $this->belongsToMany('App\Asignatura', 'docentes_asignaturas', 'id_docente', 'id_asignatura')->as('docentes_asignaturas');
     }
 
-    public function disponibilidad()
+    public function disponibilidades()
     {
-        return $this->hasMany('App\DisponibilidadDocente', 'foreign_key');
+        return $this->hasManyThrough('App\DisponibilidadDia', 'App\DisponibilidadDocente', 'id_docente', 'id_dispo');
+    }
+
+    public function periodo()
+    {
+        return $this->belongsToMany('App\PeriodoAcademico', 'disponibilidades_docentes', 'id_docente', 'id_periodo')->using('App\DisponibilidadDocente')->withPivot('id');
     }
 
     public function horario()

@@ -39,7 +39,7 @@
         @else
         <span><b>Tipo de contrato:</b> No ha seleccionado un contrato</span>
         @endif
-        <span><b>Disponiblidad:</b> <a class="btn btn-warning btn-sm asignar" href="#">Consultar</a></span>
+        <span><b>Disponiblidad:</b> <a class="btn btn-warning btn-sm asignar" href="{{route('disponibilidad.usuario', $usuario)}}">Consultar</a></span>
         <span style="margin-top: 1rem;"><b>Asignaturas que dicta:</b></span>
         @if($usuario->asignaturas()->count() != 0)
         <div class="asignaturas">

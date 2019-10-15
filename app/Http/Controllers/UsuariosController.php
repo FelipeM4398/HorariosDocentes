@@ -51,6 +51,7 @@ class UsuariosController extends Controller
      */
     public function show(Usuario $usuario)
     {
+        Auth::user()->authorizeRoles('Administrador');
         return view('usuarios.usuario', compact('usuario'));
     }
 
@@ -63,6 +64,7 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, Usuario $usuario)
     {
+        Auth::user()->authorizeRoles('Administrador');
         $usuario->id_tipo_usuario = $request->rol;
         $usuario->save();
         return redirect()->back()->with('status', 'Se han guardado los cambios exitosamente');

@@ -1,0 +1,53 @@
+.content-dispo {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+}
+
+.content-dispo .filtros {
+  width: 100%;
+}
+
+.content-dispo .group-inputs-3 div.form-group {
+  display: grid;
+  grid-template-rows: auto auto;
+}
+
+.content-dispo .group-inputs-3 div.form-group:last-child {
+  align-items: flex-end;
+  justify-content: end;
+}
+
+.content-dispo .group-inputs-3 div.form-group .btn {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.list-dispo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.list-dispo .card-rol {
+  padding: 0.5rem 1rem;
+  gap: 10px;
+}
+
+.list-dispo .card-rol i {
+  font-size: 2rem;
+}
+
+.list-dispo .card-rol h3 {
+  font-size: 14px;
+}
+
+.list-dispo .card-rol h2 {
+  font-size: 22px;
+  margin-bottom: 0;
+}
+

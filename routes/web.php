@@ -1,5 +1,6 @@
 <?php
 
+include 'disponibilidad/disponibilidad.routes.php';
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,4 +24,5 @@ Route::get('/register', 'Auth\RegisterController@index')->name('register');
 Route::resource('/asignaturas', 'AsignaturasController');
 Route::resource('/informacion', 'InformacionController');
 Route::resource('/usuarios', 'UsuariosController');
+Route::resource('/disponibilidad', 'DisponibilidadController')->parameters(['disponibilidad' => 'usuario']);
 Route::resource('/programas', 'ProgramasController');
