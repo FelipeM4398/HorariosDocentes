@@ -110,7 +110,6 @@ class CreateDatabase extends Migration
                   $table->integer('telefono')->unsigned();
                   $table->string('email', 50);
                   $table->text('password');
-                  $table->boolean('verificado');
                   $table->integer('id_tipo_usuario')->unsigned()->nullable();
                   $table->integer('id_tipo_contrato')->nullable()->unsigned();
                   $table->rememberToken();

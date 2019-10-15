@@ -39,9 +39,7 @@ class RegisterController extends Controller
     {
         $roles = TipoUsuario::where('id', '>', 1)->get();
         $contratos = TipoContrato::all();
-        $facultades = Facultad::all();
-        $programas = Programa::all();
-        return view('auth/register', compact('roles'), compact('contratos', 'facultades', 'programas'));
+        return view('auth/register', compact('roles'), compact('contratos'));
     }
 
     /**
@@ -80,7 +78,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        echo json_encode($data);
         if ($data['docente']) {
             return Usuario::create([
                 'identificacion' => $data['identificacion'],

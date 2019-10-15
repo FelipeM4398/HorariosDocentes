@@ -1,59 +1,54 @@
 .login {
-  display: grid;
-  height: 100vh;
-  min-height: 525px;
-  grid-template-columns: 3fr 4fr;
+    display: grid;
+    height: 100vh;
+    min-height: 525px;
+    grid-template-columns: 3fr 4fr;
 }
 
 .login .left {
-  display: grid;
-  padding: 2.5rem 0;
-  align-items: center;
+    display: grid;
+    padding: 2.5rem 0;
+    align-items: center;
 }
 
 .login .form-left-container {
-  display: grid;
-  width: 70%;
-  margin: auto;
+    display: grid;
+    width: 70%;
+    margin: auto;
 }
 
 .login .form-left-container .form-subtitle {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .login .form-left-container .form-title {
-  margin-bottom: 1.3rem;
-  font-weight: 1000;
-  font-size: 3.3rem;
+    margin-bottom: 1.3rem;
+    font-weight: 1000;
+    font-size: 3.3rem;
 }
 
-.login .form-left-container .group-inputs-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+.group-inputs-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
 }
 
-.login .form-left-container .buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1.3rem;
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.3rem;
 }
 
 .login .form-left-container .form-buttons {
-  text-align: center;
+    text-align: center;
 }
 
 .login .rigth {
-  background: url(/images/BackgroundLogin.png?93bddfcadab9ab89dff477c5f8bb7f40) fixed no-repeat 118% 0%;
+    background: url(/images/BackgroundLogin.png?93bddfcadab9ab89dff477c5f8bb7f40)
+        no-repeat fixed 115% 0%;
+    width: 100%;
 }
 
 .hidden {
-  display: none;
+    display: none;
 }
-
-#decano,
-#director,
-#docente {
-  display: none;
-}
-

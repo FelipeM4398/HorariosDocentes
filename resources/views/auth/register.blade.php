@@ -66,10 +66,10 @@
         <div>
             <input type="checkbox" name="isDocente" id="isDocente">
             <label for="isDocente">Docente</label>
-            <input type="text" name="docente" class="hidden" id="isdocente">
+            <input type="text" name="docente" class="hidden" id="isdocente" value="false">
         </div>
 
-        <div class="form-group" id="docente">
+        <div class="form-group hidden" id="docente">
             <label for="contrato">{{__('Tipo de contrato')}}</label>
             <select name="contrato" id="contrato" class="form-control">
                 <option value="">Seleccione un tipo de contrato</option>

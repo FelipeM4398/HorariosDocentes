@@ -2,33 +2,37 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class DisponibilidadDocente extends Model {
-    protected $table = 'disponibilidades_docente';
+class DisponibilidadDocente extends Pivot
+{
+    protected $table = 'disponibilidades_docentes';
+    public $incrementing = true;
     public $timestamps = false;
 
-    public function dias(){
-        return $this->belongsToMany('App\Dia')
-                    ->as('disponibilidades_dias')
-                    ->withPivot([
-                        'disponible'
-                    ]);
+    public function dias()
+    {
+        return $this->belongsToMany('App\Dia', 'disponibilidades_dias', 'id_dispo', 'id_dia')
+            ->withPivot([
+                'disponible'
+            ]);
     }
 
-    public function jornada(){
-        return $this->belongsToMany('App\Jornada')
-                    ->as('disponibilidades_dias')
-                    ->withPivot([
-                        'disponible'
-                    ]);
+    public function jornada()
+    {
+        return $this->belongsToMany('App\Jornada', 'disponibilidades_dias', 'id_dispo', 'id_jornada')
+            ->withPivot([
+                'disponible'
+            ]);
     }
 
-    public function docente(){
-        return $this->belongsTo('App\Usuario', 'foreign_key', 'id_docente');
+    public function docente()
+    {
+        return $this->belongsTo('App\Usuario', 'id_docente');
     }
 
-    public function periodo(){
-        return $this->belongsTo('App\PeriodoAcademico', 'foreign_key', 'id_periodo');
+    public function periodo()
+    {
+        return $this->belongsTo('App\PeriodoAcademico', 'id_periodo');
     }
 }

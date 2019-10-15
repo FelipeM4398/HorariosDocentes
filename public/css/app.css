@@ -9,7 +9,7 @@
 
 :root {
   --blue: #0050a0;
-  --indigo: #6574cd;
+  --indigo: #004c94;
   --purple: #9561e2;
   --pink: #f66d9b;
   --red: #e3342f;
@@ -10642,5 +10642,13 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+html {
+  overflow: hidden;
+}
+
+.login {
+  overflow-y: auto;
 }
 
