@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Jornada extends Model
@@ -23,5 +24,17 @@ class Jornada extends Model
             ->withPivot([
                 'disponible'
             ]);
+    }
+
+    public function getHoraInicioAttribute($value)
+    {
+        $time = Carbon::createFromFormat('H:i:s', $value);
+        return $time->format('h:i a');
+    }
+
+    public function getHoraFinAttribute($value)
+    {
+        $time = Carbon::createFromFormat('H:i:s', $value);
+        return $time->format('h:i a');
     }
 }

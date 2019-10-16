@@ -1,6 +1,6 @@
 <?php
 
-include 'disponibilidad/disponibilidad.routes.php';
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +11,8 @@ include 'disponibilidad/disponibilidad.routes.php';
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+include 'disponibilidad/disponibilidad.routes.php';
 
 Route::get('/', function () {
     return view('auth/login');

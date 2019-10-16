@@ -19,6 +19,11 @@ class PeriodoAcademico extends Model
         return $this->hasMany('App/DisponibilidadDocente', 'id_periodo');
     }
 
+    public function disponibilidadesDias()
+    {
+        return $this->hasManyThrough('App\DisponibilidadDia', 'App\DisponibilidadDocente', 'id_periodo', 'id_dispo');
+    }
+
     public function scopeAño($query, $año)
     {
         if ($año) {

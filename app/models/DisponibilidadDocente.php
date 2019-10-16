@@ -10,20 +10,9 @@ class DisponibilidadDocente extends Pivot
     public $incrementing = true;
     public $timestamps = false;
 
-    public function dias()
+    public function dispoDias()
     {
-        return $this->belongsToMany('App\Dia', 'disponibilidades_dias', 'id_dispo', 'id_dia')
-            ->withPivot([
-                'disponible'
-            ]);
-    }
-
-    public function jornada()
-    {
-        return $this->belongsToMany('App\Jornada', 'disponibilidades_dias', 'id_dispo', 'id_jornada')
-            ->withPivot([
-                'disponible'
-            ]);
+        return $this->hasMany('App\DisponibilidadDia', 'id_dispo');
     }
 
     public function docente()

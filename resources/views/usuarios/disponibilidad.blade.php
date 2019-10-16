@@ -16,15 +16,24 @@
     @else
     <h2>Usuario</h2>
     <h1>{{$usuario->nombres}} {{$usuario->apellidos}}</h1>
+    <h3>Disponibilidad</h3>
     @endif
 </div>
 <div class="content-dispo">
     <div class="container-list">
+        @if (session('status'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('status') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
         <div class="filtros">
             @if(Auth::user()->hasRole('Docente'))
             <form method="POST" action="{{ route('disponibilidad.index') }}">
                 @else
-                <form method="POST" action="{{ route('disponibilidad.usuario', $usuario) }}">
+                <form method="POST" action="{{ route('usuarios.disponibilidad', $usuario) }}">
                     @endif
                     @method('GET')
                     @csrf
@@ -76,9 +85,15 @@
                 <div class="text">
                     <h3>{{$periodo->año}}</h3>
                     <h2>Periodo {{$periodo->periodo}}</h2>
-                    <a class="btn-link" href="#">
+                    @if(Auth::user()->hasRole('Administrador'))
+                    <a class="btn-link" href="{{ route('periodo.disponibilidad', [$usuario, $periodo]) }}">
                         {{ __('Ver') }}
                     </a>
+                    @else
+                    <a class="btn-link" href="{{ route('periodo.disponibilidad', [Auth::user(), $periodo]) }}">
+                        {{ __('Ver') }}
+                    </a>
+                    @endif
                 </div>
             </div>
             @endforeach
@@ -88,5 +103,19 @@
         No encontramos registrada ninguna disponibilidad
         @endif
     </div>
+    @if(Auth::user()->hasRole('Docente'))
+    <div class="card-rol card-asig card-disponibilidad">
+        <div class="icon">
+            <i class="fas fa-calendar-plus"></i>
+        </div>
+        <div class="text">
+            <h3>Registrar</h3>
+            <h2>Disponibilidad</h2>
+            <a class="btn-link" href="{{ route('disponibilidad.create') }}">
+                {{ __('Ir') }}
+            </a>
+        </div>
+    </div>
+    @endif
 </div>
 @endsection

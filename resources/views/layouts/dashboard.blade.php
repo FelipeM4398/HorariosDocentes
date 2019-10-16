@@ -31,8 +31,12 @@
             <div class="item"><a class="{{Request::is('usuarios*') ? 'active' : ''}}" href="{{route('usuarios.index')}}">Usuarios</a></div>
             @endif
 
+            @if(Auth::user()->hasRole('Docente'))
+            <div class="item"><a class="{{(Request::is('disponibilidad*') || Request::is('usuarios/periodos*')) ? 'active' : ''}}" href="{{route('disponibilidad.index')}}">Disponibilidad</a></div>
+            @endif
+
             <div class="item"><a href="#">Facultades</a></div>
-            <div class="item"><a class="{{Request::is('programas') ? 'active' : ''}}" href="{{route('programas.index')}}">programas</a></div>
+            <div class="item"><a class="{{Request::is('programas') ? 'active' : ''}}" href="{{route('programas.index')}}">Programas</a></div>
             <div class="item"><a href="#">Horarios</a></div>
             <div class="item"><a class="{{Request::is('asignaturas*') ? 'active' : ''}}" href="{{route('asignaturas.index')}}">Asignaturas</a></div>
             <div class="item"><a href="#">Salones</a></div>
