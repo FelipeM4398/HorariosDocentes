@@ -42,7 +42,7 @@
         <span>
             <b>Disponiblidad:</b> <a class="btn btn-warning btn-sm asignar" href="{{route('usuarios.disponibilidad', $usuario)}}">Consultar</a>
         </span>
-        <span style="margin-top: 1rem;"><b>Asignaturas que dicta:</b></span>
+        <span style="margin: .5rem 0;"><b>Asignaturas que dicta:</b></span>
         @if($usuario->asignaturas()->count() != 0)
         <div class="asignaturas">
             @foreach($usuario->asignaturas()->get() as $asignatura)
@@ -68,7 +68,7 @@
         @endif
 
         @if($usuario->hasRole('Director'))
-        <span style="margin-top: 1rem;"><b>Programas académicos:</b></span>
+        <span style="margin: .5rem 0;"><b>Programas académicos:</b></span>
         @if($usuario->programa()->count() != 0)
         <div class="asignaturas">
             @foreach($usuario->programa()->get() as $programa)
@@ -93,7 +93,7 @@
         @endif
 
         @if($usuario->hasRole('Decano'))
-        <span style="margin-top: 1rem;"><b>Facultad:</b></span>
+        <span style="margin: .5rem 0;"><b>Facultad:</b></span>
         @if($usuario->facultad()->count() != 0)
         <div class="asignaturas">
             @foreach($usuario->facultad()->get() as $facultad)

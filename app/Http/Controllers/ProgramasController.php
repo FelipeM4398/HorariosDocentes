@@ -52,7 +52,7 @@ class ProgramasController extends Controller
     public function store(Request $request)
     {
         Programa::create($request->all());
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Se ha registrado un nuevo programa exitosamente.');
     }
 
     /**
@@ -93,7 +93,7 @@ class ProgramasController extends Controller
     {
         $programa->fill($request->all());
         $programa->save();
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Se han guardado los cambios exitosamente');
     }
 
     /**

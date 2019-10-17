@@ -85,7 +85,6 @@ class RegisterController extends Controller
                 'apellidos' => $data['apellidos'],
                 'telefono' => $data['telefono'],
                 'email' => $data['email'],
-                'verificado' => false,
                 'id_tipo_usuario' => 4,
                 'id_tipo_contrato' => $data['contrato'],
                 'password' => Hash::make($data['password']),
@@ -97,7 +96,6 @@ class RegisterController extends Controller
                 'apellidos' => $data['apellidos'],
                 'telefono' => $data['telefono'],
                 'email' => $data['email'],
-                'verificado' => false,
                 'password' => Hash::make($data['password']),
             ]);
         }

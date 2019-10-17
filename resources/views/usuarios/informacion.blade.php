@@ -102,7 +102,7 @@
                     <h3>Cambiar</h3>
                     <h2>Contraseña</h2>
                     <a class="btn-link text-white" href="{{ route('password.request') }}">
-                        {{ __('¡Para cambiar su contraseña haz click aquí!') }}
+                        {{ __('Click aquí') }}
                     </a>
                 </div>
             </div>
@@ -117,7 +117,7 @@
                     <h3>Ver mi</h3>
                     <h2>Disponibilidad</h2>
                     <a class="btn-link text-white" href="{{route('disponibilidad.index')}}">
-                        {{ __('¡Para ver su disponibilidad haz click aquí!') }}
+                        {{ __('Click aquí') }}
                     </a>
                 </div>
             </div>
@@ -131,7 +131,7 @@
                 <h3>Ver</h3>
                 <h2>Asignaturas</h2>
                 <a class="btn-link text-white" href="#">
-                    {{ __('¡Para ver las asignaturas que dicta haz click aquí!') }}
+                    {{ __('Click aquí') }}
                 </a>
             </div>
         </div>

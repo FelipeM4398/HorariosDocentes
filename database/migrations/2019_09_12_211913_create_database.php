@@ -133,7 +133,7 @@ class CreateDatabase extends Migration
 
             Schema::create('programas', function (Blueprint $table) {
                   $table->increments('id');
-                  $table->integer('snies')->unique()->unsigned();
+                  $table->integer('snies')->unique()->unsigned()->nullable();
                   $table->string('nombre', 100);
                   $table->text('descripcion')->nullable();
                   $table->integer('duracion')->unsigned();

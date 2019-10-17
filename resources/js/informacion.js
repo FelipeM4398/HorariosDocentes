@@ -16,15 +16,37 @@ function deshabilitar() {
     $('#contrato').prop('disabled', true);
 }
 
+function habilitarProgrma() {
+    $('#nombre').prop('disabled', false);
+    $('#tipo_programa').prop('disabled', false);
+    $('#duracion').prop('disabled', false);
+    $('#descripcion').prop('disabled', false);
+    $('#director').prop('disabled', false);
+    $('#modalidad').prop('disabled', false);
+    $('#facultad').prop('disabled', false);
+}
+
+function deshabilitarProgrma() {
+    $('#nombre').prop('disabled', true);
+    $('#tipo_programa').prop('disabled', true);
+    $('#duracion').prop('disabled', true);
+    $('#descripcion').prop('disabled', true);
+    $('#director').prop('disabled', true);
+    $('#modalidad').prop('disabled', true);
+    $('#facultad').prop('disabled', true);
+}
+
 $(document).ready(function() {
     $('#editar').click(function() {
         habilitar();
+        habilitarProgrma();
         $('#cancelar').removeClass('hidden');
         $('#cambios').removeClass('hidden');
         $('#editar').addClass('hidden');
     });
     $('#cancelar').click(function() {
         deshabilitar();
+        deshabilitarProgrma();
         $('#editar').removeClass('hidden');
         $('#cambios').addClass('hidden');
         $('#cancelar').addClass('hidden');
