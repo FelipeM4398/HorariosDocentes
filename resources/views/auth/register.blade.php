@@ -4,7 +4,7 @@
 <div class="form-left-container">
     <h1 class="form-title">Registrarse</h1>
     <form method="POST" action="{{ route('register') }}">
-    @csrf
+        @csrf
         <div class="form-group">
             <label for="identificacion">{{ __('Identificación') }}</label>
             <input id="identificacion" type="number" class="form-control @error('identificacion') is-invalid @enderror" name="identificacion" value="{{ old('identificacion') }}" required placeholder="Ingrese su número de indentificación">
@@ -79,8 +79,8 @@
             </select>
         </div>
 
-        <div class="form-group buttons">
-            <a class="btn btn-link registrarse" href="{{ route('login') }}">{{ __('¿Ya tienes una cuenta?') }}</a>
+        <div class="form-group buttons-login">
+            <a class="btn-link registrarse" href="{{ route('login') }}">{{ __('¿Ya tienes una cuenta?') }}</a>
             <button type="submit" class="btn btn-primary">
                 {{ __('Registrarse') }}
             </button>

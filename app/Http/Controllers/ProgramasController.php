@@ -13,14 +13,20 @@ class ProgramasController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $programas = Programa::paginate();
-
-        return view('programas.index', compact('programas'));
+        $modalidades = Modalidad::all();
+        $tipoProgramas = TipoPrograma::all();
+        $modalidad = $request->modalidad;
+        $programas = Programa::nombre($request->nombre)
+            ->modalidad($request->modalidad)
+            ->tipo($request->tipo)
+            ->paginate(6);
+        $request->flash();
+        return view('programas.index', compact('programas', 'modalidades', 'tipoProgramas'));
     }
 
     /**

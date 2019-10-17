@@ -38,4 +38,25 @@ class Programa extends Model
     {
         return $this->belongsTo(Modalidad::class, 'id_modalidad');
     }
+
+    public function scopeNombre($query, $nombre)
+    {
+        if ($nombre) {
+            return $query->where('nombre', 'LIKE', "%$nombre%");
+        }
+    }
+
+    public function scopeModalidad($query, $id)
+    {
+        if ($id) {
+            return $query->where('id_modalidad', '=', $id);
+        }
+    }
+
+    public function scopeTipo($query, $id)
+    {
+        if ($id) {
+            return $query->where('id_tipo_programa', '=', $id);
+        }
+    }
 }

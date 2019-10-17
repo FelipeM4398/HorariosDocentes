@@ -5,7 +5,7 @@
     <h2>Ver</h2>
     <h1>Usuarios</h1>
 </div>
-<div class="content-users">
+<div class="main-contenido">
     <div class="filtros">
         <form method="POST" action="{{ route('usuarios.index') }}">
             @method('GET')
@@ -65,8 +65,8 @@
             </div>
         </form>
     </div>
-    <div class="users">
-        <table class="table table-hover table-ligth">
+    <div class="table-responsive">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">Identificación</th>
@@ -100,7 +100,7 @@
                 @endif
             </tbody>
         </table>
-        {{$usuarios->links()}}
+        {{$usuarios->appends(Request::except('page'))->links()}}
     </div>
 </div>
 @endsection

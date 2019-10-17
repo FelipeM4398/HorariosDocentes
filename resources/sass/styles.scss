@@ -21,6 +21,19 @@
     vertical-align: unset;
 }
 
+.contenido {
+    display: grid;
+    grid-template-areas:
+        'title title title'
+        'main main main';
+    grid-template-columns: 1fr 1fr auto;
+    gap: 2rem;
+}
+
+.title-contenido {
+    grid-area: title;
+}
+
 .title-contenido h2 {
     margin-bottom: -5px;
     border-left: 0.9rem solid $yellow;
@@ -30,7 +43,6 @@
 
 .title-contenido h1 {
     padding-left: 0.5rem;
-    margin-bottom: 1.3rem;
     font-weight: 1000;
     font-size: 2.7rem;
     border-left: 0.9rem solid $yellow;
@@ -39,13 +51,100 @@
 
 .title-contenido h3 {
     padding-left: 1.4rem;
-    margin-bottom: 1.3rem;
     font-size: 1.3rem;
-    margin-top: -1.2rem;
+    margin-top: -0.4rem;
 }
 
-.alert {
-    border-radius: 10px;
+.main-contenido {
+    display: grid;
+    grid-area: main;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding-right: 6rem;
+}
+
+.action {
+    font-size: 1.4rem;
+    margin: 0 0 0.7rem 0.7rem;
+}
+
+.block {
+    width: auto;
+    height: fit-content;
+    padding: 0.5rem 0.5rem;
+    border-radius: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.block .block-icon {
+    text-align: center;
+    font-size: 1.9rem;
+}
+
+.block h2,
+.block h3,
+.block a {
+    margin: 0;
+}
+
+.block h2 {
+    font-weight: 1000;
+}
+
+.block h3 {
+    font-size: 1.1rem;
+    margin-bottom: -5px;
+}
+
+.block-green {
+    background: #81c784;
+    color: #fff !important;
+}
+
+.block-blue {
+    background: #1e88e5;
+    color: #fff !important;
+}
+
+.block-yellow {
+    background: #ffc107;
+    color: #fff !important;
+}
+
+.block-md {
+    width: 15rem;
+}
+
+.filtros .title-filtro {
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid $gray;
+    margin-bottom: 0.5rem;
+}
+
+.group-inputs-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.group-inputs-2 {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 1rem;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-group.buttons .btn {
+    width: fit-content;
+    margin-left: 0.5rem;
 }
 
 .alert-success {
@@ -66,6 +165,10 @@
     color: #58585d;
 }
 
+.hidden {
+    display: none;
+}
+
 .pagination {
     justify-content: center;
 }
@@ -75,7 +178,7 @@
 }
 
 .back {
-    margin-bottom: 20px;
+    margin-bottom: 0.5rem;
 }
 
 .back .btn-link {

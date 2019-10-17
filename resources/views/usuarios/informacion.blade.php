@@ -5,7 +5,7 @@
     <h2>Mi</h2>
     <h1>Información</h1>
 </div>
-<div class="content-info">
+<div class="main-contenido informacion">
     <div class="info-user">
         @if (session('status'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -80,7 +80,6 @@
                 @endif
 
                 <div class="form-group buttons">
-                    <span id="span"></span>
                     <button id="editar" type="button" class="btn btn-primary">
                         {{ __('Editar') }}
                     </button>
@@ -94,40 +93,44 @@
             </form>
     </div>
     <div class="info-rol">
-        <div class="card-rol">
-            <div class="icon">
+        <div class="block block-blue">
+            <div class="block-icon">
                 <i class="fas fa-lock"></i>
             </div>
-            <div class="text">
-                <h3>Cambiar</h3>
-                <h2>Contraseña</h2>
-                <a class="btn-link" href="{{ route('password.request') }}">
-                    {{ __('¡Para cambiar su contraseña haz click aquí!') }}
-                </a>
+            <div class="block-text">
+                <div>
+                    <h3>Cambiar</h3>
+                    <h2>Contraseña</h2>
+                    <a class="btn-link text-white" href="{{ route('password.request') }}">
+                        {{ __('¡Para cambiar su contraseña haz click aquí!') }}
+                    </a>
+                </div>
             </div>
         </div>
         @if(Auth::user()->id_tipo_usuario == 4)
-        <div class="card-rol card-dispo">
-            <div class="icon">
+        <div class="block block-green">
+            <div class="block-icon">
                 <i class="fas fa-calendar-check"></i>
             </div>
-            <div class="text">
-                <h3>Ver mi</h3>
-                <h2>Disponibilidad</h2>
-                <a class="btn-link" href="{{route('disponibilidad.index')}}">
-                    {{ __('¡Para ver su disponibilidad haz click aquí!') }}
-                </a>
+            <div class="block-text">
+                <div>
+                    <h3>Ver mi</h3>
+                    <h2>Disponibilidad</h2>
+                    <a class="btn-link text-white" href="{{route('disponibilidad.index')}}">
+                        {{ __('¡Para ver su disponibilidad haz click aquí!') }}
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="card-rol card-asig">
-            <div class="icon">
+        <div class="block block-yellow">
+            <div class="block-icon">
                 <i class="fas fa-clipboard-list"></i>
             </div>
-            <div class="text">
+            <div class="block-text">
                 <h3>Ver</h3>
                 <h2>Asignaturas</h2>
-                <a class="btn-link" href="#">
+                <a class="btn-link text-white" href="#">
                     {{ __('¡Para ver las asignaturas que dicta haz click aquí!') }}
                 </a>
             </div>

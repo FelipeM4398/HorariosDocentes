@@ -33,7 +33,7 @@
             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirme su nueva contraseña">
         </div>
 
-        <div class="form-group buttons">
+        <div class="form-group buttons-login">
             <span></span>
             <button type="submit" class="btn btn-primary">
                 {{ __('Reestablecer') }}

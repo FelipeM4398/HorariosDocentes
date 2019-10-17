@@ -22,8 +22,8 @@
             @enderror
 
         </div>
-        <div class="form-group buttons">
-            <a class="btn btn-link registrarse" href="{{ route('login') }}">{{ __('Volver al login') }}</a>
+        <div class="form-group buttons-login">
+            <a class="btn-link registrarse" href="{{ route('login') }}">{{ __('Volver al login') }}</a>
             <button type="submit" class="btn btn-primary">
                 {{ __('Enviar enlace') }}
             </button>

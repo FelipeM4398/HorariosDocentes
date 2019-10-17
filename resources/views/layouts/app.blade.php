@@ -26,6 +26,7 @@
     <link href="{{ asset('css/informacion.css') }}" rel="stylesheet">
     <link href="{{ asset('css/usuarios.css') }}" rel="stylesheet">
     <link href="{{ asset('css/disponibilidad.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/programas.css') }}" rel="stylesheet">
 </head>
 
 <body>

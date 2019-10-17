@@ -1,20 +1,20 @@
 @extends('layouts.dashboard')
 
 @section('contenido')
-<div class="back">
-    @if(Auth::user()->hasRole('Administrador'))
-    <a class="btn btn-link" href="{{route('usuarios.disponibilidad', $usuario)}}">
-        <i class="fas fa-arrow-left"></i>
-        Volver
-    </a>
-    @else
-    <a class="btn btn-link" href="{{route('disponibilidad.index')}}">
-        <i class="fas fa-arrow-left"></i>
-        Volver
-    </a>
-    @endif
-</div>
 <div class="title-contenido">
+    <div class="back">
+        @if(Auth::user()->hasRole('Administrador'))
+        <a class="btn btn-link" href="{{route('usuarios.disponibilidad', $usuario)}}">
+            <i class="fas fa-arrow-left"></i>
+            Volver
+        </a>
+        @else
+        <a class="btn btn-link" href="{{route('disponibilidad.index')}}">
+            <i class="fas fa-arrow-left"></i>
+            Volver
+        </a>
+        @endif
+    </div>
     @if(Auth::user()->hasRole('Docente'))
     <h2>Mi</h2>
     <h1>Disponibilidad</h1>
@@ -24,8 +24,8 @@
     <h3>Disponibilidad</h3>
     @endif
 </div>
-<div class="content-dispo">
-    <div>
+<div class="main-contenido">
+    <div class="table-responsive">
         <h2 class="periodo">Periodo {{$periodo->periodo}} del año {{$periodo->año}}</h2>
         <table class="table table-ligth disponibilidad">
             <thead>

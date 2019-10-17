@@ -1,34 +1,31 @@
 @import 'variables';
 
-.content-dispo {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 3rem;
-}
-
-.content-dispo .filtros {
-    width: 100%;
-}
-
-.content-dispo .group-inputs-3 div.form-group {
-    display: grid;
-    grid-template-rows: auto auto;
-}
-
-.content-dispo .group-inputs-3 div.form-group:last-child {
-    align-items: flex-end;
-    justify-content: end;
-}
-
-.content-dispo .group-inputs-3 div.form-group .btn {
-    height: fit-content;
-    width: fit-content;
-}
-
 .list-dispo {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.checks {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    align-items: center;
+}
+
+.checks .group-inputs-3 {
+    gap: 0;
+}
+
+.checks .form-check {
+    text-align: center;
+}
+
+.checks .form-check:first-child {
+    text-align: left;
+}
+
+.checks .form-check:last-child {
+    text-align: right;
 }
 
 .list-dispo .card-rol {

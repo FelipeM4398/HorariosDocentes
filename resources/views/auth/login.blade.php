@@ -20,9 +20,9 @@
             <input id="password" type="password" placeholder="Ingrese su contraseña" class="form-control" name="password" required autocomplete="current-password">
         </div>
         <div class="form-group form-buttons">
-            <div class="buttons">
+            <div class="buttons-login">
                 @if (Route::has('password.request'))
-                <a class="btn btn-link" href="{{ route('password.request') }}">
+                <a class="btn-link" href="{{ route('password.request') }}">
                     {{ __('¿Olvidó su contraseña?') }}
                 </a>
                 @endif

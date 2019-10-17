@@ -1,17 +1,17 @@
 @extends('layouts.dashboard')
 
 @section('contenido')
-<div class="back">
-    <a class="btn btn-link" href="{{route('usuarios.index')}}">
-        <i class="fas fa-arrow-left"></i>
-        Volver
-    </a>
-</div>
 <div class="title-contenido">
+    <div class="back">
+        <a class="btn btn-link" href="{{route('usuarios.index')}}">
+            <i class="fas fa-arrow-left"></i>
+            Volver
+        </a>
+    </div>
     <h2>Usuario</h2>
     <h1>{{ $usuario->nombres }} {{ $usuario->apellidos }}</h1>
 </div>
-<div class="user-content">
+<div class="main-contenido">
 
     @if (session('status'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -39,21 +39,25 @@
         @else
         <span><b>Tipo de contrato:</b> No ha seleccionado un contrato</span>
         @endif
-        <span><b>Disponiblidad:</b> <a class="btn btn-warning btn-sm asignar" href="{{route('usuarios.disponibilidad', $usuario)}}">Consultar</a></span>
+        <span>
+            <b>Disponiblidad:</b> <a class="btn btn-warning btn-sm asignar" href="{{route('usuarios.disponibilidad', $usuario)}}">Consultar</a>
+        </span>
         <span style="margin-top: 1rem;"><b>Asignaturas que dicta:</b></span>
         @if($usuario->asignaturas()->count() != 0)
         <div class="asignaturas">
             @foreach($usuario->asignaturas()->get() as $asignatura)
-            <div class="card-rol card-asig">
-                <div class="icon">
+            <div class="block block-green">
+                <div class="block-icon">
                     <i class="fas fa-book"></i>
                 </div>
-                <div class="text">
-                    <h3>{{$asignatura->codigo}}</h3>
-                    <h2>{{$asignatura->nombre}}</h2>
-                    <a class="btn-link" href="#">
-                        {{ __('Ver asignatura') }}
-                    </a>
+                <div class="block-text">
+                    <div>
+                        <h3>{{$asignatura->codigo}}</h3>
+                        <h2>{{$asignatura->nombre}}</h2>
+                        <a class="btn-link text-white" href="#">
+                            {{ __('Ver asignatura') }}
+                        </a>
+                    </div>
                 </div>
             </div>
             @endforeach
@@ -68,15 +72,17 @@
         @if($usuario->programa()->count() != 0)
         <div class="asignaturas">
             @foreach($usuario->programa()->get() as $programa)
-            <div class="card-rol card-dispo">
-                <div class="icon">
+            <div class="block block-yellow">
+                <div class="block-icon">
                     <i class="fas fa-book"></i>
                 </div>
-                <div class="text">
-                    <h2>{{$programa->nombre}}</h2>
-                    <a class="btn-link" href="#">
-                        {{ __('Ver programa') }}
-                    </a>
+                <div class="block-text">
+                    <div>
+                        <h2>{{$programa->nombre}}</h2>
+                        <a class="btn-link text-white" href="#">
+                            {{ __('Ver programa') }}
+                        </a>
+                    </div>
                 </div>
             </div>
             @endforeach
@@ -91,15 +97,17 @@
         @if($usuario->facultad()->count() != 0)
         <div class="asignaturas">
             @foreach($usuario->facultad()->get() as $facultad)
-            <div class="card-rol">
-                <div class="icon">
+            <div class="block block-blue">
+                <div class="block-icon">
                     <i class="fas fa-book"></i>
                 </div>
-                <div class="text">
-                    <h2>{{$facultad->nombre}}</h2>
-                    <a class="btn-link" href="#">
-                        {{ __('Ver facultad') }}
-                    </a>
+                <div class="block-text">
+                    <div>
+                        <h2>{{$facultad->nombre}}</h2>
+                        <a class="btn-link text-white" href="#">
+                            {{ __('Ver facultad') }}
+                        </a>
+                    </div>
                 </div>
             </div>
             @endforeach
@@ -143,7 +151,6 @@
                     </div>
                 </div>
                 <div class="form-group buttons">
-                    <span></span>
                     <button type="submit" class="btn btn-success">
                         {{ __('Asignar') }}
                     </button>

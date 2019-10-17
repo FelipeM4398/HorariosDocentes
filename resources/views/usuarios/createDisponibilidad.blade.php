@@ -1,17 +1,17 @@
 @extends('layouts.dashboard')
 
 @section('contenido')
-<div class="back">
-    <a class="btn btn-link" href="{{route('disponibilidad.index')}}">
-        <i class="fas fa-arrow-left"></i>
-        Volver
-    </a>
-</div>
 <div class="title-contenido">
+    <div class="back">
+        <a class="btn btn-link" href="{{route('disponibilidad.index')}}">
+            <i class="fas fa-arrow-left"></i>
+            Volver
+        </a>
+    </div>
     <h2>Registrar</h2>
     <h1>Disponibilidad</h1>
 </div>
-<div class="content-dispo">
+<div class="main-contenido">
     <div class="register-dispo">
         @if (session('error'))
         <div class="alert alert-warning alert-dismissible fade show" role="alert">

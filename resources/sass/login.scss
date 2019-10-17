@@ -27,18 +27,6 @@
     font-size: 3.3rem;
 }
 
-.group-inputs-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-}
-
-.buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1.3rem;
-}
-
 .login .form-left-container .form-buttons {
     text-align: center;
 }
@@ -48,6 +36,7 @@
     width: 100%;
 }
 
-.hidden {
-    display: none;
+.buttons-login {
+    display: flex;
+    justify-content: space-between;
 }
