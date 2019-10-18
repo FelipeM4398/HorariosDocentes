@@ -1,7 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('contenido')
-
 <div class="title-contenido">
     <h2>Bienvenido a</h2>
     <h1>Horario Docente</h1>

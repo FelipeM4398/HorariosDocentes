@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Asignatura;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AsignaturasController extends Controller
 {
@@ -12,9 +13,13 @@ class AsignaturasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $asignaturas = Asignatura::paginate();
+        $asignaturas = Asignatura::codigo($request->codigo)
+            ->nombre($request->nombre)
+            ->orderBy('nombre')
+            ->paginate(5);
+        $request->flash();
         return view('asignaturas.index', compact('asignaturas'));
     }
 
@@ -25,6 +30,7 @@ class AsignaturasController extends Controller
      */
     public function create()
     {
+        Auth::user()->authorizeRoles('Administrador');
         return view('asignaturas.create');
     }
 
@@ -36,10 +42,11 @@ class AsignaturasController extends Controller
      */
     public function store(Request $request)
     {
+        Auth::user()->authorizeRoles('Administrador');
         Asignatura::create(
             $request->all()
         );
-        return redirect()->route('asignaturas.index');
+        return redirect()->route('asignaturas.index')->with('status', 'Se ha registrado una nueva asignatura exitosamente.');;
     }
 
     /**
@@ -59,6 +66,7 @@ class AsignaturasController extends Controller
      */
     public function edit(Asignatura $asignatura)
     {
+        Auth::user()->authorizeRoles('Administrador');
         return view('asignaturas.edit', compact('asignatura'));
     }
 
@@ -71,12 +79,13 @@ class AsignaturasController extends Controller
      */
     public function update(Request $request, Asignatura $asignatura)
     {
+        Auth::user()->authorizeRoles('Administrador');
         $asignatura->codigo = $request->codigo;
         $asignatura->nombre = $request->nombre;
         $asignatura->creditos = $request->creditos;
         $asignatura->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Se han guardado los cambios exitosamente');
     }
 
     /**

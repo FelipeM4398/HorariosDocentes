@@ -37,21 +37,6 @@ td a {
   grid-template-columns: repeat(3, 1fr);
 }
 
-.asignaturas div.card-rol {
-  padding: 1rem 1rem;
-  margin-bottom: unset;
-  margin-top: 0.7rem;
-}
-
-.asignaturas div h2 {
-  font-size: 20px;
-  margin-bottom: 0.1rem;
-}
-
-.asignaturas div h3 {
-  font-size: 14px !important;
-}
-
 .asignar-rol {
   margin-top: 1rem;
   background: #d9e5f1;

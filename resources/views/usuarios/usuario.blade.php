@@ -46,7 +46,7 @@
         @if($usuario->asignaturas()->count() != 0)
         <div class="asignaturas">
             @foreach($usuario->asignaturas()->get() as $asignatura)
-            <div class="block block-green">
+            <div class="block block-green block-sm">
                 <div class="block-icon">
                     <i class="fas fa-book"></i>
                 </div>
@@ -54,7 +54,7 @@
                     <div>
                         <h3>{{$asignatura->codigo}}</h3>
                         <h2>{{$asignatura->nombre}}</h2>
-                        <a class="btn-link text-white" href="#">
+                        <a class="btn-link text-white" href="{{route('asignaturas.edit', $asignatura)}}">
                             {{ __('Ver asignatura') }}
                         </a>
                     </div>
@@ -72,14 +72,14 @@
         @if($usuario->programa()->count() != 0)
         <div class="asignaturas">
             @foreach($usuario->programa()->get() as $programa)
-            <div class="block block-yellow">
+            <div class="block block-yellow block-sm">
                 <div class="block-icon">
                     <i class="fas fa-book"></i>
                 </div>
                 <div class="block-text">
                     <div>
                         <h2>{{$programa->nombre}}</h2>
-                        <a class="btn-link text-white" href="#">
+                        <a class="btn-link text-white" href="{{route('programas.edit', $programa)}}">
                             {{ __('Ver programa') }}
                         </a>
                     </div>
@@ -97,7 +97,7 @@
         @if($usuario->facultad()->count() != 0)
         <div class="asignaturas">
             @foreach($usuario->facultad()->get() as $facultad)
-            <div class="block block-blue">
+            <div class="block block-blue block-sm">
                 <div class="block-icon">
                     <i class="fas fa-book"></i>
                 </div>

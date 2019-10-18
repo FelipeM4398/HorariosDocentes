@@ -5,6 +5,8 @@ function habilitar() {
     $('#email').prop('disabled', false);
     $('#telefono').prop('disabled', false);
     $('#contrato').prop('disabled', false);
+    $('#codigo').prop('disabled', false);
+    $('#creditos').prop('disabled', false);
 }
 
 function deshabilitar() {
@@ -14,6 +16,8 @@ function deshabilitar() {
     $('#email').prop('disabled', true);
     $('#telefono').prop('disabled', true);
     $('#contrato').prop('disabled', true);
+    $('#codigo').prop('disabled', true);
+    $('#creditos').prop('disabled', true);
 }
 
 function habilitarProgrma() {

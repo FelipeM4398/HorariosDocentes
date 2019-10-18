@@ -6,35 +6,41 @@
     <h1>Académicos</h1>
 </div>
 <div class="main-contenido">
+    @if (session('status'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('status') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
     <div class="filtros">
         <form method="POST" action="{{ route('programas.index') }}">
             @method('GET')
             @csrf
-            <div class="form-group">
-                <div class="title-filtro">{{ __('Filtros') }}</div>
-                <div class="form-group group-inputs-3">
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <input id="nombre" type="text" class="form-control" name="nombre" placeholder="Buscar por nombre" value="{{ old('nombre') }}" autocomplete="off">
-                    </div>
-                    <div class="form-goup">
-                        <label for="modalidad">Modalidad</label>
-                        <select name="modalidad" class="form-control">
-                            <option value="">Buscar por modalidad</option>
-                            @foreach($modalidades as $modalidad)
-                            <option value="{{$modalidad->id}}" @if(old('modalidad')==$modalidad->id) selected @endif>{{$modalidad->nombre}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="tipo">Tipo de programa</label>
-                        <select name="tipo" class="form-control">
-                            <option value="">Buscar por tipo</option>
-                            @foreach($tipoProgramas as $tipoPrograma)
-                            <option value="{{$tipoPrograma->id}}" @if(old('tipo')==$tipoPrograma->id) selected @endif>{{$tipoPrograma->nombre}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+            <div class="title-filtro">{{ __('Filtros') }}</div>
+            <div class="group-inputs-3">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input id="nombre" type="text" class="form-control" name="nombre" placeholder="Buscar por nombre" value="{{ old('nombre') }}" autocomplete="off">
+                </div>
+                <div class="form-goup">
+                    <label for="modalidad">Modalidad</label>
+                    <select name="modalidad" class="form-control">
+                        <option value="">Buscar por modalidad</option>
+                        @foreach($modalidades as $modalidad)
+                        <option value="{{$modalidad->id}}" @if(old('modalidad')==$modalidad->id) selected @endif>{{$modalidad->nombre}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tipo">Tipo de programa</label>
+                    <select name="tipo" class="form-control">
+                        <option value="">Buscar por tipo</option>
+                        @foreach($tipoProgramas as $tipoPrograma)
+                        <option value="{{$tipoPrograma->id}}" @if(old('tipo')==$tipoPrograma->id) selected @endif>{{$tipoPrograma->nombre}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="buttons">
@@ -45,16 +51,21 @@
         </form>
     </div>
     <div class="table-responsive">
-        <a href="{{ route('programas.create') }}" class="action text-success" title="Nuevo programa">
-            <i class="fas fa-plus-circle"></i>
-        </a>
+        <div class="action">
+            <a href="{{ route('programas.create') }}" class="action" title="Nuevo programa">
+                <span class="icon text-success">
+                    <i class="fas fa-plus-circle"></i>
+                </span>
+                <span class="text-dark">Registrar nuevo programa</span>
+            </a>
+        </div>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">Nombre</th>
                     <th scope="col">Modalidad</th>
                     <th scope="col">Tipo de programa</th>
-                    <th scope="col">Opciones</th>
+                    <th scope="col" style="text-align: center;">Opciones</th>
                 </tr>
             </thead>
             <tbody>

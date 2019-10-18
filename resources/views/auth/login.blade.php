@@ -4,6 +4,11 @@
 <div class="form-left-container">
     <h2 class="form-subtitle">Bienvenido a</h2>
     <h1 class="form-title">Horario Docente</h1>
+    <div class="buttons">
+        <a href="#" class="btn btn-warning text-dark btn-sm">
+            <i class="fas fa-sign-in-alt" style="margin-right: .2rem;"></i>Entrar como invitado
+        </a>
+    </div>
     <form class="form-left" method="POST" action="{{ route('login') }}">
         @csrf
         <div class="form-group">
@@ -27,7 +32,8 @@
                 </a>
                 @endif
                 <button type="submit" class="btn btn-primary">
-                    {{ __('Login') }}
+                    <i class="fas fa-sign-in-alt"></i>
+                    {{ __('Entrar') }}
                 </button>
             </div>
             @if (Route::has('register'))

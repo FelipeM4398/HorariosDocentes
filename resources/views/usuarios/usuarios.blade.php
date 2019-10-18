@@ -13,9 +13,18 @@
             <div class="form-group">
                 <div class="title-filtro">{{ __('Filtros') }}</div>
                 <div class="group-inputs-3">
-                    <input id="identificacion" type="number" class="form-control" name="identificacion" placeholder="Buscar por identificación" value="{{ old('identificacion') }}">
-                    <input id="nombre" type="text" class="form-control" name="nombre" placeholder="Buscar por nombre" value="{{ old('nombre') }}" autocomplete="off">
-                    <input id="apellido" type="text" class="form-control" name="apellido" placeholder="Buscar por apellido" value="{{ old('apellido') }}" autocomplete="off">
+                    <div>
+                        <label for="identificacion">Identificación</label>
+                        <input id="identificacion" type="number" class="form-control" name="identificacion" placeholder="Buscar por identificación" value="{{ old('identificacion') }}">
+                    </div>
+                    <div>
+                        <label for="nombre">Nombre</label>
+                        <input id="nombre" type="text" class="form-control" name="nombre" placeholder="Buscar por nombre" value="{{ old('nombre') }}" autocomplete="off">
+                    </div>
+                    <div>
+                        <label for="nombre">Apellido</label>
+                        <input id="apellido" type="text" class="form-control" name="apellido" placeholder="Buscar por apellido" value="{{ old('apellido') }}" autocomplete="off">
+                    </div>
                 </div>
             </div>
             <label style="padding-left: 15px;">Buscar por rol:</label>
@@ -57,7 +66,7 @@
                     </label>
                 </div>
             </div>
-            <div class="form-group buttons">
+            <div class="buttons">
                 <span></span>
                 <button type="submit" class="btn btn-primary">
                     {{ __('Aplicar') }}
