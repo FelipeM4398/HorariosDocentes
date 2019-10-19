@@ -64,7 +64,7 @@
         </div>
 
         <div>
-            <input type="checkbox" name="isDocente" id="isDocente">
+            <input type="checkbox" name="isDocente" id="isDocente" value="false">
             <label for="isDocente">Docente</label>
             <input type="text" name="docente" class="hidden" id="isdocente" value="false">
         </div>

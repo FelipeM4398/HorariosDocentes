@@ -62,6 +62,8 @@
             @if(Auth::user()->hasAnyRole(['Administrador', 'Director']))
             <div class="item"><a href="#">Grupos</a></div>
             @endif
+
+            <div class="item"><a href="#">Consultas</a></div>
         </div>
         <div class="logout">
             <span class="top"></span>
