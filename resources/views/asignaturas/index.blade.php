@@ -40,7 +40,7 @@
     <div class="table-responsive">
 
         <div class="action">
-            <a href="{{ route('asignaturas.create') }}" class="action" title="Nueva asignatura">
+            <a href="{{ route('asignaturas.create') }}" title="Nueva asignatura">
                 <span class="icon text-success">
                     <i class="fas fa-plus-circle"></i>
                 </span>

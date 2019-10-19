@@ -52,7 +52,7 @@
     </div>
     <div class="table-responsive">
         <div class="action">
-            <a href="{{ route('programas.create') }}" class="action" title="Nuevo programa">
+            <a href="{{ route('programas.create') }}" title="Nuevo programa">
                 <span class="icon text-success">
                     <i class="fas fa-plus-circle"></i>
                 </span>

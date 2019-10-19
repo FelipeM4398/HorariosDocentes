@@ -76,9 +76,14 @@
                 </form>
         </div>
         @if(Auth::user()->hasRole('Docente'))
-        <a href="{{ route('disponibilidad.create') }}" class="action text-success" title="Registrar disponibilidad">
-            <i class="fas fa-plus-circle"></i>
-        </a>
+        <div class="action">
+            <a href="{{ route('disponibilidad.create') }}" title="Nueva disponibilidad">
+                <span class="icon text-success">
+                    <i class="fas fa-plus-circle"></i>
+                </span>
+                <span class="text-dark">Registrar una disponibilidad</span>
+            </a>
+        </div>
         @endif
         @if($periodos->count() != 0)
         <div class="list-dispo">

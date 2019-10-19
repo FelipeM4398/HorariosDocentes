@@ -26,10 +26,21 @@ function activeLast() {
     }
 }
 
+function activeOnly() {
+    var hijos = $('.menu').children('.item');
+
+    if (hijos.length == 1) {
+        activeFirst();
+        $('.logout').css('border-radius', '0 50px 0 0');
+    } else {
+        active($('a.active'));
+        activeLast();
+        activeFirst();
+    }
+}
+
 $(document).ready(function() {
-    active($('a.active'));
-    activeFirst();
-    activeLast();
+    activeOnly();
 
     $('.item a').on('mouseover', function() {
         if (

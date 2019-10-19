@@ -78,7 +78,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if ($data['docente']) {
+        echo (json_encode($data));
+        if ($data['docente'] == 'true') {
             return Usuario::create([
                 'identificacion' => $data['identificacion'],
                 'nombres' => $data['nombres'],

@@ -68,7 +68,7 @@ class UserSeeders extends Seeder
             'nombres' => 'William',
             'apellidos' => 'Diaz Sepulveda',
             'telefono' => '3146789987',
-            'email' => 'wdiz@hotmail.com',
+            'email' => 'wdiaz@hotmail.com',
             'password' => Hash::make('Felipe7'),
             'id_tipo_usuario' => 3
         ]);
@@ -159,7 +159,7 @@ class UserSeeders extends Seeder
         DB::table('users')->insert([
             'id' => 15,
             'identificacion' => 31123987,
-            'nombres' => 'Paulo cesar',
+            'nombres' => 'Paulo Cesar',
             'apellidos' => 'Realpe Muñoz',
             'telefono' => '3176543412',
             'email' => 'prealpe@hotmail.com',
