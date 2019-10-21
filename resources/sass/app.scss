@@ -6,6 +6,13 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import 'dashboard.scss';
+@import 'disponibilidad.scss';
+@import 'informacion.scss';
+@import 'login.scss';
+@import 'programas.scss';
+@import 'styles.scss';
+@import 'usuarios.scss';
 
 html {
     overflow: hidden;

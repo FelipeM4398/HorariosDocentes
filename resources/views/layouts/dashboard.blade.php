@@ -29,6 +29,9 @@
 
             @if(Auth::user()->hasAnyRole(['Docente']))
             <div class="item"><a class="{{(Request::is('disponibilidad*') || Request::is('usuarios/periodos*')) ? 'active' : ''}}" href="{{route('disponibilidad.index')}}">Disponibilidad</a></div>
+
+            <div class="item">
+                <a class="{{Request::is('usuarios/asignaturas*') ? 'active' : ''}}" href="{{route('usuarios.asignaturas', Auth::user())}}">Mis asignaturas</a></div>
             @endif
 
             @if(Auth::user()->hasAnyRole(['Administrador']))
@@ -40,7 +43,7 @@
 
             <div class="item"><a class="{{Request::is('programas*') ? 'active' : ''}}" href="{{route('programas.index')}}">Programas</a></div>
 
-            <div class="item"><a href="#">Horarios</a></div>
+            <div class="item"><a class="{{Request::is('horarios*') ? 'active' : ''}}" href="{{route('horarios.index')}}">Horarios</a></div>
             <div class="item"><a href="#">Grupos</a></div>
 
             <div class="item"><a class="{{Request::is('asignaturas*') ? 'active' : ''}}" href="{{route('asignaturas.index')}}">Asignaturas</a></div>
@@ -99,5 +102,6 @@
 @endsection
 
 @section('scripts')
+<script src="{{ asset('js/dashboard.js') }}"></script>
 @yield('scripts')
 @endsection

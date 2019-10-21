@@ -10,7 +10,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -19,22 +19,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="{{ asset('fontawesome/css/all.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/informacion.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/usuarios.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/disponibilidad.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/programas.css') }}" rel="stylesheet">
 </head>
 
 <body>
     <div id="app">
         @yield('content')
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="{{ asset('js/dashboard.js') }}"></script>
+
     @yield('scripts')
 </body>
 

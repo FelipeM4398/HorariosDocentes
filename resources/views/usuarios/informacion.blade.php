@@ -99,7 +99,7 @@
             </div>
             <div class="block-text">
                 <div>
-                    <h3>Cambiar</h3>
+                    <h3>Cambiar mi</h3>
                     <h2>Contraseña</h2>
                     <a class="btn-link text-white" href="{{ route('password.request') }}">
                         {{ __('Click aquí') }}
@@ -128,9 +128,9 @@
                 <i class="fas fa-clipboard-list"></i>
             </div>
             <div class="block-text">
-                <h3>Ver</h3>
+                <h3>Ver mis</h3>
                 <h2>Asignaturas</h2>
-                <a class="btn-link text-white" href="#">
+                <a class="btn-link text-white" href="{{route('usuarios.asignaturas', Auth::user())}}">
                     {{ __('Click aquí') }}
                 </a>
             </div>

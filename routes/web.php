@@ -13,6 +13,8 @@
 */
 
 include 'disponibilidad/disponibilidad.routes.php';
+include 'asignaturasDocente/asignaturas.routes.php';
+include 'horarios/horarios.routes.php';
 
 Route::get('/', function () {
     return view('auth/login');

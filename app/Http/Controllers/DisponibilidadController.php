@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\DisponibilidadDocente;
 use App\Jornada;
 use App\PeriodoAcademico;
 use App\Usuario;

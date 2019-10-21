@@ -67,7 +67,6 @@
                 </div>
             </div>
             <div class="buttons">
-                <span></span>
                 <button type="submit" class="btn btn-primary">
                     {{ __('Aplicar') }}
                 </button>

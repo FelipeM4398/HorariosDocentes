@@ -165,6 +165,10 @@ h3 {
   gap: 1rem;
 }
 
+.group-inputs-3.first-auto {
+  grid-template-columns: auto 1fr 1fr;
+}
+
 .group-inputs-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

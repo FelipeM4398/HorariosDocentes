@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Asignatura;
+use App\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -52,11 +53,59 @@ class AsignaturasController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Asignatura $asignaturas
+     * @param \App\Usuario $usuario
      * @return \Illuminate\Http\Response
      */
-    public function show(Asignatura $asignatura)
-    { }
+    public function showAsignaturasDocente(Usuario $usuario)
+    {
+        Auth::user()->authorizeRoles(['Docente']);
+        $asignaturas = $usuario->asignaturas()->orderBy('nombre')->paginate(7);
+        return view('usuarios.asignaturas', compact('asignaturas'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param \App\Asignatura $asignatura
+     * @return \Illuminate\Http\Response
+     */
+    public function asociarAsignatura(Asignatura $asignatura)
+    {
+        Auth::user()->authorizeRoles(['Docente']);
+        Auth::user()->asignaturas()->attach($asignatura);
+        Auth::user()->save();
+        return redirect()->route('usuarios.selectAsignaturas')->with('status', 'Se ha añadido una asignatura.');
+    }
+
+    public function eliminarAsignatura(Asignatura $asignatura)
+    {
+        Auth::user()->authorizeRoles(['Docente']);
+        Auth::user()->asignaturas()->detach($asignatura);
+        Auth::user()->save();
+        return redirect()->back()->with('status', 'Se ha eliminado una asignatura de tu lista.');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param \App\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function seleccionarAsignaturas(Request $request)
+    {
+        Auth::user()->authorizeRoles(['Docente']);
+        $ids = [];
+        foreach (Auth::user()->asignaturas()->get() as $asignatura) {
+            array_push($ids, $asignatura->id);
+        }
+        $asignaturas = Asignatura::codigo($request->codigo)
+            ->nombre($request->nombre)
+            ->whereNotIn('id', $ids)
+            ->orderBy('nombre')
+            ->paginate(10);
+        $request->flash();
+        return view('usuarios.seleccionarAsignaturas', compact('asignaturas'));
+    }
 
     /**
      * Show the form for editing the specified resource.
