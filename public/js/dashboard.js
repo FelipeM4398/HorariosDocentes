@@ -100,7 +100,7 @@ function active(element) {
 }
 
 function activeFirst() {
-  if ($('.item:first a').hasClass('active')) {
+  if ($('.menu .item:first a').hasClass('active')) {
     $('.user-container').css('border-radius', '0 50px 50px 0');
   } else {
     $('.user-container').css('border-radius', '0 50px 0 0');
@@ -108,11 +108,10 @@ function activeFirst() {
 }
 
 function activeLast() {
-  console.log($('.item:last a').hasClass('active'));
-
-  if ($('.item:last a').hasClass('active')) {
-    $('.logout').css('border-radius', '50px 50px 0 0');
+  if ($('.menu .item:last a').hasClass('active')) {
+    $('.logout').css('border-radius', '0 50px 0 0');
   } else {
+    $('.menu .item:last a').addClass('ultimo');
     $('.logout').css('border-radius', 'unset');
   }
 }
@@ -132,7 +131,7 @@ function activeOnly() {
 
 $(document).ready(function () {
   activeOnly();
-  $('.item a').on('mouseover', function () {
+  $('.menu .item a').on('mouseover', function () {
     if ($(this).parent().prev().children().hasClass('active')) {
       $(this).css('border-top-right-radius', '70px');
     }

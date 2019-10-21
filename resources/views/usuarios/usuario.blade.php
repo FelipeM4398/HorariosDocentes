@@ -88,7 +88,7 @@
             @endforeach
         </div>
         @else
-        <a class="btn btn-primary btn-sm asignar" href="#">Asignar programas</a>
+        <a class="btn btn-primary btn-sm asignar" href="{{ route(programas.index) }}">Asignar programa</a>
         @endif
         @endif
 
