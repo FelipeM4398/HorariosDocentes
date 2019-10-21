@@ -19,8 +19,9 @@ function activeFirst() {
 }
 
 function activeLast() {
+    console.log($('.item:last a').hasClass('active'));
     if ($('.item:last a').hasClass('active')) {
-        $('.logout').css('border-radius', '0 50px 0 0');
+        $('.logout').css('border-radius', '50px 50px 0 0');
     } else {
         $('.logout').css('border-radius', 'unset');
     }

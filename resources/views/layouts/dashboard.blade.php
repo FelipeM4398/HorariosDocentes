@@ -27,20 +27,27 @@
         <div class="menu">
             <div class="item"><a class="{{Request::is('home') ? 'active' : ''}}" href="{{route('home')}}">Inicio</a></div>
 
-            @if(Auth::user()->hasRole('Administrador'))
-            <div class="item"><a class="{{Request::is('usuarios*') ? 'active' : ''}}" href="{{route('usuarios.index')}}">Usuarios</a></div>
-            @endif
-
-            @if(Auth::user()->hasRole('Docente'))
+            @if(Auth::user()->hasAnyRole(['Docente']))
             <div class="item"><a class="{{(Request::is('disponibilidad*') || Request::is('usuarios/periodos*')) ? 'active' : ''}}" href="{{route('disponibilidad.index')}}">Disponibilidad</a></div>
             @endif
 
+            @if(Auth::user()->hasAnyRole(['Administrador']))
+            <div class="item"><a class="{{Request::is('usuarios*') ? 'active' : ''}}" href="{{route('usuarios.index')}}">Usuarios</a></div>
+            @endif
+
+            @if(Auth::user()->hasAnyRole(['Administrador', 'Director']))
             <div class="item"><a href="#">Facultades</a></div>
+
             <div class="item"><a class="{{Request::is('programas') ? 'active' : ''}}" href="{{route('programas.index')}}">Programas</a></div>
+
             <div class="item"><a href="#">Horarios</a></div>
+
             <div class="item"><a class="{{Request::is('asignaturas*') ? 'active' : ''}}" href="{{route('asignaturas.index')}}">Asignaturas</a></div>
+            @endif
+
+            @if(Auth::user()->hasAnyRole(['Coordinador']))
             <div class="item"><a href="#">Salones</a></div>
-            <div class="item"><a class="{{Request::is('jornadas') ? 'active' : ''}}" href="{{route('jornadas.index')}}">Jornadas</a></div>
+            @endif
         </div>
         <div class="logout">
             <span class="top"></span>
