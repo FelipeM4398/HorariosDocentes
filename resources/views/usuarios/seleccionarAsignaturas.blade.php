@@ -2,7 +2,13 @@
 
 @section('contenido')
 <div class="title-contenido">
-    <h2>Ver</h2>
+    <div class="back">
+        <a class="btn btn-link" href="{{route('usuarios.asignaturas', Auth::user())}}">
+            <i class="fas fa-arrow-left"></i>
+            Volver
+        </a>
+    </div>
+    <h2>Seleccionar</h2>
     <h1>Asignaturas</h1>
 </div>
 <div class="main-contenido">
@@ -15,7 +21,7 @@
     </div>
     @endif
     <div class="filtros">
-        <form method="POST" action="{{ route('asignaturas.index') }}">
+        <form method="POST" action="{{ route('usuarios.selectAsignaturas') }}">
             @method('GET')
             @csrf
             <div class="title-filtro">{{ __('Filtros') }}</div>
@@ -37,23 +43,14 @@
         </form>
     </div>
 
-    <div class="table-responsive">
 
-        <div class="action">
-            <a href="{{ route('asignaturas.create') }}" title="Nueva asignatura">
-                <span class="icon text-success">
-                    <i class="fas fa-plus-circle"></i>
-                </span>
-                <span class="text-dark">Registrar nueva asignatura</span>
-            </a>
-        </div>
+    <div class="table-responsive">
         <table class="table table-hover table-ligth">
             <thead>
                 <tr>
                     <th scope="col">C&oacute;digo</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col" style="text-align: center;">Cr&eacute;ditos</th>
-                    <th scope="col" style="text-align: center;">Opciones</th>
+                    <th scope="col" style="text-align: center;">Añadir</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,20 +59,22 @@
                 <tr>
                     <td>{{ $asignatura->codigo }}</td>
                     <td>{{ $asignatura->nombre }}</td>
-                    <td style="text-align: center;">{{ $asignatura->creditos }}</td>
                     <td style="text-align: center;">
-                        <a class="btn btn-primary btn-sm" href="{{ route('asignaturas.edit', $asignatura)}}">
-                            <i class="fas fa-eye"></i>
+                        <a class="btn btn-success btn-sm" href="{{route('usuarios.asociar', $asignatura)}}">
+                            <i class="fas fa-plus-circle"></i>
                         </a>
+                    </td>
                     </td>
                 </tr>
                 @endforeach
                 @else
-                <tr>No se encuentran asignaturas registradas</tr>
+                <tr>
+                    <td colspan="3">No se encuentran asignaturas registradas</td>
+                </tr>
                 @endif
             </tbody>
         </table>
     </div>
     {{$asignaturas->appends(Request::except('_token', '_method'))->links()}}
 </div>
-@stop
+@endsection

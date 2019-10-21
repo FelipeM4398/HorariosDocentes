@@ -29,6 +29,9 @@
 
             @if(Auth::user()->hasAnyRole(['Docente']))
             <div class="item"><a class="{{(Request::is('disponibilidad*') || Request::is('usuarios/periodos*')) ? 'active' : ''}}" href="{{route('disponibilidad.index')}}">Disponibilidad</a></div>
+
+            <div class="item">
+                <a class="{{Request::is('usuarios/asignaturas*') ? 'active' : ''}}" href="{{route('usuarios.asignaturas', Auth::user())}}">Mis asignaturas</a></div>
             @endif
 
             @if(Auth::user()->hasAnyRole(['Administrador']))
