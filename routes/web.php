@@ -13,7 +13,6 @@
 */
 
 include 'disponibilidad/disponibilidad.routes.php';
-include 'asignaturasDocente/asignaturas.routes.php';
 
 Route::get('/', function () {
     return view('auth/login');
@@ -29,3 +28,5 @@ Route::resource('/informacion', 'InformacionController');
 Route::resource('/usuarios', 'UsuariosController');
 Route::resource('/disponibilidad', 'DisponibilidadController')->parameters(['disponibilidad' => 'usuario']);
 Route::resource('/programas', 'ProgramasController');
+Route::resource('/jornadas', 'JornadasController');
+Route::resource('/periodos', 'PeriodosController');
