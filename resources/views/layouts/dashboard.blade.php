@@ -41,6 +41,7 @@
             <div class="item"><a class="{{Request::is('asignaturas*') ? 'active' : ''}}" href="{{route('asignaturas.index')}}">Asignaturas</a></div>
             <div class="item"><a href="#">Salones</a></div>
             <div class="item"><a class="{{Request::is('jornadas') ? 'active' : ''}}" href="{{route('jornadas.index')}}">Jornadas</a></div>
+            <div class="item"><a class="{{Request::is('periodos') ? 'active' : ''}}" href="{{route('periodos.index')}}">Periodos</a></div>
         </div>
         <div class="logout">
             <span class="top"></span>
