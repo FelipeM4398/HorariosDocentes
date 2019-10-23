@@ -9,6 +9,10 @@ class Jornada extends Model
 {
     protected $table = 'jornadas';
     public $timestamps = false;
+    protected $fillable = [
+        'hora_inicio',
+        'hora_fin'
+    ];
 
     public function disponibilidadDocente()
     {
