@@ -25,7 +25,11 @@
             @endguest
         </div>
         <div class="menu">
-            <div class="item"><a class="{{Request::is('home') ? 'active' : ''}}" href="{{route('home')}}">Inicio</a></div>
+            <div class="item"><a class="{{(Request::is('home') || Request::is('/')) ? 'active' : ''}}" href="{{route('home')}}">Inicio</a></div>
+
+            @if(Auth::user()->hasAnyRole(['Administrador']))
+            <div class="item"><a class="{{Request::is('usuarios*') ? 'active' : ''}}" href="{{route('usuarios.index')}}">Usuarios</a></div>
+            @endif
 
             @if(Auth::user()->hasAnyRole(['Docente']))
             <div class="item"><a class="{{(Request::is('disponibilidad*') || Request::is('usuarios/periodos*')) ? 'active' : ''}}" href="{{route('disponibilidad.index')}}">Disponibilidad</a></div>
@@ -70,7 +74,7 @@
                     <a class="dropdown-item" href="#">Opciones de administrador</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{route('periodos.index')}}"><i class="far fa-calendar"></i> Periodos académicos</a>
-                    <a class="dropdown-item" href="{{route('jornadas.index')}}"><i class="fas fa-clock"></i> Jornadas</a>
+                    <!-- <a class="dropdown-item" href="{{route('jornadas.index')}}"><i class="fas fa-clock"></i> Jornadas</a> -->
                     <a class="dropdown-item" href="#"><i class="fas fa-university"></i> Sedes</a>
                 </div>
             </div>
@@ -98,6 +102,5 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/dashboard.js') }}"></script>
 @yield('scripts')
 @endsection

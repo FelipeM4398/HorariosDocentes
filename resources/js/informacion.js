@@ -7,6 +7,8 @@ function habilitar() {
     $('#contrato').prop('disabled', false);
     $('#codigo').prop('disabled', false);
     $('#creditos').prop('disabled', false);
+    $('#año').prop('disabled', false);
+    $('#periodo').prop('disabled', false);
 }
 
 function deshabilitar() {
@@ -18,6 +20,8 @@ function deshabilitar() {
     $('#contrato').prop('disabled', true);
     $('#codigo').prop('disabled', true);
     $('#creditos').prop('disabled', true);
+    $('#año').prop('disabled', true);
+    $('#periodo').prop('disabled', true);
 }
 
 function habilitarProgrma() {

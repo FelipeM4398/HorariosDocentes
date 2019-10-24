@@ -3,6 +3,5 @@
     "/css/app.css": "/css/app.css",
     "/js/dashboard.js": "/js/dashboard.js",
     "/js/informacion.js": "/js/informacion.js",
-    "/js/register.js": "/js/register.js",
-    "/js/select2.full.min.js": "/js/select2.full.min.js"
+    "/js/register.js": "/js/register.js"
 }

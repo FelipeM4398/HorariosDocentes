@@ -10861,8 +10861,8 @@ table.disponibilidad .form-check-input {
 
 .informacion {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  grid-template-columns: 3fr 2fr !important;
+  gap: 2rem !important;
 }
 
 .info-rol .block {

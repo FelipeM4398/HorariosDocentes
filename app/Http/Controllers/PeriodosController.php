@@ -13,9 +13,14 @@ class PeriodosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $periodos = PeriodoAcademico::paginate();
+        $año = $request->año;
+        $periodo = $request->periodo;
+        $request->flash();
+        $periodos = PeriodoAcademico::orderBy('año', 'DESC')
+            ->año($año)
+            ->periodo($periodo)->paginate(10);
         return view('periodos.index', compact('periodos'));
     }
 
@@ -37,8 +42,13 @@ class PeriodosController extends Controller
      */
     public function store(Request $request)
     {
+        $año = $request->año;
+        $periodo = $request->periodo;
+        if (PeriodoAcademico::periodo($periodo)->año($año)->count() != 0) {
+            return redirect()->back()->with('error', 'Ya existe un registro con el mismo año y periodo');
+        }
         PeriodoAcademico::create($request->all());
-        return redirect()->route('periodos.index');
+        return redirect()->route('periodos.index')->with('status', 'Se ha registrado un nuevo periodo exitosamente');
     }
 
     /**
@@ -75,8 +85,11 @@ class PeriodosController extends Controller
     {
         $periodo->año = $request->año;
         $periodo->periodo = $request->periodo;
+        if (PeriodoAcademico::periodo($periodo->periodo)->año($periodo->año)->count() != 0) {
+            return redirect()->back()->with('error', 'Ya existe un registro con el mismo año y periodo');
+        }
         $periodo->save();
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Se han guardado los cambios exitosamente');
     }
 
     /**

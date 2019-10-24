@@ -26,7 +26,7 @@
     <div id="app">
         @yield('content')
     </div>
-
+    <script src="{{ asset('js/dashboard.js') }}"></script>
     @yield('scripts')
 </body>
 
