@@ -29,3 +29,4 @@ Route::resource('/informacion', 'InformacionController');
 Route::resource('/usuarios', 'UsuariosController');
 Route::resource('/disponibilidad', 'DisponibilidadController')->parameters(['disponibilidad' => 'usuario']);
 Route::resource('/programas', 'ProgramasController');
+Route::resource('/grupos', 'GruposController');

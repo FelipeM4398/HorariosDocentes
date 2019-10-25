@@ -44,7 +44,7 @@
             <div class="item"><a class="{{Request::is('programas*') ? 'active' : ''}}" href="{{route('programas.index')}}">Programas</a></div>
 
             <div class="item"><a href="#">Horarios</a></div>
-            <div class="item"><a href="#">Grupos</a></div>
+            <div class="item"><a  class="{{Request::is('grupos*') ? 'active' : ''}}"  href="{{route('grupos.index')}}">Grupos</a></div>
 
             <div class="item"><a class="{{Request::is('asignaturas*') ? 'active' : ''}}" href="{{route('asignaturas.index')}}">Asignaturas</a></div>
             @endif
