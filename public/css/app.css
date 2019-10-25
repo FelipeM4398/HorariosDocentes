@@ -11207,6 +11207,89 @@ td a {
   grid-template-columns: repeat(4, 1fr);
 }
 
+.multiselect-native-select .btn-group {
+  display: block !important;
+}
+
+span.multiselect-native-select select {
+  border: 0 !important;
+  background: #fff !important;
+  clip: rect(0 0 0 0) !important;
+  height: 1px !important;
+  margin: -1px -1px -1px -3px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  width: 100px !important;
+  position: relative;
+  left: 40%;
+  top: 34px;
+}
+
+.form-control.multiselect {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.multiselect-selected-text {
+  color: #495057;
+}
+
+.multiselect-native-select .btn-group ul.dropdown-menu {
+  transform: none !important;
+  top: 100% !important;
+  width: 100%;
+  padding: 0.7rem !important;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-height: 35vh;
+  overflow-y: auto;
+}
+
+.multiselect-native-select .btn-group ul.dropdown-menu li {
+  padding: 0.2rem;
+}
+
+.multiselect-native-select .btn-group ul.dropdown-menu li a label {
+  margin-bottom: unset !important;
+  color: #212529;
+}
+
+.multiselect-filter {
+  margin-bottom: 0.7rem;
+}
+
+.input-group-text,
+.multiselect-search {
+  padding: 0 !important;
+  border: none !important;
+  background: #e2e2e2 !important;
+}
+
+.input-group-text {
+  border-radius: 10px !important;
+  padding: 0.3rem 0.5rem !important;
+}
+
+.input-group-prepend > .input-group-text {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.input-group-append > .input-group-text {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.input-group-append > .input-group-text > button {
+  padding: 0;
+}
+
+.width-120 {
+  width: 120% !important;
+}
+
 html {
   overflow: hidden;
 }

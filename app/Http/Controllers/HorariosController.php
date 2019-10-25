@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Asignatura;
 use App\HorarioDetalle;
 use App\PeriodoAcademico;
+use App\Usuario;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
@@ -51,6 +53,8 @@ class HorariosController extends Controller
             ->orderBy('año', 'DESC')
             ->orderBy('periodo')
             ->get();
-        return view('horarios.registerHorario', compact('periodos'));
+        $docentes = Usuario::rol('4')->get();
+        $asignaturas = Asignatura::all();
+        return view('horarios.registerHorario', compact('periodos', 'docentes', 'asignaturas'));
     }
 }

@@ -27,6 +27,7 @@
         @yield('content')
     </div>
     <script src="{{ asset('js/dashboard.js') }}"></script>
+    <script src="{{ asset('js/multiselect.js') }}" defer></script>
     @yield('scripts')
 </body>
 

@@ -15,4 +15,5 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .js('resources/js/register.js', 'public/js')
     .js('resources/js/dashboard.js', 'public/js')
-    .js('resources/js/informacion.js', 'public/js');
+    .js('resources/js/informacion.js', 'public/js')
+    .js('resources/js/horario.js', 'public/js');
