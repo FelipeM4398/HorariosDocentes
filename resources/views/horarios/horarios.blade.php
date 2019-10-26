@@ -28,36 +28,6 @@
                     @endforeach
                 </select>
             </div>
-            <div class="form-group">
-                <div class="title-filtro">{{ __('Filtrar por docente') }}</div>
-                <div class="group-inputs-3">
-                    <div>
-                        <label for="identificacion">Identificación</label>
-                        <input type="number" class="form-control" name="identificacion" placeholder="Buscar por identificación" value="{{ old('identificacion') }}" autocomplete="off">
-                    </div>
-                    <div>
-                        <label for="nombre_docente">Nombres</label>
-                        <input type="text" class="form-control" name="nombre_docente" placeholder="Buscar por nombre" value="{{ old('nombre_docente') }}" autocomplete="off">
-                    </div>
-                    <div>
-                        <label for="apellido_docente">Apellidos</label>
-                        <input type="text" class="form-control" name="apellido_docente" placeholder="Buscar por apellido" value="{{ old('apellido_docente') }}" autocomplete="off">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="title-filtro">{{ __('Filtrar por asignatura') }}</div>
-                <div class="group-inputs-2">
-                    <div>
-                        <label for="codigo_asignatura">Código</label>
-                        <input type="text" class="form-control" name="codigo_asignatura" placeholder="Buscar por código" value="{{ old('codigo_asignatura') }}" autocomplete="off">
-                    </div>
-                    <div>
-                        <label for="nombre_asignatura">Nombre</label>
-                        <input type="text" class="form-control" name="nombre_asignatura" placeholder="Buscar por nombre" value="{{ old('nombre_asignatura') }}" autocomplete="off">
-                    </div>
-                </div>
-            </div>
             <div class="buttons">
                 <button type="submit" class="btn btn-primary">
                     {{ __('Aplicar') }}

@@ -9,6 +9,9 @@ function habilitar() {
     $('#creditos').prop('disabled', false);
     $('#año').prop('disabled', false);
     $('#periodo').prop('disabled', false);
+    $('#programa').prop('disabled', false);
+    $('#jornada').prop('disabled', false);
+    $('#sede').prop('disabled', false);
 }
 
 function deshabilitar() {
@@ -22,6 +25,9 @@ function deshabilitar() {
     $('#creditos').prop('disabled', true);
     $('#año').prop('disabled', true);
     $('#periodo').prop('disabled', true);
+    $('#programa').prop('disabled', true);
+    $('#jornada').prop('disabled', true);
+    $('#sede').prop('disabled', true);
 }
 
 function habilitarProgrma() {

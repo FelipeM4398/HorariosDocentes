@@ -30,3 +30,4 @@ Route::resource('/disponibilidad', 'DisponibilidadController')->parameters(['dis
 Route::resource('/programas', 'ProgramasController');
 Route::resource('/jornadas', 'JornadasController');
 Route::resource('/periodos', 'PeriodosController');
+Route::resource('/grupos', 'GruposController');
