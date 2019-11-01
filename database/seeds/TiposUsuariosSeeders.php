@@ -15,6 +15,6 @@ class TiposUsuariosSeeders extends Seeder
         DB::table('tipos_usuarios')->insert(['id' => 2, 'nombre' => 'Decano',]);
         DB::table('tipos_usuarios')->insert(['id' => 3, 'nombre' => 'Director',]);
         DB::table('tipos_usuarios')->insert(['id' => 4, 'nombre' => 'Docente',]);
-        DB::table('tipos_usuarios')->insert(['id' => 5, 'nombre' => 'Coordinador',]);
+        DB::table('tipos_usuarios')->insert(['id' => 5, 'nombre' => 'Coordinación',]);
     }
 }

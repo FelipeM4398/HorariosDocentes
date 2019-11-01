@@ -4,29 +4,43 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HorarioDetalle extends Model {
+class HorarioDetalle extends Model
+{
     protected $table = 'horarios_detalles';
     public $timestamps = false;
+    public $fillable = ['id_docente', 'id_asignatura', 'id_periodo'];
 
-    public function docente() {
-        return $this->belongsTo('App/Usuario', 'foreign_key', 'id_docente');
+    public function docente()
+    {
+        return $this->belongsTo('App\Usuario', 'id_docente');
     }
 
-    public function periodo() {
-        return $this->belongsTo('App/PeriodoAcademico', 'foreign_key', 'id_periodo');
+    public function periodo()
+    {
+        return $this->belongsTo('App\PeriodoAcademico', 'id_periodo');
     }
 
-    public function asignatura() {
-        return $this->belongsTo('App/Asignatura', 'foreign_key', 'id_asignatura');
+    public function asignatura()
+    {
+        return $this->belongsTo('App\Asignatura', 'id_asignatura');
     }
 
-    public function asignaturas_compartidas(){
-        return $this->belongsToMany('App\Asignatura')->as('asignaturas_compartidas');
+    public function horarioDia()
+    {
+        return $this->hasMany('App\HorarioDia', 'id_horario_detalle');
     }
 
-    public function grupos(){
-        return $this->belongsToMany('App\Grupo')
-                    ->as('grupos_horarios')
-                    ->withPivot('cantidad_estudiantes');
+    public function grupos()
+    {
+        return $this->belongsToMany('App\Grupo', 'grupos_horarios', 'id_horario_detalle', 'id_grupo')
+            ->as('grupos_horarios')
+            ->withPivot('cantidad_estudiantes');
+    }
+
+    public function scopePeriodoo($query, $id)
+    {
+        if ($id) {
+            return $query->where('id_periodo', '=', $id);
+        }
     }
 }

@@ -146,7 +146,7 @@
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="rol" id="coordi" value="5">
                         <label class="form-check-label" for="coordi">
-                            Coordinador
+                            Coordinación
                         </label>
                     </div>
                 </div>

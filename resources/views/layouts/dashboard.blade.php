@@ -29,7 +29,6 @@
 
             @if(Auth::user()->hasAnyRole(['Administrador']))
             <div class="item"><a class="{{Request::is('usuarios*') ? 'active' : ''}}" href="{{route('usuarios.index')}}">Usuarios</a></div>
-            <div class="item"><a href="#">Salones</a></div>
             <div class="item"><a class="{{Request::is('programas*') ? 'active' : ''}}" href="{{route('programas.index')}}">Programas</a></div>
             <div class="item"><a href="#">Facultades</a></div>
             @endif
@@ -42,6 +41,14 @@
 
             <div class="item"><a class="{{Request::is('asignaturas*') ? 'active' : ''}}" href="{{route('asignaturas.index')}}">Asignaturas</a></div>
 
+            @endif
+
+            @if(Auth::user()->hasAnyRole(['Administrador', 'Coordinación']))
+            <div class="item"><a href="#">Salones</a></div>
+            @endif
+
+            @if(Auth::user()->hasAnyRole(['Coordinación']))
+            <div class="item"><a href="#">Asignar salón</a></div>
             @endif
 
             @if(Auth::user()->hasAnyRole(['Docente']))
@@ -68,7 +75,7 @@
 
             @if(Auth::user()->hasAnyRole(['Administrador']))
             <div>
-                <div class="item" data-toggle="dropdown"><i class="fas fa-cog"></i></div>
+                <div class="item" data-toggle="dropdown"><i class="fas fa-cog"></i> Opciones</div>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">Opciones de administrador</a>
                     <div class="dropdown-divider"></div>
@@ -82,7 +89,7 @@
             <!-- <div class="item"><i class="fas fa-bell"></i><span class="badge badge-notify">9</span></div> -->
 
             <div>
-                <div class="item" data-toggle="dropdown"><i class="fas fa-user-circle"></i></div>
+                <div class="item" data-toggle="dropdown"><i class="fas fa-user-circle"></i> {{Auth::user()->nombres}}</div>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">{{Auth::user()->nombres}} {{Auth::user()->apellidos}}</a>
                     <div class="dropdown-divider"></div>

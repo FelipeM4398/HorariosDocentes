@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DisponibilidadDocente;
 use App\Jornada;
 use App\PeriodoAcademico;
 use App\Usuario;
@@ -49,13 +50,7 @@ class DisponibilidadController extends Controller
     public function create()
     {
         Auth::user()->authorizeRoles(['Docente']);
-        if (Carbon::now()->month >= 6) {
-            $currentPeriodo = 2;
-        } else {
-            $currentPeriodo = 1;
-        };
         $periodos = PeriodoAcademico::where('año', '>=', Carbon::now()->year)
-            ->periodo($currentPeriodo)
             ->get();
         $jornadas = Jornada::all();
         return view('usuarios.createDisponibilidad', compact('periodos', 'jornadas'));
@@ -145,8 +140,12 @@ class DisponibilidadController extends Controller
     public function dispo(Request $request, Usuario $usuario, PeriodoAcademico $periodo)
     {
         Auth::user()->authorizeRoles(['Administrador', 'Docente']);
-        $disponibilidades = $usuario
-            ->disponibilidades()
+        $dispo = DisponibilidadDocente::docentee($usuario->id)
+            ->periodoo($periodo->id)
+            ->first();
+
+        $disponibilidades = $usuario->disponibilidades()
+            ->where('id_dispo', $dispo->id)
             ->orderBy('id_jornada', 'ASC')
             ->orderBy('id_dia', 'ASC')
             ->get()

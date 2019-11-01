@@ -29,6 +29,11 @@ class PeriodoAcademico extends Model
         return $this->hasManyThrough('App\DisponibilidadDia', 'App\DisponibilidadDocente', 'id_periodo', 'id_dispo');
     }
 
+    public function docentes()
+    {
+        return $this->belongsToMany('App\Usuario', 'disponibilidades_docentes', 'id_periodo', 'id_docente')->using('App\DisponibilidadDocente')->withPivot('id');
+    }
+
     public function scopeAño($query, $año)
     {
         if ($año) {

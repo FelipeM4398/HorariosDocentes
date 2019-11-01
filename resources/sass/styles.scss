@@ -10,6 +10,10 @@ h3 {
     margin-bottom: unset;
 }
 
+input[type='time'] {
+    -webkit-appearance: none;
+}
+
 .py-4 {
     margin: 0;
     padding: 0 !important;
@@ -19,6 +23,7 @@ h3 {
     border: unset;
     border-radius: 10px;
     background: $gray;
+    padding: 0.375rem 0.55rem;
 }
 
 .btn {
@@ -65,7 +70,7 @@ h3 {
     grid-area: main;
     grid-template-columns: 1fr;
     gap: 1rem;
-    padding-right: 6rem;
+    padding-right: 1.5rem;
 }
 
 .action .icon {
@@ -166,13 +171,48 @@ h3 {
     gap: 1rem;
 }
 
+.group-inputs-5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+}
+
+.group-inputs-5.last-auto {
+    grid-template-columns: auto repeat(3, 1fr) auto;
+}
+
 .group-inputs-3.first-auto {
-    grid-template-columns: auto 1fr 1fr;
+    grid-template-columns: auto repeat(2, 1fr);
+}
+
+.item-end {
+    display: grid;
+    align-items: end;
+}
+
+.item-end button {
+    height: calc(1.6em + 0.75rem + 2px);
+}
+
+.group-inputs-3.last-auto {
+    grid-template-columns: 1fr 1fr auto;
 }
 
 .group-inputs-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.group-inputs-5 {
+    display: grid;
+    grid-template-columns: 1fr auto repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.group-inputs-7 {
+    display: grid;
+    grid-template-columns: repeat(6, auto) 1fr;
     gap: 1rem;
 }
 

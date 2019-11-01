@@ -17,6 +17,5 @@ class DiasSeeders extends Seeder
         DB::table('dias')->insert(['id' => 4, 'nombre' => 'Jueves',]);
         DB::table('dias')->insert(['id' => 5, 'nombre' => 'Viernes',]);
         DB::table('dias')->insert(['id' => 6, 'nombre' => 'Sábado',]);
-        DB::table('dias')->insert(['id' => 7, 'nombre' => 'Domingo',]);
     }
 }

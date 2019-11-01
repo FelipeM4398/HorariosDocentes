@@ -1,8 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('contenido')
-
-
 <div class="title-contenido">
     <div class="back">
         <a class="btn btn-link" href="{{route('grupos.index')}}">
@@ -10,7 +8,7 @@
             Volver
         </a>
     </div>
-    <h2>Registrar un</h2>
+    <h2>Editar un</h2>
     <h1>Grupo</h1>
 </div>
 <div class="main-contenido">

@@ -1,27 +1,41 @@
 <?php
 
+
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class HorarioDia extends Model
 {
     protected $table = 'horarios_dias';
     public $timestamps = false;
+    public $fillable = ['id_dia', 'id_frecuencia', 'id_salon', 'hora', 'cantidad_horas'];
 
-    public function dia(){
-        return $this->belongsTo('App\Dia', 'foreign_key', 'id_dia');
+    public function dia()
+    {
+        return $this->belongsTo('App\Dia', 'id_dia');
     }
 
-    public function salon(){
-        return $this->belongsTo('App\Salon', 'foreign_key', 'id_salon');
+    public function salon()
+    {
+        return $this->belongsTo('App\Salon', 'id_salon');
     }
 
-    public function frecuencia() {
-        return $this->belongsTo('App\FrecuenciaHoraria', 'foreign_key', 'id_frecuencia');
+    public function frecuencia()
+    {
+        return $this->belongsTo('App\FrecuenciaHoraria', 'id_frecuencia');
     }
 
-    public function horarioDetalle(){
-        return $this->belongsTo('App\HorarioDetalle', 'foreign_key', 'id_horario_detalle');
+    public function horarioDetalle()
+    {
+        return $this->belongsTo('App\HorarioDetalle', 'id_horario_detalle');
+    }
+
+    public function horaFin()
+    {
+        $hora_inicio = Carbon::createFromFormat('H:i:s', $this->hora);
+        $minutes = $this->cantidad_horas * 60;
+        return $hora_inicio->addMinutes($minutes)->format('h:i a');
     }
 }

@@ -190,11 +190,10 @@ class CreateDatabase extends Migration
 
             Schema::create('horarios_dias', function (Blueprint $table) {
                   $table->increments('id');
-                  $table->date('fecha_inicio');
                   $table->time('hora');
-                  $table->integer('cantidad_horas')->unsigned();
+                  $table->decimal('cantidad_horas')->unsigned();
                   $table->integer('id_dia')->unsigned();
-                  $table->integer('id_salon')->unsigned();
+                  $table->integer('id_salon')->nullable()->unsigned();
                   $table->integer('id_frecuencia')->unsigned();
                   $table->integer('id_horario_detalle')->unsigned();
                   $table->foreign('id_dia')

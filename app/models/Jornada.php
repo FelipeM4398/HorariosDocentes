@@ -30,15 +30,15 @@ class Jornada extends Model
             ]);
     }
 
-    public function getHoraInicioAttribute($value)
-    {
-        $time = Carbon::createFromFormat('H:i:s', $value);
-        return $time->format('h:i a');
-    }
+    // public function getHoraInicioAttribute($value)
+    // {
+    //     $time = Carbon::createFromFormat('H:i:s', $value);
+    //     return $time->format('h:i a');
+    // }
 
-    public function getHoraFinAttribute($value)
-    {
-        $time = Carbon::createFromFormat('H:i:s', $value);
-        return $time->format('h:i a');
-    }
+    // public function getHoraFinAttribute($value)
+    // {
+    //     $time = Carbon::createFromFormat('H:i:s', $value);
+    //     return $time->format('h:i a');
+    // }
 }

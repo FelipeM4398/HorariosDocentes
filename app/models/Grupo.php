@@ -33,7 +33,7 @@ class Grupo extends Model
 
     public function horarios()
     {
-        return $this->belongsToMany('App\HorarioDetalle')
+        return $this->belongsToMany('App\HorarioDetalle', 'grupos_horarios', 'id_grupo', 'id_horario_detalle')
             ->as('grupos_horarios')
             ->withPivot('cantidad_estudiantes');
     }

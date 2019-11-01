@@ -31,6 +31,8 @@ class DatabaseSeeder extends Seeder
             AsignaturasSeeders::class,
             AsigDocentesSeeders::class,
             GruposSeeders::class,
+            DispoSeeders::class,
+            DispoJornadasSeeders::class
         ]);
     }
 }

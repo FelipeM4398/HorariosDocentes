@@ -98,22 +98,32 @@
 
 .navbar-horizontal {
     display: grid;
-    grid-template-columns: 50px 50px 50px;
-    gap: 0.2rem;
-    font-weight: 600;
-    font-size: 20px;
-    color: $blue;
-    padding: 0.5rem 0;
-    text-align: center;
+    grid-template-columns: auto auto auto;
+    gap: 0.7rem;
     justify-content: end;
     align-items: center;
+    color: $blue;
+}
+
+.navbar-horizontal .item {
+    padding: 0.5rem 0;
+    grid-template-columns: auto auto;
+    gap: 0.2rem;
+    display: grid;
+    align-items: center;
+    line-height: 1;
+    margin-bottom: 0.3rem;
 }
 
 .navbar-horizontal .item i {
     transition: opacity 0.1s ease-in-out 0.05s;
+    font-weight: 600;
+    font-size: 20px;
+    color: $blue;
+    text-align: center;
 }
 
-.navbar-horizontal .item i:hover {
+.navbar-horizontal .item:hover {
     color: $indigo;
     opacity: 0.6;
     cursor: pointer;
