@@ -12,7 +12,6 @@
 
             @auth
             <div class="name-user">{{Auth::user()->nombres}} {{Auth::user()->apellidos}}</div>
-
             @if(Auth::user()->tipoUsuario()->count() != 0)
             <div class="role-user">{{Auth::user()->tipoUsuario()->first()->nombre}}</div>
             @else
@@ -30,21 +29,18 @@
             @if(Auth::user()->hasAnyRole(['Administrador']))
             <div class="item"><a class="{{Request::is('usuarios*') ? 'active' : ''}}" href="{{route('usuarios.index')}}">Usuarios</a></div>
             <div class="item"><a class="{{Request::is('programas*') ? 'active' : ''}}" href="{{route('programas.index')}}">Programas</a></div>
-            <div class="item"><a href="#">Facultades</a></div>
+            <div class="item"><a class="{{Request::is('facultades*') ? 'active' : ''}}" href="{{route('facultades.index')}}">Facultades</a></div>
             @endif
 
             @if(Auth::user()->hasAnyRole(['Administrador', 'Director']))
-
             <div class="item"><a class="{{Request::is('horarios*') ? 'active' : ''}}" href="{{route('horarios.index')}}">Horarios</a></div>
-
             <div class="item"><a class="{{Request::is('grupos*') ? 'active' : ''}}" href="{{route('grupos.index')}}">Grupos</a></div>
-
             <div class="item"><a class="{{Request::is('asignaturas*') ? 'active' : ''}}" href="{{route('asignaturas.index')}}">Asignaturas</a></div>
-
             @endif
 
             @if(Auth::user()->hasAnyRole(['Administrador', 'Coordinación']))
             <div class="item"><a href="#">Salones</a></div>
+            <div class="item"><a class="{{Request::is('sedes*') ? 'active' : ''}}" href="{{route('sedes.index')}}">Sedes</a></div>
             @endif
 
             @if(Auth::user()->hasAnyRole(['Coordinación']))
@@ -53,13 +49,12 @@
 
             @if(Auth::user()->hasAnyRole(['Docente']))
             <div class="item"><a class="{{(Request::is('disponibilidad*') || Request::is('usuarios/periodos*')) ? 'active' : ''}}" href="{{route('disponibilidad.index')}}">Disponibilidad</a></div>
-
             <div class="item">
                 <a class="{{Request::is('usuarios/asignaturas*') ? 'active' : ''}}" href="{{route('usuarios.asignaturas', Auth::user())}}">Mis asignaturas</a></div>
             @endif
         </div>
         <div class="logout">
-            <span class="top"></span>
+            <!-- <span class="top"></span>
             <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i>
                 {{ __('Salir') }}
@@ -67,7 +62,7 @@
             <span class="bottom"></span>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
-            </form>
+            </form> -->
         </div>
     </div>
     <div class="content">
@@ -81,7 +76,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{route('periodos.index')}}"><i class="far fa-calendar"></i> Periodos académicos</a>
                     <!-- <a class="dropdown-item" href="{{route('jornadas.index')}}"><i class="fas fa-clock"></i> Jornadas</a> -->
-                    <a class="dropdown-item" href="#"><i class="fas fa-university"></i> Sedes</a>
+                    <a class="dropdown-item" href="{{route('sedes.index')}}"><i class="fas fa-university"></i> Sedes</a>
                 </div>
             </div>
             @endif

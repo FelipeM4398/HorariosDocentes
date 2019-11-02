@@ -11014,6 +11014,12 @@ input[type=time] {
   text-decoration: none;
 }
 
+.container-jbetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .block {
   width: auto;
   height: -webkit-fit-content;

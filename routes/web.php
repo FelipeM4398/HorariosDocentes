@@ -23,6 +23,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/register', 'Auth\RegisterController@index')->name('register');
 
+Route::resource('/facultades', 'FacultadesController');
+Route::resource('/sedes', 'SedesController');
+Route::resource('/subsedes', 'SubSedesController');
 Route::resource('/asignaturas', 'AsignaturasController');
 Route::resource('/informacion', 'InformacionController');
 Route::resource('/usuarios', 'UsuariosController');

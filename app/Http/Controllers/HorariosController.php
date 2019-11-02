@@ -112,6 +112,22 @@ class HorariosController extends Controller
         return redirect()->back()->with('status', 'Se ha registrado el horario exitosamente');
     }
 
+    public function edit(Request $request, HorarioDetalle $horario)
+    {
+        Auth::user()->authorizeRoles(['Director', 'Administrador']);
+
+        $periodos = PeriodoAcademico::where('año', '>=', Carbon::now()->year)
+            ->orderBy('año', 'DESC')
+            ->orderBy('periodo')
+            ->get();
+        $docentes = Usuario::rol('4')->get();
+        $asignaturas = Asignatura::all();
+        $grupos = Grupo::all();
+        $dias = Dia::all();
+        $frecuencias = FrecuenciaHoraria::all();
+        return view('horarios.edit', compact('periodos', 'docentes', 'asignaturas', 'grupos', 'dias', 'frecuencias', 'horario'));
+    }
+
     public function listGrupos()
     {
         $grupos = Grupo::with(['sede', 'jornadaAcademica', 'programa'])->get();

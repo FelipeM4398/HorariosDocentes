@@ -1000,7 +1000,7 @@ function listGrupos() {
           options += '<option value="' + element.id + '">' + element.nombre + ' - ' + element.sede.nombre + ' - ' + element.jornada_academica.nombre + ' - ' + element.programa.nombre;
           '</option>';
         });
-        var grupo = '<div class="form-group group-inputs-3 last-auto">' + '<div>' + '<label>Grupo</label>' + '<select name="grupos[]" class="form-control filter_grupo">' + options + '</select>' + '</div>' + '<div>' + '<label>Cantidad de estudiantes</label>' + '<input name="cantidad[]" class="form-control" type="number" placeholder="Ingrese la cantidad de estudiantes">' + '</div>' + '<div class="item-end">' + '<button class="btn btn-danger remove" type="button"><i class="fas fa-minus-circle"></i></button>' + '</div>' + '</div>';
+        var grupo = '<div class="form-group group-inputs-3 last-auto">' + '<div>' + '<select name="grupos[]" class="form-control filter_grupo">' + options + '</select>' + '</div>' + '<div>' + '<input name="cantidad[]" class="form-control" type="number" placeholder="Ingrese la cantidad de estudiantes">' + '</div>' + '<div class="item-end">' + '<button class="btn btn-danger remove" type="button"><i class="fas fa-minus-circle"></i></button>' + '</div>' + '</div>';
         $('#panel-groups').append(grupo);
         multiselect_grupo();
       }
@@ -1022,7 +1022,7 @@ function listDias() {
         data.frecuencias.forEach(function (element) {
           frecuencias += '<option value="' + element.id + '">' + element.nombre + '</option>';
         });
-        var dia = '<div class="form-group group-inputs-5 last-auto">' + '<div>' + '<label>Día</label>' + '<select name="dias[]" class="form-control dia" required>' + dias + '</select>' + '</div>' + '<div>' + '<label>Frecuencia</label>' + '<select name="frecuencias[]" class="form-control" required>' + frecuencias + '</select>' + '</div>' + '<div>' + '<label>Hora de inicio</label>' + '<input type="time" name="horas[]" class="form-control" placeholder="Ingrese la hora de inicio" min="07:00" max="21:30" required>' + '</div>' + '<div>' + '<label>Cantidad de horas</label>' + '<input name="cantidad_horas[]" step="any" class="form-control" type="number" placeholder="Ingrese la cantidad de horas" required>' + '</div>' + '<div class="item-end">' + '<button class="btn btn-danger remove" type="button"><i class="fas fa-minus-circle"></i></button>' + '</div>' + '</div>';
+        var dia = '<div class="form-group group-inputs-5 last-auto">' + '<div>' + '<select name="dias[]" class="form-control dia" required>' + dias + '</select>' + '</div>' + '<div>' + '<select name="frecuencias[]" class="form-control" required>' + frecuencias + '</select>' + '</div>' + '<div>' + '<input type="time" name="horas[]" class="form-control" placeholder="Ingrese la hora de inicio" min="07:00" max="21:30" required>' + '</div>' + '<div>' + '<input name="cantidad_horas[]" step="any" class="form-control" type="number" placeholder="Ingrese la cantidad de horas" required>' + '</div>' + '<div class="item-end">' + '<button class="btn btn-danger remove" type="button"><i class="fas fa-minus-circle"></i></button>' + '</div>' + '</div>';
         $('#panel-dias').append(dia);
       }
     });

@@ -9,6 +9,9 @@ Route::get('horarios/create', 'HorariosController@create')
 Route::get('horarios/show/{horario}', 'HorariosController@show')
     ->name('horarios.show');
 
+Route::get('horarios/edit/{horario}', 'HorariosController@edit')
+    ->name('horarios.edit');
+
 Route::get('horarios/create/dias', 'HorariosController@createDias')
     ->name('horarios.createDias');
 

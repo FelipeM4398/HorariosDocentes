@@ -67,7 +67,7 @@
                 <tr>
                     <th scope="row">{{ $horario->periodo()->first()->año }} - {{ $horario->periodo()->first()->periodo }}</th>
                     <td>{{ $horario->docente()->first()->identificacion }}</td>
-                    <td>{{ $horario->docente()->first()->nombres }}</td>
+                    <td>{{ $horario->docente()->first()->nombres }} {{ $horario->docente()->first()->apellidos }}</td>
                     <td>{{ $horario->asignatura()->first()->codigo }}</td>
                     <td>{{ $horario->asignatura()->first()->nombre }}</td>
                     <!-- <td>

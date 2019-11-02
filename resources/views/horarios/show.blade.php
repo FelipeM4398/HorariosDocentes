@@ -13,12 +13,17 @@
 </div>
 <div class="main-contenido">
 
-    <div>
-        <span style="display: inline-block; margin-right: 0.7em;"><b>Periodo: </b> {{$horario->periodo()->first()->año}} - {{$horario->periodo()->first()->periodo}}</span>
+    <div class="container-jbetween">
+        <div>
+            <span style="display: inline-block; margin-right: 0.7em;"><b>Periodo: </b> {{$horario->periodo()->first()->año}} - {{$horario->periodo()->first()->periodo}}</span>
 
-        <span style="display: inline-block; margin-right: 0.7em;"><b>Total horas semanales: </b> {{ $horas}}</span>
+            <span style="display: inline-block; margin-right: 0.7em;"><b>Total horas semanales: </b> {{ $horas}}</span>
 
-        <span style="display: inline-block; margin-right: 0.7em;"><b>Total estudiantes: </b> {{$estudiantes}}</span>
+            <span style="display: inline-block; margin-right: 0.7em;"><b>Total estudiantes: </b> {{$estudiantes}}</span>
+        </div>
+        <div>
+            <a href="{{ route('horarios.edit', $horario) }}" class="btn btn-primary"><i class="fas fa-edit"></i>Editar</a>
+        </div>
     </div>
 
     <hr style="margin: 0;">
