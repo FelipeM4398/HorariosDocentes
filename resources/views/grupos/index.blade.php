@@ -19,22 +19,11 @@
             @method('GET')
             @csrf
             <div class="title-filtro">{{ __('Filtros') }}</div>
-            <div class="group-inputs-2">
+            <div class="group-inputs-3">
                 <div class="form-group">
                     <label for="codigo">Nombre</label>
                     <input type="text" class="form-control" name="nombre" placeholder="Buscar por nombre" value="{{ old('nombre') }}" autocomplete="off">
                 </div>
-                <div class="form-group">
-                    <label for="nombre">Programa académico</label>
-                    <select name="programa" class="form-control">
-                        <option value="">Buscar por programa</option>
-                        @foreach($programas as $programa)
-                        <option value="{{$programa->id}}" @if(old('programa')==$programa->id) selected @endif>{{$programa->nombre}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="group-inputs-2">
                 <div class="form-group">
                     <label for="jornada">Jornada</label>
                     <select name="jornada" class="form-control">
@@ -50,6 +39,17 @@
                         <option value="">Buscar por sede</option>
                         @foreach($sedes as $sede)
                         <option value="{{$sede->id}}" @if(old('sede')==$sede->id) selected @endif>Sede {{$sede->nombre}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label for="nombre">Programa académico</label>
+                    <select name="programa" class="form-control">
+                        <option value="">Buscar por programa académico</option>
+                        @foreach($programas as $programa)
+                        <option value="{{$programa->id}}" @if(old('programa')==$programa->id) selected @endif>{{$programa->nombre}}</option>
                         @endforeach
                     </select>
                 </div>

@@ -123,7 +123,7 @@
         <hr>
         <div class="form-group buttons">
             <button type="submit" class="btn btn-primary">
-                {{ __('Siguiente') }}
+                {{ __('Registrar') }}
             </button>
         </div>
     </form>

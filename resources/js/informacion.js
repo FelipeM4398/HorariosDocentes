@@ -12,6 +12,8 @@ function habilitar() {
     $('#programa').prop('disabled', false);
     $('#jornada').prop('disabled', false);
     $('#sede').prop('disabled', false);
+    $('#direccion').prop('disabled', false);
+    $('#decano').prop('disabled', false);
 }
 
 function deshabilitar() {
@@ -28,6 +30,8 @@ function deshabilitar() {
     $('#programa').prop('disabled', true);
     $('#jornada').prop('disabled', true);
     $('#sede').prop('disabled', true);
+    $('#direccion').prop('disabled', true);
+    $('#decano').prop('disabled', true);
 }
 
 function habilitarProgrma() {
