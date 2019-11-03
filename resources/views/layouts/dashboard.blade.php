@@ -39,7 +39,7 @@
             @endif
 
             @if(Auth::user()->hasAnyRole(['Administrador', 'Coordinación']))
-            <div class="item"><a href="#">Salones</a></div>
+            <div class="item"><a class="{{Request::is('salones*') ? 'active' : ''}}" href="{{route('salones.index')}}">Salones</a></div>
             <div class="item"><a class="{{Request::is('sedes*') ? 'active' : ''}}" href="{{route('sedes.index')}}">Sedes</a></div>
             @endif
 

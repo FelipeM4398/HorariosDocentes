@@ -1,0 +1,79 @@
+@extends('layouts.dashboard')
+
+@section('contenido')
+    <div class="title-contenido">
+        <h2>Ver</h2>
+        <h1>Salones</h1>
+    </div>
+    <div class="main-contenido">
+        <div class="filtros">
+            <form method="POST" action="{{ route('salones.index') }}">
+                @method('GET')
+                @csrf
+                <div class="form-group">
+                    <div class="title-filtro">{{ __('Filtros') }}</div>
+                    <div class="group-inputs-3">
+                        <div>
+                            <label for="nombre">Nombre</label>
+                            <input id="nombre" type="text" class="form-control" name="nombre"
+                                   placeholder="Buscar por nombre" value="{{ old('nombre') }}" autocomplete="off">
+                        </div>
+                        <div>
+                            <label for="capacidad">Capacidad</label>
+                            <input id="capacidad" type="text" class="form-control" name="capacidad"
+                                   placeholder="Buscar por capacidad" value="{{ old('capacidad') }}" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button type="submit" class="btn btn-primary">
+                        {{ __('Aplicar') }}
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="table-responsive">
+            <div class="action">
+                <a href="{{ route('salones.create') }}" title="Nuevo sal&oacute;n">
+                <span class="icon text-success">
+                    <i class="fas fa-plus-circle"></i>
+                </span>
+                    <span class="text-dark">Registrar nuevo sal&oacute;n</span>
+                </a>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Capacidad</th>
+                    <th scope="col">Sede</th>
+                    <th scope="col">Sub sede</th>
+                    <th scope="col">Tipo de salon</th>
+                    <th scope="col">Ver más</th>
+                </tr>
+                </thead>
+                <tbody>
+                @if($salones->count() == 0)
+                    <tr>
+                        <td colspan="4">No se encuentraron salones</td>
+                    </tr>
+                @else
+                    @foreach($salones as $salon)
+                        <tr>
+                            <td>{{ $salon->nombre }}</td>
+                            <td>{{ $salon->capacidad }}</td>
+                            <td>{{ $salon->sede->nombre }}</td>
+                            <td>{{ ($salon->id_subsede) ? $salon->subsede->nombre : 'N/A' }}</td>
+                            <td>{{ $salon->tipoSalon->nombre }}</td>
+                            <td style="text-align: center;"><a class="btn btn-primary btn-sm"
+                                                               href="{{ route('salones.show', $salon)}}"><i
+                                        class="fas fa-eye"></i></a></td>
+                        </tr>
+                    @endforeach
+                @endif
+                </tbody>
+            </table>
+            {{$salones->appends(Request::except('page'))->links()}}
+        </div>
+    </div>
+@endsection
