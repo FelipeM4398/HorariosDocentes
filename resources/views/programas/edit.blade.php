@@ -26,7 +26,8 @@
         <div class="group-inputs-2">
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input value="{{ $programa->nombre }}" type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre" disabled="true">
+                <input value="{{ $programa->nombre }}" type="text" class="form-control" id="nombre" name="nombre"
+                    placeholder="Ingrese el nombre" disabled="true">
             </div>
             <div class="group-inputs-2">
                 <div class="form-group">
@@ -34,7 +35,8 @@
                     <select class="form-control" id="tipo_programa" name="id_tipo_programa" disabled="true" required>
                         <option selected>Seleccione un tipo de programa</option>
                         @foreach($tipoProgramas as $tipoPrograma)
-                        <option value="{{$tipoPrograma->id}}" {{ ($programa->id_tipo_programa == $tipoPrograma->id) ? 'selected':'' }}>
+                        <option value="{{$tipoPrograma->id}}"
+                            {{ ($programa->id_tipo_programa == $tipoPrograma->id) ? 'selected':'' }}>
                             {{$tipoPrograma->nombre}}
                         </option>
                         @endforeach
@@ -42,13 +44,15 @@
                 </div>
                 <div class="form-group">
                     <label for="duracion">Duraci&oacute;n</label>
-                    <input value="{{ $programa->duracion }}" type="number" step="1" class="form-control" id="duracion" name="duracion" placeholder="Duraci&oacute;n" disabled="true" required>
+                    <input value="{{ $programa->duracion }}" type="number" step="1" class="form-control" id="duracion"
+                        name="duracion" placeholder="Duraci&oacute;n" disabled="true" required>
                 </div>
             </div>
         </div>
         <div class="form-group">
             <label for="descripcion">Descripci&oacute;n</label>
-            <textarea style="white-space: unset;" rows="4" class="form-control" id="descripcion" name="descripcion" placeholder="Ingrese una descripci&oacute;n" disabled="true">
+            <textarea style="white-space: unset;" rows="4" class="form-control" id="descripcion" name="descripcion"
+                disabled="true">
             {{ $programa->descripcion }}
             </textarea>
         </div>
@@ -80,13 +84,16 @@
                 <select class="form-control" id="modalidad" name="id_modalidad" disabled="true" required>
                     <option selected>Seleccione una modalidad</option>
                     @foreach($modalidades as $modalidad)
-                    <option value="{{$modalidad->id}}" {{ ($programa->id_modalidad == $modalidad->id) ? 'selected':'' }}>
+                    <option value="{{$modalidad->id}}"
+                        {{ ($programa->id_modalidad == $modalidad->id) ? 'selected':'' }}>
                         {{$modalidad->nombre}}
                     </option>
                     @endforeach
                 </select>
             </div>
         </div>
+        @auth
+        @if (Auth::user()->hasAnyRole(['Administrador']))
         <div class="form-group buttons">
             <button id="editar" type="button" class="btn btn-primary">
                 {{ __('Editar') }}
@@ -98,6 +105,8 @@
                 {{ __('Guardar cambios') }}
             </button>
         </div>
+        @endif
+        @endauth
     </form>
 </div>
 @endsection

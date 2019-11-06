@@ -24,7 +24,8 @@
                 <select name="periodo_id" class="form-control">
                     <option value="">Seleccione el periodo</option>
                     @foreach($periodos as $periodo)
-                    <option value="{{$periodo->id}}" @if(old('periodo_id')==$periodo->id) selected @endif>Periodo {{$periodo->año}}-0{{$periodo->periodo}}</option>
+                    <option value="{{$periodo->id}}" @if(old('periodo_id')==$periodo->id) selected @endif>Periodo
+                        {{$periodo->año}}-0{{$periodo->periodo}}</option>
                     @endforeach
                 </select>
             </div>
@@ -36,6 +37,8 @@
         </form>
     </div>
     <div class="table-responsive-xl">
+        @auth
+        @if (Auth::user()->hasAnyRole(['Administrador', 'Director']))
         <div class="action">
             <a href="{{ route('horarios.create') }}" title="Nuevo horario">
                 <span class="icon text-success">
@@ -44,6 +47,9 @@
                 <span class="text-dark">Registrar un horario</span>
             </a>
         </div>
+        @endif
+        @endauth
+
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -65,7 +71,8 @@
                 @else
                 @foreach($horarios as $horario)
                 <tr>
-                    <th scope="row">{{ $horario->periodo()->first()->año }} - {{ $horario->periodo()->first()->periodo }}</th>
+                    <th scope="row">{{ $horario->periodo()->first()->año }} -
+                        {{ $horario->periodo()->first()->periodo }}</th>
                     <td>{{ $horario->docente()->first()->identificacion }}</td>
                     <td>{{ $horario->docente()->first()->nombres }} {{ $horario->docente()->first()->apellidos }}</td>
                     <td>{{ $horario->asignatura()->first()->codigo }}</td>

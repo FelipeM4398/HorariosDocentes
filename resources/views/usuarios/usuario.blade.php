@@ -25,8 +25,14 @@
     <div class="user-info">
         @if($usuario->tipoUsuario()->count() != 0)
         <span class="role">{{$usuario->tipoUsuario()->first()->nombre}}</span>
+
         @else
+        @auth
+        @if (Auth::user()->hasAnyRole(['Administrador']))
         <a class="btn btn-warning btn-sm asignar" id="asignarRol" href="#">Asignar rol</a>
+
+        @endif
+        @endauth
         @endif
 
         <span><b>CC.</b> {{$usuario->identificacion}}</span>
@@ -40,7 +46,8 @@
         <span><b>Tipo de contrato:</b> No ha seleccionado un contrato</span>
         @endif
         <span>
-            <b>Disponiblidad:</b> <a class="btn btn-warning btn-sm asignar" href="{{route('usuarios.disponibilidad', $usuario)}}">Consultar</a>
+            <b>Disponiblidad:</b> <a class="btn btn-warning btn-sm asignar"
+                href="{{route('usuarios.disponibilidad', $usuario)}}">Consultar</a>
         </span>
         <span style="margin: .5rem 0;"><b>Asignaturas que dicta:</b></span>
         @if($usuario->asignaturas()->count() != 0)

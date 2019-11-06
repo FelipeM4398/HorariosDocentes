@@ -22,14 +22,16 @@
             <div class="group-inputs-3">
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input id="nombre" type="text" class="form-control" name="nombre" placeholder="Buscar por nombre" value="{{ old('nombre') }}" autocomplete="off">
+                    <input id="nombre" type="text" class="form-control" name="nombre" placeholder="Buscar por nombre"
+                        value="{{ old('nombre') }}" autocomplete="off">
                 </div>
                 <div class="form-goup">
                     <label for="modalidad">Modalidad</label>
                     <select name="modalidad" class="form-control">
                         <option value="">Buscar por modalidad</option>
                         @foreach($modalidades as $modalidad)
-                        <option value="{{$modalidad->id}}" @if(old('modalidad')==$modalidad->id) selected @endif>{{$modalidad->nombre}}</option>
+                        <option value="{{$modalidad->id}}" @if(old('modalidad')==$modalidad->id) selected
+                            @endif>{{$modalidad->nombre}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -38,7 +40,8 @@
                     <select name="tipo" class="form-control">
                         <option value="">Buscar por tipo</option>
                         @foreach($tipoProgramas as $tipoPrograma)
-                        <option value="{{$tipoPrograma->id}}" @if(old('tipo')==$tipoPrograma->id) selected @endif>{{$tipoPrograma->nombre}}</option>
+                        <option value="{{$tipoPrograma->id}}" @if(old('tipo')==$tipoPrograma->id) selected
+                            @endif>{{$tipoPrograma->nombre}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -51,6 +54,9 @@
         </form>
     </div>
     <div class="table-responsive">
+
+        @auth
+        @if (Auth::user()->hasAnyRole(['Administrador']))
         <div class="action">
             <a href="{{ route('programas.create') }}" title="Nuevo programa">
                 <span class="icon text-success">
@@ -59,6 +65,9 @@
                 <span class="text-dark">Registrar nuevo programa</span>
             </a>
         </div>
+        @endif
+        @endauth
+
         <table class="table table-hover">
             <thead>
                 <tr>

@@ -28,7 +28,11 @@ class ProgramasController extends Controller
             ->orderBy('nombre')
             ->paginate(5);
         $request->flash();
-        return view('programas.index', compact('programas', 'modalidades', 'tipoProgramas'));
+        return view('programas.index', compact(
+            'programas',
+            'modalidades',
+            'tipoProgramas'
+        ));
     }
 
     /**
@@ -38,12 +42,23 @@ class ProgramasController extends Controller
      */
     public function create()
     {
-        Auth::user()->authorizeRoles('Administrador');
-        $directores = User::whereIdTipoUsuario(3)->get();
-        $modalidades = Modalidad::all();
-        $facultades = Facultad::all();
-        $tipoProgramas = TipoPrograma::all();
-        return view('programas.create', compact('directores', 'modalidades', 'facultades', 'tipoProgramas'));
+        if (Auth::user()) {
+            Auth::user()->authorizeRoles('Administrador');
+            $directores = User::whereIdTipoUsuario(3)->get();
+            $modalidades = Modalidad::all();
+            $facultades = Facultad::all();
+            $tipoProgramas = TipoPrograma::all();
+            return view('programas.create', compact(
+                'directores',
+                'modalidades',
+                'facultades',
+                'tipoProgramas'
+            ));
+        }
+        abort(
+            "401",
+            "No tienes permisos para realizar esta acción."
+        );
     }
 
     /**
@@ -54,9 +69,18 @@ class ProgramasController extends Controller
      */
     public function store(Request $request)
     {
-        Auth::user()->authorizeRoles('Administrador');
-        Programa::create($request->all());
-        return redirect()->back()->with('status', 'Se ha registrado un nuevo programa exitosamente.');
+        if (Auth::user()) {
+            Auth::user()->authorizeRoles('Administrador');
+            Programa::create($request->all());
+            return redirect()->back()->with(
+                'status',
+                'Se ha registrado un nuevo programa exitosamente.'
+            );
+        }
+        abort(
+            "401",
+            "No tienes permisos para realizar esta acción."
+        );
     }
 
     /**
@@ -78,13 +102,17 @@ class ProgramasController extends Controller
      */
     public function edit(Programa $programa)
     {
-        Auth::user()->authorizeRoles('Administrador');
         $directores = User::whereIdTipoUsuario(3)->get();
         $modalidades = Modalidad::all();
         $facultades = Facultad::all();
         $tipoProgramas = TipoPrograma::all();
-
-        return view('programas.edit', compact('programa', 'directores', 'modalidades', 'facultades', 'tipoProgramas'));
+        return view('programas.edit', compact(
+            'programa',
+            'directores',
+            'modalidades',
+            'facultades',
+            'tipoProgramas'
+        ));
     }
 
     /**
@@ -96,10 +124,19 @@ class ProgramasController extends Controller
      */
     public function update(Request $request, Programa $programa)
     {
-        Auth::user()->authorizeRoles('Administrador');
-        $programa->fill($request->all());
-        $programa->save();
-        return redirect()->back()->with('status', 'Se han guardado los cambios exitosamente');
+        if (Auth::user()) {
+            Auth::user()->authorizeRoles('Administrador');
+            $programa->fill($request->all());
+            $programa->save();
+            return redirect()->back()->with(
+                'status',
+                'Se han guardado los cambios exitosamente'
+            );
+        }
+        abort(
+            "401",
+            "No tienes permisos para realizar esta acción."
+        );
     }
 
     /**

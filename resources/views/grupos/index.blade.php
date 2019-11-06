@@ -22,14 +22,16 @@
             <div class="group-inputs-3">
                 <div class="form-group">
                     <label for="codigo">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" placeholder="Buscar por nombre" value="{{ old('nombre') }}" autocomplete="off">
+                    <input type="text" class="form-control" name="nombre" placeholder="Buscar por nombre"
+                        value="{{ old('nombre') }}" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="jornada">Jornada</label>
                     <select name="jornada" class="form-control">
                         <option value="">Buscar por jornada</option>
                         @foreach($jornadas as $jornada)
-                        <option value="{{$jornada->id}}" @if(old('jornada')==$jornada->id) selected @endif>{{$jornada->nombre}}</option>
+                        <option value="{{$jornada->id}}" @if(old('jornada')==$jornada->id) selected
+                            @endif>{{$jornada->nombre}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -38,7 +40,8 @@
                     <select name="sede" class="form-control">
                         <option value="">Buscar por sede</option>
                         @foreach($sedes as $sede)
-                        <option value="{{$sede->id}}" @if(old('sede')==$sede->id) selected @endif>Sede {{$sede->nombre}}</option>
+                        <option value="{{$sede->id}}" @if(old('sede')==$sede->id) selected @endif>Sede {{$sede->nombre}}
+                        </option>
                         @endforeach
                     </select>
                 </div>
@@ -49,7 +52,8 @@
                     <select name="programa" class="form-control">
                         <option value="">Buscar por programa académico</option>
                         @foreach($programas as $programa)
-                        <option value="{{$programa->id}}" @if(old('programa')==$programa->id) selected @endif>{{$programa->nombre}}</option>
+                        <option value="{{$programa->id}}" @if(old('programa')==$programa->id) selected
+                            @endif>{{$programa->nombre}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -64,6 +68,8 @@
 
     <div class="table-responsive">
 
+        @auth
+        @if (Auth::user()->hasAnyRole(['Administrador', 'Director']))
         <div class="action">
             <a href="{{ route('grupos.create') }}" title="Nuevo grupo">
                 <span class="icon text-success">
@@ -72,6 +78,8 @@
                 <span class="text-dark">Registrar nuevo grupo</span>
             </a>
         </div>
+        @endif
+        @endauth
 
         <table class="table table-hover table-ligth">
             <thead>

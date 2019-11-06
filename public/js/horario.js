@@ -1015,14 +1015,14 @@ function listDias() {
       url: '/horarios/dias',
       success: function success(data) {
         var dias = '<option>Seleccione un dia</option>';
-        var frecuencias = '<option>Seleccione una frecuencia</option>';
+        var frecuencias = '<option>Seleccione la frecuencia</option>';
         data.dias.forEach(function (element) {
           dias += '<option value="' + element.id + '">' + element.nombre + '</option>';
         });
         data.frecuencias.forEach(function (element) {
           frecuencias += '<option value="' + element.id + '">' + element.nombre + '</option>';
         });
-        var dia = '<div class="form-group group-inputs-5 last-auto">' + '<div>' + '<select name="dias[]" class="form-control dia" required>' + dias + '</select>' + '</div>' + '<div>' + '<select name="frecuencias[]" class="form-control" required>' + frecuencias + '</select>' + '</div>' + '<div>' + '<input type="time" name="horas[]" class="form-control" placeholder="Ingrese la hora de inicio" min="07:00" max="21:30" required>' + '</div>' + '<div>' + '<input name="cantidad_horas[]" step="any" class="form-control" type="number" placeholder="Ingrese la cantidad de horas" required>' + '</div>' + '<div class="item-end">' + '<button class="btn btn-danger remove" type="button"><i class="fas fa-minus-circle"></i></button>' + '</div>' + '</div>';
+        var dia = '<div class="form-group group-inputs-5 fr last-auto">' + '<div>' + '<select name="dias[]" class="form-control dia" required>' + dias + '</select>' + '</div>' + '<div>' + '<select name="frecuencias[]" class="form-control" required>' + frecuencias + '</select>' + '</div>' + '<div>' + '<input type="time" name="horas[]" class="form-control" min="07:00" max="21:30" required>' + '</div>' + '<div>' + '<input name="cantidad_horas[]" step="any" class="form-control" type="number" placeholder="Cantidad de horas" required>' + '</div>' + '<div class="item-end">' + '<button class="btn btn-danger remove" type="button"><i class="fas fa-minus-circle"></i></button>' + '</div>' + '</div>';
         $('#panel-dias').append(dia);
       }
     });

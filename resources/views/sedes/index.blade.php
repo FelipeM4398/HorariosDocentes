@@ -22,11 +22,13 @@
             <div class="group-inputs-2">
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" placeholder="Buscar por nombre" value="{{ old('nombre') }}" autocomplete="off">
+                    <input type="text" class="form-control" name="nombre" placeholder="Buscar por nombre"
+                        value="{{ old('nombre') }}" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="direccion">Dirección</label>
-                    <input type="text" class="form-control" name="direccion" placeholder="Buscar por direccion" value="{{ old('direccion') }}" autocomplete="off">
+                    <input type="text" class="form-control" name="direccion" placeholder="Buscar por direccion"
+                        value="{{ old('direccion') }}" autocomplete="off">
                 </div>
             </div>
             <div class="buttons">
@@ -37,6 +39,8 @@
     </div>
 </div>
 <div class="table-responsive">
+    @auth
+    @if (Auth::user()->hasAnyRole(['Administrador', 'Coordinacion']))
     <div class="action" style="display: inline-block;">
         <a href="{{ route('sedes.create') }}" title="Nueva sede">
             <span class="icon text-success">
@@ -53,6 +57,8 @@
             <span class="text-dark">Registrar una nueva subsede</span>
         </a>
     </div>
+    @endif
+    @endauth
     <table class="table table-hover">
         <thead>
             <tr>

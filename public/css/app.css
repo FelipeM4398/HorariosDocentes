@@ -10747,6 +10747,7 @@ a.text-dark:focus {
   justify-content: end;
   align-items: center;
   color: #0050a0;
+  height: 40.8px;
 }
 
 .navbar-horizontal .item {
@@ -11100,6 +11101,12 @@ input[type=time] {
   gap: 1rem;
 }
 
+.group-inputs-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
 .group-inputs-5 {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -11108,6 +11115,10 @@ input[type=time] {
 
 .group-inputs-5.last-auto {
   grid-template-columns: auto repeat(3, 1fr) auto;
+}
+
+.group-inputs-5.fr {
+  grid-template-columns: repeat(4, 1fr) auto;
 }
 
 .group-inputs-3.first-auto {

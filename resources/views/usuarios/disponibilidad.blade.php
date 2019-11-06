@@ -2,22 +2,21 @@
 
 @section('contenido')
 <div class="title-contenido">
+    @auth
     @if(Auth::user()->hasRole('Docente'))
     <h2>Mi</h2>
     <h1>Disponibilidad</h1>
-    @else
-    @if(Auth::user()->hasRole('Administrador'))
+    @endif
+    @endauth
     <div class="back">
         <a class="btn btn-link" href="{{route('usuarios.show', $usuario)}}">
             <i class="fas fa-arrow-left"></i>
             Volver
         </a>
     </div>
-    @endif
     <h2>Usuario</h2>
     <h1>{{$usuario->nombres}} {{$usuario->apellidos}}</h1>
     <h3>Disponibilidad</h3>
-    @endif
 </div>
 <div class="main-contenido">
     <div class="container-list">
@@ -30,51 +29,62 @@
         </div>
         @endif
         <div class="filtros">
+            @auth
             @if(Auth::user()->hasRole('Docente'))
             <form method="POST" action="{{ route('disponibilidad.index') }}">
                 @else
                 <form method="POST" action="{{ route('usuarios.disponibilidad', $usuario) }}">
                     @endif
-                    @method('GET')
-                    @csrf
-                    <div class="title-filtro">{{ __('Filtros') }}</div>
-                    <div class="group-inputs-2">
-                        <div class="form-group" style="margin-right: 2rem;">
-                            <label for="año">Año</label>
-                            <input type="number" class="form-control" name="año" placeholder="Buscar por año" value="{{ old('año') }}">
-                        </div>
-                        <div class="form-group checks">
-                            <label>Periodo</label>
-                            <div class="group-inputs-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="periodo" id="1" value="1" @if(old('periodo')==1) checked @endif>
-                                    <label class="form-check-label" for="1">
-                                        Periodo 1
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="periodo" id="2" value="2" @if(old('periodo')==2) checked @endif>
-                                    <label class="form-check-label" for="2">
-                                        Periodo 2
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="periodo" id="3" value="3" @if(old('periodo')==3) checked @endif>
-                                    <label class="form-check-label" for="3">
-                                        Todos
-                                    </label>
+                    @endauth
+                    @guest
+                    <form method="POST" action="{{ route('usuarios.disponibilidad', $usuario) }}">
+                        @endguest
+                        @method('GET')
+                        @csrf
+                        <div class="title-filtro">{{ __('Filtros') }}</div>
+                        <div class="group-inputs-2">
+                            <div class="form-group" style="margin-right: 2rem;">
+                                <label for="año">Año</label>
+                                <input type="number" class="form-control" name="año" placeholder="Buscar por año"
+                                    value="{{ old('año') }}">
+                            </div>
+                            <div class="form-group checks">
+                                <label>Periodo</label>
+                                <div class="group-inputs-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="periodo" id="1" value="1"
+                                            @if(old('periodo')==1) checked @endif>
+                                        <label class="form-check-label" for="1">
+                                            Periodo 1
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="periodo" id="2" value="2"
+                                            @if(old('periodo')==2) checked @endif>
+                                        <label class="form-check-label" for="2">
+                                            Periodo 2
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="periodo" id="3" value="3"
+                                            @if(old('periodo')==3) checked @endif>
+                                        <label class="form-check-label" for="3">
+                                            Todos
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group buttons">
-                        <span></span>
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Aplicar') }}
-                        </button>
-                    </div>
-                </form>
+                        <div class="form-group buttons">
+                            <span></span>
+                            <button type="submit" class="btn btn-primary">
+                                {{ __('Aplicar') }}
+                            </button>
+                        </div>
+                    </form>
         </div>
+
+        @auth
         @if(Auth::user()->hasRole('Docente'))
         <div class="action">
             <a href="{{ route('disponibilidad.create') }}" title="Nueva disponibilidad">
@@ -85,6 +95,8 @@
             </a>
         </div>
         @endif
+        @endauth
+
         @if($periodos->count() != 0)
         <div class="list-dispo">
             @foreach($periodos as $periodo)
@@ -96,15 +108,19 @@
                     <div>
                         <h3>{{$periodo->año}}</h3>
                         <h2>Periodo {{$periodo->periodo}}</h2>
-                        @if(Auth::user()->hasRole('Administrador'))
-                        <a class="btn-link text-white" href="{{ route('periodo.disponibilidad', [$usuario, $periodo]) }}">
+                        <a class="btn-link text-white"
+                            href="{{ route('periodo.disponibilidad', [$usuario, $periodo]) }}">
                             {{ __('Ver') }}
                         </a>
-                        @else
-                        <a class="btn-link text-white" href="{{ route('periodo.disponibilidad', [Auth::user(), $periodo]) }}">
+
+                        @auth
+                        @if (Auth::user()->hasAnyRole(['Docente']))
+                        <a class="btn-link text-white"
+                            href="{{ route('periodo.disponibilidad', [Auth::user(), $periodo]) }}">
                             {{ __('Ver') }}
                         </a>
                         @endif
+                        @endauth
                     </div>
                 </div>
             </div>

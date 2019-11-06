@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -24,7 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $rol = TipoUsuario::query()->where('id', '=', Auth::user()->id_tipo_usuario)->first();
+        if (Auth::user()) {
+            $rol = TipoUsuario::query()->where('id', '=', Auth::user()->id_tipo_usuario)->first();
+        } else {
+            $rol = 'Invitado';
+        }
         return view('home', compact('rol'));
     }
 }

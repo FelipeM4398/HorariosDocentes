@@ -18,9 +18,7 @@ class DisponibilidadController extends Controller
      * @return void
      */
     public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    { }
 
     /**
      * Show the application dashboard.
@@ -29,17 +27,20 @@ class DisponibilidadController extends Controller
      */
     public function index(Request $request)
     {
-        Auth::user()->authorizeRoles(['Docente']);
-        $año = $request->año;
-        $periodo = $request->periodo;
-        $request->flash();
-        $periodos = Auth::user()
-            ->periodo()
-            ->orderBy('año', 'DESC')
-            ->año($año)
-            ->periodo($periodo)
-            ->paginate(12);
-        return view('usuarios.disponibilidad', compact('periodos'));
+        if (Auth::user()) {
+            Auth::user()->authorizeRoles(['Docente']);
+            $año = $request->año;
+            $periodo = $request->periodo;
+            $request->flash();
+            $periodos = Auth::user()
+                ->periodo()
+                ->orderBy('año', 'DESC')
+                ->año($año)
+                ->periodo($periodo)
+                ->paginate(12);
+            return view('usuarios.disponibilidad', compact('periodos'));
+        }
+        abort('401');
     }
 
     /**
@@ -49,11 +50,15 @@ class DisponibilidadController extends Controller
      */
     public function create()
     {
-        Auth::user()->authorizeRoles(['Docente']);
-        $periodos = PeriodoAcademico::where('año', '>=', Carbon::now()->year)
-            ->get();
-        $jornadas = Jornada::all();
-        return view('usuarios.createDisponibilidad', compact('periodos', 'jornadas'));
+        if (Auth::user()) {
+            # code...
+            Auth::user()->authorizeRoles(['Docente']);
+            $periodos = PeriodoAcademico::where('año', '>=', Carbon::now()->year)
+                ->get();
+            $jornadas = Jornada::all();
+            return view('usuarios.createDisponibilidad', compact('periodos', 'jornadas'));
+        }
+        abort('401');
     }
 
     /**
@@ -64,51 +69,55 @@ class DisponibilidadController extends Controller
      */
     public function store(Request $request)
     {
-        Auth::user()->authorizeRoles(['Docente']);
+        if (Auth::user()) {
+            # code...
+            Auth::user()->authorizeRoles(['Docente']);
 
-        $usuario = Auth::user();
-        $periodo = $request->periodo;
+            $usuario = Auth::user();
+            $periodo = $request->periodo;
 
-        if ($usuario->periodo()->where('id_periodo', '=', $periodo)->count() != 0) {
-            return redirect()->back()->with('error', 'Ya se encuentra registrada una disponibilidad para este periodo.');
-        } else {
-            $usuario->periodo()->attach(PeriodoAcademico::where('id', '=', $periodo)->get());
-            $usuario->save();
-            $usuario->periodo()->where('id_periodo', '=', $periodo)->first()->pivot->dispoDias()->createMany([
-                ['id_jornada' => 1, 'id_dia' => 1, 'disponible' => $request->check_11 ? 1 : 0],
-                ['id_jornada' => 1, 'id_dia' => 2, 'disponible' => $request->check_12 ? 1 : 0],
-                ['id_jornada' => 1, 'id_dia' => 3, 'disponible' => $request->check_13 ? 1 : 0],
-                ['id_jornada' => 1, 'id_dia' => 4, 'disponible' => $request->check_14 ? 1 : 0],
-                ['id_jornada' => 1, 'id_dia' => 5, 'disponible' => $request->check_15 ? 1 : 0],
-                ['id_jornada' => 1, 'id_dia' => 6, 'disponible' => $request->check_16 ? 1 : 0],
-                ['id_jornada' => 2, 'id_dia' => 1, 'disponible' => $request->check_21 ? 1 : 0],
-                ['id_jornada' => 2, 'id_dia' => 2, 'disponible' => $request->check_22 ? 1 : 0],
-                ['id_jornada' => 2, 'id_dia' => 3, 'disponible' => $request->check_23 ? 1 : 0],
-                ['id_jornada' => 2, 'id_dia' => 4, 'disponible' => $request->check_24 ? 1 : 0],
-                ['id_jornada' => 2, 'id_dia' => 5, 'disponible' => $request->check_25 ? 1 : 0],
-                ['id_jornada' => 2, 'id_dia' => 6, 'disponible' => $request->check_26 ? 1 : 0],
-                ['id_jornada' => 3, 'id_dia' => 1, 'disponible' => $request->check_31 ? 1 : 0],
-                ['id_jornada' => 3, 'id_dia' => 2, 'disponible' => $request->check_32 ? 1 : 0],
-                ['id_jornada' => 3, 'id_dia' => 3, 'disponible' => $request->check_33 ? 1 : 0],
-                ['id_jornada' => 3, 'id_dia' => 4, 'disponible' => $request->check_34 ? 1 : 0],
-                ['id_jornada' => 3, 'id_dia' => 5, 'disponible' => $request->check_35 ? 1 : 0],
-                ['id_jornada' => 3, 'id_dia' => 6, 'disponible' => $request->check_36 ? 1 : 0],
-                ['id_jornada' => 4, 'id_dia' => 1, 'disponible' => $request->check_41 ? 1 : 0],
-                ['id_jornada' => 4, 'id_dia' => 2, 'disponible' => $request->check_42 ? 1 : 0],
-                ['id_jornada' => 4, 'id_dia' => 3, 'disponible' => $request->check_43 ? 1 : 0],
-                ['id_jornada' => 4, 'id_dia' => 4, 'disponible' => $request->check_44 ? 1 : 0],
-                ['id_jornada' => 4, 'id_dia' => 5, 'disponible' => $request->check_45 ? 1 : 0],
-                ['id_jornada' => 4, 'id_dia' => 6, 'disponible' => $request->check_46 ? 1 : 0],
-                ['id_jornada' => 5, 'id_dia' => 1, 'disponible' => $request->check_51 ? 1 : 0],
-                ['id_jornada' => 5, 'id_dia' => 2, 'disponible' => $request->check_52 ? 1 : 0],
-                ['id_jornada' => 5, 'id_dia' => 3, 'disponible' => $request->check_53 ? 1 : 0],
-                ['id_jornada' => 5, 'id_dia' => 4, 'disponible' => $request->check_54 ? 1 : 0],
-                ['id_jornada' => 5, 'id_dia' => 5, 'disponible' => $request->check_55 ? 1 : 0],
-                ['id_jornada' => 5, 'id_dia' => 6, 'disponible' => $request->check_56 ? 1 : 0],
-            ]);
-            $usuario->save();
-            return redirect('disponibilidad')->with('status', 'Se ha registrado su disponibilidad exitosamente.');
+            if ($usuario->periodo()->where('id_periodo', '=', $periodo)->count() != 0) {
+                return redirect()->back()->with('error', 'Ya se encuentra registrada una disponibilidad para este periodo.');
+            } else {
+                $usuario->periodo()->attach(PeriodoAcademico::where('id', '=', $periodo)->get());
+                $usuario->save();
+                $usuario->periodo()->where('id_periodo', '=', $periodo)->first()->pivot->dispoDias()->createMany([
+                    ['id_jornada' => 1, 'id_dia' => 1, 'disponible' => $request->check_11 ? 1 : 0],
+                    ['id_jornada' => 1, 'id_dia' => 2, 'disponible' => $request->check_12 ? 1 : 0],
+                    ['id_jornada' => 1, 'id_dia' => 3, 'disponible' => $request->check_13 ? 1 : 0],
+                    ['id_jornada' => 1, 'id_dia' => 4, 'disponible' => $request->check_14 ? 1 : 0],
+                    ['id_jornada' => 1, 'id_dia' => 5, 'disponible' => $request->check_15 ? 1 : 0],
+                    ['id_jornada' => 1, 'id_dia' => 6, 'disponible' => $request->check_16 ? 1 : 0],
+                    ['id_jornada' => 2, 'id_dia' => 1, 'disponible' => $request->check_21 ? 1 : 0],
+                    ['id_jornada' => 2, 'id_dia' => 2, 'disponible' => $request->check_22 ? 1 : 0],
+                    ['id_jornada' => 2, 'id_dia' => 3, 'disponible' => $request->check_23 ? 1 : 0],
+                    ['id_jornada' => 2, 'id_dia' => 4, 'disponible' => $request->check_24 ? 1 : 0],
+                    ['id_jornada' => 2, 'id_dia' => 5, 'disponible' => $request->check_25 ? 1 : 0],
+                    ['id_jornada' => 2, 'id_dia' => 6, 'disponible' => $request->check_26 ? 1 : 0],
+                    ['id_jornada' => 3, 'id_dia' => 1, 'disponible' => $request->check_31 ? 1 : 0],
+                    ['id_jornada' => 3, 'id_dia' => 2, 'disponible' => $request->check_32 ? 1 : 0],
+                    ['id_jornada' => 3, 'id_dia' => 3, 'disponible' => $request->check_33 ? 1 : 0],
+                    ['id_jornada' => 3, 'id_dia' => 4, 'disponible' => $request->check_34 ? 1 : 0],
+                    ['id_jornada' => 3, 'id_dia' => 5, 'disponible' => $request->check_35 ? 1 : 0],
+                    ['id_jornada' => 3, 'id_dia' => 6, 'disponible' => $request->check_36 ? 1 : 0],
+                    ['id_jornada' => 4, 'id_dia' => 1, 'disponible' => $request->check_41 ? 1 : 0],
+                    ['id_jornada' => 4, 'id_dia' => 2, 'disponible' => $request->check_42 ? 1 : 0],
+                    ['id_jornada' => 4, 'id_dia' => 3, 'disponible' => $request->check_43 ? 1 : 0],
+                    ['id_jornada' => 4, 'id_dia' => 4, 'disponible' => $request->check_44 ? 1 : 0],
+                    ['id_jornada' => 4, 'id_dia' => 5, 'disponible' => $request->check_45 ? 1 : 0],
+                    ['id_jornada' => 4, 'id_dia' => 6, 'disponible' => $request->check_46 ? 1 : 0],
+                    ['id_jornada' => 5, 'id_dia' => 1, 'disponible' => $request->check_51 ? 1 : 0],
+                    ['id_jornada' => 5, 'id_dia' => 2, 'disponible' => $request->check_52 ? 1 : 0],
+                    ['id_jornada' => 5, 'id_dia' => 3, 'disponible' => $request->check_53 ? 1 : 0],
+                    ['id_jornada' => 5, 'id_dia' => 4, 'disponible' => $request->check_54 ? 1 : 0],
+                    ['id_jornada' => 5, 'id_dia' => 5, 'disponible' => $request->check_55 ? 1 : 0],
+                    ['id_jornada' => 5, 'id_dia' => 6, 'disponible' => $request->check_56 ? 1 : 0],
+                ]);
+                $usuario->save();
+                return redirect('disponibilidad')->with('status', 'Se ha registrado su disponibilidad exitosamente.');
+            }
         }
+        abort('401');
     }
 
     /**
@@ -118,7 +127,6 @@ class DisponibilidadController extends Controller
      */
     public function periodo(Request $request, Usuario $usuario)
     {
-        Auth::user()->authorizeRoles(['Administrador']);
         $año = $request->año;
         $periodo = $request->periodo;
         $request->flash();
@@ -139,7 +147,6 @@ class DisponibilidadController extends Controller
      */
     public function dispo(Request $request, Usuario $usuario, PeriodoAcademico $periodo)
     {
-        Auth::user()->authorizeRoles(['Administrador', 'Docente']);
         $dispo = DisponibilidadDocente::docentee($usuario->id)
             ->periodoo($periodo->id)
             ->first();

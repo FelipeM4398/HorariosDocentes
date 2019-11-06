@@ -22,27 +22,38 @@ class SubSedesController extends Controller
 
     public function create()
     {
-        Auth::user()->authorizeRoles('Administrador');
-        return view('subsedes.create');
+        if (Auth::user()) {
+            # code...
+            Auth::user()->authorizeRoles(['Administrador', 'Coordinacion']);
+            return view('subsedes.create');
+        }
+        abort('401');
     }
 
     public function store(Request $request)
     {
-        Auth::user()->authorizeRoles('Administrador');
-        SubSede::create($request->all());
-        return redirect()->back()->with('status', 'Se ha registrado una nueva subsede exitosamente.');
+        if (Auth::user()) {
+            # code...
+            Auth::user()->authorizeRoles(['Administrador', 'Coordinacion']);
+            SubSede::create($request->all());
+            return redirect()->back()->with('status', 'Se ha registrado una nueva subsede exitosamente.');
+        }
+        abort('401');
     }
+
     public function edit(Subsede $subsede)
     {
-        Auth::user()->authorizeRoles('Administrador');
-
         return view('subsedes.edit', compact('subsede'));
     }
+
     public function update(Request $request, SubSede $subsede)
     {
-        Auth::user()->authorizeRoles('Administrador');
-        $subsede->fill($request->all());
-        $subsede->save();
-        return redirect()->back()->with('status', 'Se han guardado los cambios exitosamente');
+        if (Auth::user()) {
+            Auth::user()->authorizeRoles(['Administrador', 'Coordinacion']);
+            $subsede->fill($request->all());
+            $subsede->save();
+            return redirect()->back()->with('status', 'Se han guardado los cambios exitosamente');
+        }
+        abort('401');
     }
 }

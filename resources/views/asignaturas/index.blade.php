@@ -22,11 +22,13 @@
             <div class="group-inputs-2">
                 <div class="form-group">
                     <label for="codigo">Código</label>
-                    <input type="text" class="form-control" name="codigo" placeholder="Buscar por código" value="{{ old('codigo') }}" autocomplete="off">
+                    <input type="text" class="form-control" name="codigo" placeholder="Buscar por código"
+                        value="{{ old('codigo') }}" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" placeholder="Buscar por nombre" value="{{ old('nombre') }}" autocomplete="off">
+                    <input type="text" class="form-control" name="nombre" placeholder="Buscar por nombre"
+                        value="{{ old('nombre') }}" autocomplete="off">
                 </div>
             </div>
             <div class="buttons">
@@ -39,6 +41,8 @@
 
     <div class="table-responsive">
 
+        @auth
+        @if (Auth::user()->hasAnyRole(['Administrador', 'Director']))
         <div class="action">
             <a href="{{ route('asignaturas.create') }}" title="Nueva asignatura">
                 <span class="icon text-success">
@@ -47,6 +51,9 @@
                 <span class="text-dark">Registrar nueva asignatura</span>
             </a>
         </div>
+        @endif
+        @endauth
+
         <table class="table table-hover table-ligth">
             <thead>
                 <tr>

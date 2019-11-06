@@ -26,19 +26,25 @@
         <div class="group-inputs-2">
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{{$asignatura->nombre}}" disabled="true">
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre"
+                    value="{{$asignatura->nombre}}" disabled="true">
             </div>
             <div class="group-inputs-2">
                 <div class="form-group">
                     <label for="codigo">C&oacute;digo</label>
-                    <input type="text" class="form-control" id="codigo" name="codigo" placeholder="C&oacute;digo" value="{{$asignatura->codigo}}" disabled="true">
+                    <input type="text" class="form-control" id="codigo" name="codigo" placeholder="C&oacute;digo"
+                        value="{{$asignatura->codigo}}" disabled="true">
                 </div>
                 <div class="form-group">
                     <label for="creditos">Cr&eacute;ditos</label>
-                    <input type="number" class="form-control" id="creditos" name="creditos" placeholder="Cr&eacute;ditos" value="{{$asignatura->creditos}}" disabled="true">
+                    <input type="number" class="form-control" id="creditos" name="creditos"
+                        placeholder="Cr&eacute;ditos" value="{{$asignatura->creditos}}" disabled="true">
                 </div>
             </div>
         </div>
+
+        @auth
+        @if (Auth::user()->hasAnyRole(['Administrador', 'Director']))
         <div class="form-group buttons">
             <button id="editar" type="button" class="btn btn-primary">
                 {{ __('Editar') }}
@@ -50,6 +56,8 @@
                 {{ __('Guardar cambios') }}
             </button>
         </div>
+        @endif
+        @endauth
     </form>
 </div>
 @endsection

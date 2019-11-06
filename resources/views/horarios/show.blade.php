@@ -15,15 +15,21 @@
 
     <div class="container-jbetween">
         <div>
-            <span style="display: inline-block; margin-right: 0.7em;"><b>Periodo: </b> {{$horario->periodo()->first()->año}} - {{$horario->periodo()->first()->periodo}}</span>
+            <span style="display: inline-block; margin-right: 0.7em;"><b>Periodo: </b>
+                {{$horario->periodo()->first()->año}} - {{$horario->periodo()->first()->periodo}}</span>
 
             <span style="display: inline-block; margin-right: 0.7em;"><b>Total horas semanales: </b> {{ $horas}}</span>
 
             <span style="display: inline-block; margin-right: 0.7em;"><b>Total estudiantes: </b> {{$estudiantes}}</span>
         </div>
+        @auth
+        @if (Auth::user()->hasAnyRole(['Administrador', 'Director']))
         <div>
-            <a href="{{ route('horarios.edit', $horario) }}" class="btn btn-primary"><i class="fas fa-edit"></i>Editar</a>
+            <a href="{{ route('horarios.edit', $horario) }}" class="btn btn-primary"><i
+                    class="fas fa-edit"></i>Editar</a>
         </div>
+        @endif
+        @endauth
     </div>
 
     <hr style="margin: 0;">
@@ -78,19 +84,23 @@
             </div>
             <div>
                 <label>Sede</label>
-                <input class="form-control" type="text" value="{{ ($dia->salon()->first()) ? $dia->salon()->first()->sede()->nombre : 'Sin asignar'}}" readonly>
+                <input class="form-control" type="text"
+                    value="{{ ($dia->salon()->first()) ? $dia->salon()->first()->sede()->nombre : 'Sin asignar'}}"
+                    readonly>
             </div>
             @if($dia->salon()->first())
             @if($dia->salon()->first()->subsede())
             <div>
                 <label>Subsede</label>
-                <input class="form-control" type="text" value="{{$dia->salon()->first()->subsede()->first()->nombre}}" readonly>
+                <input class="form-control" type="text" value="{{$dia->salon()->first()->subsede()->first()->nombre}}"
+                    readonly>
             </div>
             @endif
             @endif
             <div>
                 <label>Salón</label>
-                <input class="form-control" type="text" value="{{ ($dia->salon()->first()) ? $dia->salon()->first()->nombre : 'Sin asignar'}}" readonly>
+                <input class="form-control" type="text"
+                    value="{{ ($dia->salon()->first()) ? $dia->salon()->first()->nombre : 'Sin asignar'}}" readonly>
             </div>
         </div>
         @endforeach

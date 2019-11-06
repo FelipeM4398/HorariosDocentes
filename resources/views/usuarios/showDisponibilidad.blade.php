@@ -3,19 +3,31 @@
 @section('contenido')
 <div class="title-contenido">
     <div class="back">
-        @if(Auth::user()->hasRole('Administrador'))
+        @guest
         <a class="btn btn-link" href="{{route('usuarios.disponibilidad', $usuario)}}">
             <i class="fas fa-arrow-left"></i>
             Volver
         </a>
-        @else
+        @endguest
+
+        @auth
+        @if (Auth::user()->hasAnyRole(['Docente']))
         <a class="btn btn-link" href="{{route('disponibilidad.index')}}">
             <i class="fas fa-arrow-left"></i>
             Volver
         </a>
+        @else
+        <a class="btn btn-link" href="{{route('usuarios.disponibilidad', $usuario)}}">
+            <i class="fas fa-arrow-left"></i>
+            Volver
+        </a>
         @endif
+        @endauth
+
     </div>
-    @if(Auth::user()->hasRole('Docente'))
+
+    @auth
+    @if(Auth::user()->hasAnyRole(['Docente']))
     <h2>Mi</h2>
     <h1>Disponibilidad</h1>
     @else
@@ -23,6 +35,14 @@
     <h1>{{$usuario->nombres}} {{$usuario->apellidos}}</h1>
     <h3>Disponibilidad</h3>
     @endif
+    @endauth
+
+    @guest
+    <h2>Usuario</h2>
+    <h1>{{$usuario->nombres}} {{$usuario->apellidos}}</h1>
+    <h3>Disponibilidad</h3>
+    @endguest
+
 </div>
 <div class="main-contenido">
     <div class="table-responsive">

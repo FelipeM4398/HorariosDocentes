@@ -16,9 +16,12 @@ class InformacionController extends Controller
      */
     public function index()
     {
-        $informacion = Auth::user();
-        $contratos = TipoContrato::all()->where('id', '!=', $informacion->id_tipo_contrato);
-        return view('usuarios.informacion', compact('informacion', 'contratos'));
+        if (Auth::user()) {
+            $informacion = Auth::user();
+            $contratos = TipoContrato::all()->where('id', '!=', $informacion->id_tipo_contrato);
+            return view('usuarios.informacion', compact('informacion', 'contratos'));
+        }
+        abort("401", "No tienes permisos para realizar esta acción.");
     }
 
     /**
@@ -61,9 +64,12 @@ class InformacionController extends Controller
      */
     public function edit(Usuario $informacion)
     {
-        $user = $informacion;
-        $contratos = TipoContrato::all();
-        return view('usuarios.informacion', compact('user', 'contratos'));
+        if (Auth::user()) {
+            $user = $informacion;
+            $contratos = TipoContrato::all();
+            return view('usuarios.informacion', compact('user', 'contratos'));
+        }
+        abort("401", "No tienes permisos para realizar esta acción.");
     }
 
     /**
@@ -75,14 +81,17 @@ class InformacionController extends Controller
      */
     public function update(Request $request, Usuario $informacion)
     {
-        Auth::user()->nombres = $request->nombres;
-        Auth::user()->apellidos = $request->apellidos;
-        Auth::user()->identificacion = $request->identificacion;
-        Auth::user()->telefono = $request->telefono;
-        Auth::user()->email = $request->email;
-        Auth::user()->id_tipo_contrato = $request->contrato;
-        Auth::user()->save();
-        return redirect()->back()->with('status', 'Se han guardado los cambios exitosamente');
+        if (Auth::user()) {
+            Auth::user()->nombres = $request->nombres;
+            Auth::user()->apellidos = $request->apellidos;
+            Auth::user()->identificacion = $request->identificacion;
+            Auth::user()->telefono = $request->telefono;
+            Auth::user()->email = $request->email;
+            Auth::user()->id_tipo_contrato = $request->contrato;
+            Auth::user()->save();
+            return redirect()->back()->with('status', 'Se han guardado los cambios exitosamente');
+        }
+        abort("401", "No tienes permisos para realizar esta acción.");
     }
 
     /**

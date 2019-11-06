@@ -22,7 +22,8 @@
             <div class="group-inputs-2">
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" placeholder="Buscar por nombre" value="{{ old('nombre') }}" autocomplete="off">
+                    <input type="text" class="form-control" name="nombre" placeholder="Buscar por nombre"
+                        value="{{ old('nombre') }}" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="id_decano">Decanos</label>
@@ -44,6 +45,9 @@
     </div>
 </div>
 <div class="table-responsive">
+
+    @auth
+    @if (Auth::user()->hasAnyRole(['Administrador']))
     <div class="action">
         <a href="{{ route('facultades.create') }}" title="Nueva facultad">
             <span class="icon text-success">
@@ -52,6 +56,9 @@
             <span class="text-dark">Registrar una nueva facultad</span>
         </a>
     </div>
+    @endif
+    @endauth
+
     <table class="table table-hover">
         <thead>
             <tr>
@@ -64,7 +71,9 @@
             @foreach($facultades as $facultad)
             <tr>
                 <td scope="row">{{ $facultad->nombre }}</td>
-                <td scope="row">{{ ($facultad->decano()->first()) ? $facultad->decano()->first()->nombres.' '.$facultad->decano()->first()->apellidos : 'Sin asignar' }}</td>
+                <td scope="row">
+                    {{ ($facultad->decano()->first()) ? $facultad->decano()->first()->nombres.' '.$facultad->decano()->first()->apellidos : 'Sin asignar' }}
+                </td>
 
                 <td style="text-align: center;">
                     <a class="btn btn-primary btn-sm" href="{{ route('facultades.edit', $facultad)}}">

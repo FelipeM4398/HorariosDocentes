@@ -14,6 +14,9 @@ function habilitar() {
     $('#sede').prop('disabled', false);
     $('#direccion').prop('disabled', false);
     $('#decano').prop('disabled', false);
+    $('#capacidad').prop('disabled', false);
+    $('#subsede').prop('disabled', false);
+    $('#tipo').prop('disabled', false);
 }
 
 function deshabilitar() {
@@ -32,6 +35,9 @@ function deshabilitar() {
     $('#sede').prop('disabled', true);
     $('#direccion').prop('disabled', true);
     $('#decano').prop('disabled', true);
+    $('#capacidad').prop('disabled', true);
+    $('#subsede').prop('disabled', true);
+    $('#tipo').prop('disabled', true);
 }
 
 function habilitarProgrma() {

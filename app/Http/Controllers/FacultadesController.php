@@ -28,31 +28,40 @@ class FacultadesController extends Controller
 
     public function create()
     {
-        Auth::user()->authorizeRoles('Administrador');
-        $decanos = User::whereIdTipoUsuario(2)->get();
-        return view('facultades.create', compact('decanos'));
+        if (Auth::user()) {
+            Auth::user()->authorizeRoles('Administrador');
+            $decanos = User::whereIdTipoUsuario(2)->get();
+            return view('facultades.create', compact('decanos'));
+        }
+        abort('401');
     }
 
     public function store(Request $request)
     {
-        Auth::user()->authorizeRoles('Administrador');
-        Facultad::create($request->all());
-        return redirect()->back()->with('status', 'Se ha registrado una nueva facultad exitosamente.');
+        if (Auth::user()) {
+            Auth::user()->authorizeRoles('Administrador');
+            Facultad::create($request->all());
+            return redirect()->back()->with('status', 'Se ha registrado una nueva facultad exitosamente.');
+        }
+        abort('401');
     }
+
     public function edit(Facultad $facultade)
     {
-        Auth::user()->authorizeRoles('Administrador');
         $decanos = User::whereIdTipoUsuario(2)->get();
         $facultad = $facultade;
-
         return view('facultades.edit', compact('decanos', 'facultad'));
     }
+
     public function update(Request $request, Facultad $facultade)
     {
-        Auth::user()->authorizeRoles('Administrador');
-        $facultad = $facultade;
-        $facultad->fill($request->all());
-        $facultad->save();
-        return redirect()->back()->with('status', 'Se han guardado los cambios exitosamente');
+        if (Auth::user()) {
+            Auth::user()->authorizeRoles('Administrador');
+            $facultad = $facultade;
+            $facultad->fill($request->all());
+            $facultad->save();
+            return redirect()->back()->with('status', 'Se han guardado los cambios exitosamente');
+        }
+        abort('401');
     }
 }

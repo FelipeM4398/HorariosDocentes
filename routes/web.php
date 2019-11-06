@@ -16,7 +16,9 @@ include 'disponibilidad/disponibilidad.routes.php';
 include 'asignaturasDocente/asignaturas.routes.php';
 include 'horarios/horarios.routes.php';
 
-Route::get('/', 'HomeController@index');
+Route::get('/', function() {
+    return view('auth/login');
+});
 
 Auth::routes();
 
@@ -34,3 +36,4 @@ Route::resource('/programas', 'ProgramasController');
 Route::resource('/jornadas', 'JornadasController');
 Route::resource('/periodos', 'PeriodosController');
 Route::resource('/grupos', 'GruposController');
+Route::resource('/salones', 'SalonesController');

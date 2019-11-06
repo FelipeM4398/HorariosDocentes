@@ -23,9 +23,7 @@ class HorariosController extends Controller
      * @return void
      */
     public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    { }
 
     /**
      * Show the application dashboard.
@@ -34,7 +32,6 @@ class HorariosController extends Controller
      */
     public function index(Request $request)
     {
-        Auth::user()->authorizeRoles(['Director', 'Administrador']);
         $periodo = $request->periodo_id;
         $periodos = PeriodoAcademico::orderBy('año', 'DESC')->orderBy('periodo')->get();
         $horarios = HorarioDetalle::with(['grupos', 'horarioDia'])->periodoo($periodo)->paginate(10);
@@ -49,18 +46,21 @@ class HorariosController extends Controller
      */
     public function create()
     {
-        Auth::user()->authorizeRoles(['Director', 'Administrador']);
-
-        $periodos = PeriodoAcademico::where('año', '>=', Carbon::now()->year)
-            ->orderBy('año', 'DESC')
-            ->orderBy('periodo')
-            ->get();
-        $docentes = Usuario::rol('4')->get();
-        $asignaturas = Asignatura::all();
-        $grupos = Grupo::all();
-        $dias = Dia::all();
-        $frecuencias = FrecuenciaHoraria::all();
-        return view('horarios.create', compact('periodos', 'docentes', 'asignaturas', 'grupos', 'dias', 'frecuencias'));
+        if (Auth::user()) {
+            # code...
+            Auth::user()->authorizeRoles(['Director', 'Administrador']);
+            $periodos = PeriodoAcademico::where('año', '>=', Carbon::now()->year)
+                ->orderBy('año', 'DESC')
+                ->orderBy('periodo')
+                ->get();
+            $docentes = Usuario::rol('4')->get();
+            $asignaturas = Asignatura::all();
+            $grupos = Grupo::all();
+            $dias = Dia::all();
+            $frecuencias = FrecuenciaHoraria::all();
+            return view('horarios.create', compact('periodos', 'docentes', 'asignaturas', 'grupos', 'dias', 'frecuencias'));
+        }
+        abort('401');
     }
 
     public function show(HorarioDetalle $horario)
@@ -74,48 +74,50 @@ class HorariosController extends Controller
 
     public function store()
     {
-        $docente = Request('docente');
-        $asignatura = Request('asignatura');
-        $periodo = Request('periodo');
-        $grupos = Request('grupos');
-        $cantidad = Request('cantidad');
-        $dias = Request('dias');
-        $frecuencias = Request('frecuencias');
-        $horas = Request('horas');
-        $cantidad_horas = Request('cantidad_horas');
+        if (Auth::user()) {
+            Auth::user()->authorizeRoles(['Administrador', 'Director']);
+            $docente = Request('docente');
+            $asignatura = Request('asignatura');
+            $periodo = Request('periodo');
+            $grupos = Request('grupos');
+            $cantidad = Request('cantidad');
+            $dias = Request('dias');
+            $frecuencias = Request('frecuencias');
+            $horas = Request('horas');
+            $cantidad_horas = Request('cantidad_horas');
 
-        $grupo_horario = [];
-        $horario_dia = [];
+            $grupo_horario = [];
+            $horario_dia = [];
 
-        if (HorarioDetalle::where('id_asignatura', $asignatura)->where('id_docente', $docente)->where('id_periodo', $periodo)->count() != 0) {
-            return redirect()->back()->with('error', 'Ya se encuentra registrado un horario con esta información');
+            if (HorarioDetalle::where('id_asignatura', $asignatura)->where('id_docente', $docente)->where('id_periodo', $periodo)->count() != 0) {
+                return redirect()->back()->with('error', 'Ya se encuentra registrado un horario con esta información');
+            }
+
+            $horario = new HorarioDetalle;
+            $horario->docente()->associate($docente);
+            $horario->asignatura()->associate($asignatura);
+            $horario->periodo()->associate($periodo);
+
+            $horario->save();
+
+            for ($i = 0; $i < count($grupos); $i++) {
+                $grupo_horario[$i] = ['id_grupo' => $grupos[$i], 'cantidad_estudiantes' => $cantidad[$i]];
+            }
+
+            for ($i = 0; $i < count($dias); $i++) {
+                $horario_dia[$i] = ['id_dia' => $dias[$i], 'hora' => $horas[$i], 'cantidad_horas' => $cantidad_horas[$i], 'id_frecuencia' => $frecuencias[$i]];
+            }
+
+            $horario->grupos()->attach($grupo_horario);
+            $horario->horarioDia()->createMany($horario_dia);
+
+            return redirect()->back()->with('status', 'Se ha registrado el horario exitosamente');
         }
-
-        $horario = new HorarioDetalle;
-        $horario->docente()->associate($docente);
-        $horario->asignatura()->associate($asignatura);
-        $horario->periodo()->associate($periodo);
-
-        $horario->save();
-
-        for ($i = 0; $i < count($grupos); $i++) {
-            $grupo_horario[$i] = ['id_grupo' => $grupos[$i], 'cantidad_estudiantes' => $cantidad[$i]];
-        }
-
-        for ($i = 0; $i < count($dias); $i++) {
-            $horario_dia[$i] = ['id_dia' => $dias[$i], 'hora' => $horas[$i], 'cantidad_horas' => $cantidad_horas[$i], 'id_frecuencia' => $frecuencias[$i]];
-        }
-
-        $horario->grupos()->attach($grupo_horario);
-        $horario->horarioDia()->createMany($horario_dia);
-
-        return redirect()->back()->with('status', 'Se ha registrado el horario exitosamente');
+        abort('401');
     }
 
     public function edit(Request $request, HorarioDetalle $horario)
     {
-        Auth::user()->authorizeRoles(['Director', 'Administrador']);
-
         $periodos = PeriodoAcademico::where('año', '>=', Carbon::now()->year)
             ->orderBy('año', 'DESC')
             ->orderBy('periodo')
@@ -161,6 +163,7 @@ class HorariosController extends Controller
         $docentes = $periodos->docentes()->get(['id_docente', 'identificacion', 'nombres', 'apellidos']);
         return $docentes;
     }
+
     public function listAsignaturas(int $docente)
     {
         $doc = Usuario::where('id', $docente)->first();

@@ -15,6 +15,6 @@ class SubSede extends Model
 
     public function salones()
     {
-        return $this->hasMany('App\Salon', 'foreign_key');
+        return $this->hasMany('App\Salon', 'id_subsede');
     }
 }

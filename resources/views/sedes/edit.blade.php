@@ -26,15 +26,20 @@
         <div>
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input value="{{ $sede->nombre }}" type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre" disabled="true">
+                <input value="{{ $sede->nombre }}" type="text" class="form-control" id="nombre" name="nombre"
+                    placeholder="Ingrese el nombre" disabled="true">
             </div>
         </div>
         <div class="form-group">
             <label for="direccion">Direcci&oacute;n</label>
-            <textarea style="white-space: unset;" rows="4" class="form-control" id="direccion" name="direccion" placeholder="Ingrese una direcci&oacute;n" disabled="true">
+            <textarea style="white-space: unset;" rows="4" class="form-control" id="direccion" name="direccion"
+                placeholder="Ingrese una direcci&oacute;n" disabled="true">
             {{ $sede->direccion }}
             </textarea>
         </div>
+
+        @auth
+        @if (Auth::user()->hasAnyRole(['Administrador', 'Coordinacion']))
         <div class="form-group buttons">
             <button id="editar" type="button" class="btn btn-primary">
                 {{ __('Editar') }}
@@ -46,6 +51,8 @@
                 {{ __('Guardar cambios') }}
             </button>
         </div>
+        @endif
+        @endauth
     </form>
 </div>
 @endsection

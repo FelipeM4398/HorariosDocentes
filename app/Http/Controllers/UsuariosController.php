@@ -15,9 +15,7 @@ class UsuariosController extends Controller
      * @return void
      */
     public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    { }
 
     /**
      * Show the application dashboard.
@@ -26,13 +24,12 @@ class UsuariosController extends Controller
      */
     public function index(Request $request)
     {
-        Auth::user()->authorizeRoles('Administrador');
         $identificacion = $request->identificacion;
         $nombre = $request->nombre;
         $apellido = $request->apellido;
         $rol = $request->rol;
 
-        $usuarios = Usuario::where('id', '!=', Auth::user()->id_tipo_usuario)
+        $usuarios = Usuario::where('id', '!=', (Auth::user()) ? Auth::user()->id_tipo_usuario : '')
             ->identificacion($identificacion)
             ->nombre($nombre)
             ->apellido($apellido)
@@ -52,7 +49,6 @@ class UsuariosController extends Controller
      */
     public function show(Usuario $usuario)
     {
-        Auth::user()->authorizeRoles('Administrador');
         return view('usuarios.usuario', compact('usuario'));
     }
 
@@ -65,9 +61,12 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, Usuario $usuario)
     {
-        Auth::user()->authorizeRoles('Administrador');
-        $usuario->id_tipo_usuario = $request->rol;
-        $usuario->save();
-        return redirect()->back()->with('status', 'Se han guardado los cambios exitosamente');
+        if (Auth::user()) {
+            Auth::user()->authorizeRoles('Administrador');
+            $usuario->id_tipo_usuario = $request->rol;
+            $usuario->save();
+            return redirect()->back()->with('status', 'Se han guardado los cambios exitosamente');
+        }
+        abort("401", "No tienes permisos para realizar esta acción.");
     }
 }

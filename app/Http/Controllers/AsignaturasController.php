@@ -31,8 +31,12 @@ class AsignaturasController extends Controller
      */
     public function create()
     {
-        Auth::user()->authorizeRoles('Administrador');
-        return view('asignaturas.create');
+        if (Auth::user()) {
+            # code...
+            Auth::user()->authorizeRoles(['Administrador', 'Director']);
+            return view('asignaturas.create');
+        }
+        abort('401');
     }
 
     /**
@@ -43,11 +47,20 @@ class AsignaturasController extends Controller
      */
     public function store(Request $request)
     {
-        Auth::user()->authorizeRoles('Administrador');
-        Asignatura::create(
-            $request->all()
-        );
-        return redirect()->route('asignaturas.index')->with('status', 'Se ha registrado una nueva asignatura exitosamente.');;
+        if (Auth::user()) {
+            # code...
+            Auth::user()->authorizeRoles(['Administrador', 'Director']);
+            Asignatura::create(
+                $request->all()
+            );
+            return redirect()
+                ->route('asignaturas.index')
+                ->with(
+                    'status',
+                    'Se ha registrado una nueva asignatura exitosamente.'
+                );;
+        }
+        abort(401);
     }
 
     /**
@@ -58,9 +71,13 @@ class AsignaturasController extends Controller
      */
     public function showAsignaturasDocente(Usuario $usuario)
     {
-        Auth::user()->authorizeRoles(['Docente']);
-        $asignaturas = $usuario->asignaturas()->orderBy('nombre')->paginate(7);
-        return view('usuarios.asignaturas', compact('asignaturas'));
+        if (Auth::user()) {
+            # code...
+            Auth::user()->authorizeRoles(['Docente']);
+            $asignaturas = $usuario->asignaturas()->orderBy('nombre')->paginate(7);
+            return view('usuarios.asignaturas', compact('asignaturas'));
+        }
+        abort('401');
     }
 
     /**
@@ -71,18 +88,26 @@ class AsignaturasController extends Controller
      */
     public function asociarAsignatura(Asignatura $asignatura)
     {
-        Auth::user()->authorizeRoles(['Docente']);
-        Auth::user()->asignaturas()->attach($asignatura);
-        Auth::user()->save();
-        return redirect()->route('usuarios.selectAsignaturas')->with('status', 'Se ha añadido una asignatura.');
+        if (Auth::user()) {
+            # code...
+            Auth::user()->authorizeRoles(['Docente']);
+            Auth::user()->asignaturas()->attach($asignatura);
+            Auth::user()->save();
+            return redirect()->route('usuarios.selectAsignaturas')->with('status', 'Se ha añadido una asignatura.');
+        }
+        abort('401');
     }
 
     public function eliminarAsignatura(Asignatura $asignatura)
     {
-        Auth::user()->authorizeRoles(['Docente']);
-        Auth::user()->asignaturas()->detach($asignatura);
-        Auth::user()->save();
-        return redirect()->back()->with('status', 'Se ha eliminado una asignatura de tu lista.');
+        if (Auth::user()) {
+            # code...
+            Auth::user()->authorizeRoles(['Docente']);
+            Auth::user()->asignaturas()->detach($asignatura);
+            Auth::user()->save();
+            return redirect()->back()->with('status', 'Se ha eliminado una asignatura de tu lista.');
+        }
+        abort('401');
     }
 
     /**
@@ -93,18 +118,21 @@ class AsignaturasController extends Controller
      */
     public function seleccionarAsignaturas(Request $request)
     {
-        Auth::user()->authorizeRoles(['Docente']);
-        $ids = [];
-        foreach (Auth::user()->asignaturas()->get() as $asignatura) {
-            array_push($ids, $asignatura->id);
+        if (Auth::user()) {
+            Auth::user()->authorizeRoles(['Docente']);
+            $ids = [];
+            foreach (Auth::user()->asignaturas()->get() as $asignatura) {
+                array_push($ids, $asignatura->id);
+            }
+            $asignaturas = Asignatura::codigo($request->codigo)
+                ->nombre($request->nombre)
+                ->whereNotIn('id', $ids)
+                ->orderBy('nombre')
+                ->paginate(10);
+            $request->flash();
+            return view('usuarios.seleccionarAsignaturas', compact('asignaturas'));
         }
-        $asignaturas = Asignatura::codigo($request->codigo)
-            ->nombre($request->nombre)
-            ->whereNotIn('id', $ids)
-            ->orderBy('nombre')
-            ->paginate(10);
-        $request->flash();
-        return view('usuarios.seleccionarAsignaturas', compact('asignaturas'));
+        abort('401');
     }
 
     /**
@@ -115,7 +143,6 @@ class AsignaturasController extends Controller
      */
     public function edit(Asignatura $asignatura)
     {
-        Auth::user()->authorizeRoles('Administrador');
         return view('asignaturas.edit', compact('asignatura'));
     }
 
@@ -128,13 +155,16 @@ class AsignaturasController extends Controller
      */
     public function update(Request $request, Asignatura $asignatura)
     {
-        Auth::user()->authorizeRoles('Administrador');
-        $asignatura->codigo = $request->codigo;
-        $asignatura->nombre = $request->nombre;
-        $asignatura->creditos = $request->creditos;
-        $asignatura->save();
+        if (Auth::user()) {
+            Auth::user()->authorizeRoles(['Administrador', 'Director']);
+            $asignatura->codigo = $request->codigo;
+            $asignatura->nombre = $request->nombre;
+            $asignatura->creditos = $request->creditos;
+            $asignatura->save();
 
-        return redirect()->back()->with('status', 'Se han guardado los cambios exitosamente');
+            return redirect()->back()->with('status', 'Se han guardado los cambios exitosamente');
+        }
+        abort('401');
     }
 
     /**
