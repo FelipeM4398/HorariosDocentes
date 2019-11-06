@@ -24,10 +24,12 @@
         </div>
         @auth
         @if (Auth::user()->hasAnyRole(['Administrador', 'Director']))
+        @if (!$esCompartida)
         <div>
             <a href="{{ route('horarios.edit', $horario) }}" class="btn btn-primary"><i
                     class="fas fa-edit"></i>Editar</a>
         </div>
+        @endif
         @endif
         @endauth
     </div>

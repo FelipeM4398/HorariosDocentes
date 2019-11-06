@@ -31,9 +31,8 @@
     </div>
     @endif
 
-    <form method="POST" action="{{route('horarios.store')}}">
+    <form method="POST" action="{{route('horarios.update', $horario)}}">
         @csrf
-        <span style="display: block; margin-bottom: 1rem;">Todos los campos son obligatorios.</span>
 
         <div class="form-group group-inputs-3 first-auto">
             <div>
@@ -183,7 +182,7 @@
             @endforeach
             <div class="form-group group-inputs-5 fr last-auto">
                 <div>
-                    <select id="dia" name="dias[]" class="form-control dia" required>
+                    <select id="dia" name="dias[]" class="form-control dia">
                         <option value="">Seleccione un día</option>
                         @foreach($dias as $dia)
                         <option value="{{$dia->id}}">
@@ -193,7 +192,7 @@
                     </select>
                 </div>
                 <div>
-                    <select name="frecuencias[]" class="form-control" required>
+                    <select name="frecuencias[]" class="form-control">
                         <option value="">Seleccione la frecuencia</option>
                         @foreach($frecuencias as $frecuencia)
                         <option value="{{$frecuencia->id}}">
@@ -203,11 +202,11 @@
                     </select>
                 </div>
                 <div>
-                    <input type="time" name="horas[]" class="form-control" min="07:00" max="21:30" required>
+                    <input type="time" name="horas[]" class="form-control" min="07:00" max="21:30">
                 </div>
                 <div>
                     <input name="cantidad_horas[]" step="any" class="form-control" type="number"
-                        placeholder="Cantidad de horas" required>
+                        placeholder="Cantidad de horas">
                 </div>
                 <div class="item-end">
                     <button class="btn btn-success" id="add-dia" type="button" title="Añadir día"><i

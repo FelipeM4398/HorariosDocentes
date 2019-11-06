@@ -18,6 +18,9 @@ Route::get('horarios/create/dias', 'HorariosController@createDias')
 Route::post('horarios/store', 'HorariosController@store')
     ->name('horarios.store');
 
+Route::post('horarios/update/{horario}', 'HorariosController@update')
+    ->name('horarios.update');
+
 Route::get('horarios/grupos', 'HorariosController@listGrupos');
 Route::get('horarios/dias', 'HorariosController@listDias');
 

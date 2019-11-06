@@ -168,20 +168,20 @@ function listDias() {
                 var dia =
                     '<div class="form-group group-inputs-5 fr last-auto">' +
                     '<div>' +
-                    '<select name="dias[]" class="form-control dia" required>' +
+                    '<select name="dias[]" class="form-control dia">' +
                     dias +
                     '</select>' +
                     '</div>' +
                     '<div>' +
-                    '<select name="frecuencias[]" class="form-control" required>' +
+                    '<select name="frecuencias[]" class="form-control">' +
                     frecuencias +
                     '</select>' +
                     '</div>' +
                     '<div>' +
-                    '<input type="time" name="horas[]" class="form-control" min="07:00" max="21:30" required>' +
+                    '<input type="time" name="horas[]" class="form-control" min="07:00" max="21:30">' +
                     '</div>' +
                     '<div>' +
-                    '<input name="cantidad_horas[]" step="any" class="form-control" type="number" placeholder="Cantidad de horas" required>' +
+                    '<input name="cantidad_horas[]" step="any" class="form-control" type="number" placeholder="Cantidad de horas">' +
                     '</div>' +
                     '<div class="item-end">' +
                     '<button class="btn btn-danger remove" type="button"><i class="fas fa-minus-circle"></i></button>' +

@@ -65,11 +65,26 @@ class HorariosController extends Controller
 
     public function show(HorarioDetalle $horario)
     {
+        $esCompartida = false;
+        if (Auth::user()) {
+            # code...
+            $user = Auth::user();
+            if ($user->hasAnyRole('Director')) {
+                foreach ($horario->grupos as $grupo) {
+                    foreach ($user->programa as $programa) {
+                        # code...
+                        if ($grupo->id_programa != $programa->id) {
+                            $esCompartida = true;
+                        }
+                    }
+                }
+            }
+        }
         $estudiantes = $horario->grupos()->sum('cantidad_estudiantes');
         $factor = pow(10, 1);
         $cant_horas = $horario->horarioDia()->sum('cantidad_horas');
         $horas = (round($cant_horas * $factor) / $factor);
-        return view('horarios.show', compact('horario', 'estudiantes', 'horas'));
+        return view('horarios.show', compact('horario', 'estudiantes', 'horas', 'esCompartida'));
     }
 
     public function store()
@@ -118,16 +133,74 @@ class HorariosController extends Controller
 
     public function edit(Request $request, HorarioDetalle $horario)
     {
-        $periodos = PeriodoAcademico::where('año', '>=', Carbon::now()->year)
-            ->orderBy('año', 'DESC')
-            ->orderBy('periodo')
-            ->get();
-        $docentes = Usuario::rol('4')->get();
-        $asignaturas = Asignatura::all();
-        $grupos = Grupo::all();
-        $dias = Dia::all();
-        $frecuencias = FrecuenciaHoraria::all();
-        return view('horarios.edit', compact('periodos', 'docentes', 'asignaturas', 'grupos', 'dias', 'frecuencias', 'horario'));
+        if (Auth::user()) {
+            Auth::user()->authorizeRoles(['Administrador', 'Director']);
+            $user = Auth::user();
+            if ($user->hasAnyRole('Director')) {
+                foreach ($horario->grupos as $grupo) {
+                    foreach ($user->programa as $programa) {
+                        # code...
+                        if ($grupo->id_programa != $programa->id) {
+                            abort('401');
+                        }
+                    }
+                }
+            }
+            $periodos = PeriodoAcademico::where('año', '>=', Carbon::now()->year)
+                ->orderBy('año', 'DESC')
+                ->orderBy('periodo')
+                ->get();
+            $docentes = $horario->asignatura->docentes;
+            $asignaturas = $horario->docente->asignaturas;
+            $grupos = Grupo::all();
+            $dias = Dia::all();
+            $frecuencias = FrecuenciaHoraria::all();
+            return view('horarios.edit', compact('periodos', 'docentes', 'asignaturas', 'grupos', 'dias', 'frecuencias', 'horario'));
+        }
+        abort('401');
+    }
+
+    public function update(HorarioDetalle $horario)
+    {
+        if (Auth::user()) {
+            Auth::user()->authorizeRoles(['Administrador', 'Director']);
+            $horario->id_docente = Request('docente');
+            $horario->id_asignatura = Request('asignatura');
+            $horario->id_periodo = Request('periodo');
+            $dias = Request('dias');
+            $frecuencias = Request('frecuencias');
+            $horas = Request('horas');
+            $cantidad_horas = Request('cantidad_horas');
+            $grupo_horario = [];
+            $horario_dia = [];
+
+            $grupos = Request('grupos');
+            $cantidad = Request('cantidad');
+            for ($i = 0; $i < count(Request('grupos')); $i++) {
+                if ($grupos[$i]) {
+                    $grupo_horario[$i] = ['id_grupo' => $grupos[$i], 'cantidad_estudiantes' => $cantidad[$i]];
+                }
+            }
+
+            for ($i = 0; $i < count($dias); $i++) {
+                if ($dias[$i]) {
+                    $horario_dia[$i] = [
+                        'id_dia' => $dias[$i],
+                        'hora' => $horas[$i],
+                        'cantidad_horas' => $cantidad_horas[$i],
+                        'id_frecuencia' => $frecuencias[$i]
+                    ];
+                }
+            }
+            $horario->grupos()->detach();
+            $horario->grupos()->attach($grupo_horario);
+
+            $horario->horarioDia()->delete();
+            $horario->horarioDia()->createMany($horario_dia);
+
+            $horario->save();
+            return redirect()->back()->with('status', 'Se han guardado los cambios exitosamente');
+        }
     }
 
     public function listGrupos()
