@@ -206,7 +206,7 @@
                 </div>
                 <div>
                     <input name="cantidad_horas[]" step="any" class="form-control" type="number"
-                        placeholder="Cantidad de horas">
+                        placeholder="Ingrese cantidad de horas">
                 </div>
                 <div class="item-end">
                     <button class="btn btn-success" id="add-dia" type="button" title="Añadir día"><i

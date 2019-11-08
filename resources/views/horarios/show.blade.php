@@ -87,11 +87,11 @@
             <div>
                 <label>Sede</label>
                 <input class="form-control" type="text"
-                    value="{{ ($dia->salon()->first()) ? $dia->salon()->first()->sede()->nombre : 'Sin asignar'}}"
+                    value="{{ ($dia->salon()->first()) ? $dia->salon()->first()->sede()->first()->nombre : 'Sin asignar'}}"
                     readonly>
             </div>
             @if($dia->salon()->first())
-            @if($dia->salon()->first()->subsede())
+            @if($dia->salon()->first()->subsede()->first())
             <div>
                 <label>Subsede</label>
                 <input class="form-control" type="text" value="{{$dia->salon()->first()->subsede()->first()->nombre}}"

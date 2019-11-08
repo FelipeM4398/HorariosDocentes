@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Sede;
 use App\Subsede;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,7 +33,7 @@ class SubSedesController extends Controller
         if (Auth::user()) {
             # code...
             Auth::user()->authorizeRoles(['Administrador', 'Coordinacion']);
-            SubSede::create($request->all());
+            Subsede::create($request->all());
             return redirect()->back()->with('status', 'Se ha registrado una nueva subsede exitosamente.');
         }
         abort('401');
@@ -46,7 +44,7 @@ class SubSedesController extends Controller
         return view('subsedes.edit', compact('subsede'));
     }
 
-    public function update(Request $request, SubSede $subsede)
+    public function update(Request $request, Subsede $subsede)
     {
         if (Auth::user()) {
             Auth::user()->authorizeRoles(['Administrador', 'Coordinacion']);

@@ -38,4 +38,31 @@ class HorarioDia extends Model
         $minutes = $this->cantidad_horas * 60;
         return $hora_inicio->addMinutes($minutes)->format('h:i a');
     }
+
+    public function horaInicio()
+    {
+        $time = Carbon::createFromFormat('H:i:s', $this->hora);
+        return $time->format('h:i a');
+    }
+
+    public function scopeDiaa($query, $id)
+    {
+        if ($id) {
+            return $query->where('id_dia', $id);
+        }
+    }
+
+    public function scopeHora($query, $hora)
+    {
+        if ($hora) {
+            return $query->where('hora', $hora);
+        }
+    }
+
+    public function scopeAsignar($query, $asig)
+    {
+        if ($asig) {
+            return $query->whereNull('id_salon');
+        }
+    }
 }

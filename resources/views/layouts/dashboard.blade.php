@@ -44,12 +44,6 @@
 
             @guest
             <div class="item">
-                <a class="{{Request::is('usuarios*') ? 'active' : ''}}" href="{{route('usuarios.index')}}">
-                    Usuarios
-                </a>
-            </div>
-
-            <div class="item">
                 <a class="{{Request::is('programas*') ? 'active' : ''}}" href="{{route('programas.index')}}">
                     Programas
                 </a>
@@ -99,7 +93,7 @@
             @endguest
 
             @auth
-            @if(Auth::user()->hasAnyRole(['Administrador']))
+            @if(Auth::user()->hasAnyRole(['Administrador', 'Decano']))
             <div class="item">
                 <a class="{{Request::is('usuarios*') ? 'active' : ''}}" href="{{route('usuarios.index')}}">
                     Usuarios
@@ -119,7 +113,7 @@
             </div>
             @endif
 
-            @if(Auth::user()->hasAnyRole(['Administrador', 'Director']))
+            @if(Auth::user()->hasAnyRole(['Administrador', 'Director', 'Decano']))
             <div class="item">
                 <a class="{{Request::is('horarios*') ? 'active' : ''}}" href="{{route('horarios.index')}}">
                     Horarios
@@ -139,7 +133,7 @@
             </div>
             @endif
 
-            @if(Auth::user()->hasAnyRole(['Administrador', 'Coordinación']))
+            @if(Auth::user()->hasAnyRole(['Administrador', 'Coordinación', 'Decano']))
             <div class="item">
                 <a class="{{Request::is('salones*') ? 'active' : ''}}" href="{{route('salones.index')}}">
                     Salones
@@ -155,7 +149,8 @@
 
             @if(Auth::user()->hasAnyRole(['Coordinación']))
             <div class="item">
-                <a href="#">
+                <a class="{{Request::is('horarios/salon*') ? 'active' : ''}}"
+                    href="{{route('horarios_salones.index')}}">
                     Asignar salón
                 </a>
             </div>

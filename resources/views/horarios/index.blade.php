@@ -36,7 +36,7 @@
             </div>
         </form>
     </div>
-    <div class="table-responsive-xl">
+    <div class="table-responsive">
         @auth
         @if (Auth::user()->hasAnyRole(['Administrador', 'Director']))
         <div class="action">
@@ -46,6 +46,11 @@
                 </span>
                 <span class="text-dark">Registrar un horario</span>
             </a>
+        </div>
+        @endif
+        @if (Auth::user()->hasAnyRole(['Decano']))
+        <div style="margin-bottom: 1rem">
+            <a class="btn btn-success" href="{{ route('horarios.export') }}">Exportar</a>
         </div>
         @endif
         @endauth

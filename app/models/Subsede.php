@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SubSede extends Model
+class Subsede extends Model
 {
     protected $table = 'subsedes';
     public $timestamps = false;

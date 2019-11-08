@@ -68,23 +68,26 @@
                         <option value="">Seleccione un grupo</option>
                         @foreach($grupos as $grupo)
                         <option value="{{$grupo->id}}">
-                            {{$grupo->nombre}} - {{$grupo->sede->nombre}} - {{$grupo->jornadaAcademica->nombre}} - {{$grupo->programa->nombre}}
+                            {{$grupo->nombre}} - {{$grupo->sede->nombre}} - {{$grupo->jornadaAcademica->nombre}} -
+                            {{$grupo->programa->nombre}}
                         </option>
                         @endforeach
                     </select>
                 </div>
                 <div>
                     <label>Cantidad de estudiantes</label>
-                    <input name="cantidad[]" class="form-control" type="number" placeholder="Ingrese la cantidad de estudiantes" required>
+                    <input name="cantidad[]" class="form-control" type="number"
+                        placeholder="Ingrese la cantidad de estudiantes" required>
                 </div>
                 <div class="item-end">
-                    <button class="btn btn-success" id="add_grupo" type="button" title="Añadir grupo"><i class="fas fa-plus-circle"></i></button>
+                    <button class="btn btn-success" id="add_grupo" type="button" title="Añadir grupo"><i
+                            class="fas fa-plus-circle"></i></button>
                 </div>
             </div>
         </div>
         <hr>
         <div id="panel-dias">
-            <div class="form-group group-inputs-5 last-auto">
+            <div class="form-group group-inputs-5 fr last-auto">
                 <div>
                     <label>Día</label>
                     <select id="dia" name="dias[]" class="form-control dia" required>
@@ -109,14 +112,17 @@
                 </div>
                 <div>
                     <label>Hora de inicio</label>
-                    <input type="time" name="horas[]" class="form-control" placeholder="Ingrese la hora de inicio" min="07:00" max="21:30" required>
+                    <input type="time" name="horas[]" class="form-control" placeholder="Ingrese la hora de inicio"
+                        min="07:00" max="21:30" required>
                 </div>
                 <div>
                     <label>Cantidad de horas</label>
-                    <input name="cantidad_horas[]" step="any" class="form-control" type="number" placeholder="Ingrese la cantidad de horas" required>
+                    <input name="cantidad_horas[]" step="any" class="form-control" type="number"
+                        placeholder="Ingrese cantidad de horas" required>
                 </div>
                 <div class="item-end">
-                    <button class="btn btn-success" id="add-dia" type="button" title="Añadir día"><i class="fas fa-plus-circle"></i></button>
+                    <button class="btn btn-success" id="add-dia" type="button" title="Añadir día"><i
+                            class="fas fa-plus-circle"></i></button>
                 </div>
             </div>
         </div>

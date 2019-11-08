@@ -80,7 +80,7 @@
             <tbody>
                 @if($salones->count() == 0)
                 <tr>
-                    <td colspan="4">No se encuentraron salones</td>
+                    <td colspan="4">No se encontraron salones</td>
                 </tr>
                 @else
                 @foreach($salones as $salon)

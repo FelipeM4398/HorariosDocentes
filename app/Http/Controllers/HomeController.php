@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Facultad;
 use App\TipoUsuario;
+use App\Programa;
+use App\Asignatura;
+use App\Salon;
+use App\Usuario;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -29,6 +34,12 @@ class HomeController extends Controller
         } else {
             $rol = 'Invitado';
         }
-        return view('home', compact('rol'));
+
+        $programas = Programa::all();
+        $facultades = Facultad::all();
+        $asignaturas = Asignatura::all();
+        $usuarios = Usuario::all();
+        $salones = Salon::all();
+        return view('home', compact('rol', 'programas', 'facultades', 'asignaturas', 'usuarios', 'salones'));
     }
 }

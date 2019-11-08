@@ -6,6 +6,7 @@ use App\Asignatura;
 use App\Dia;
 use App\DisponibilidadDia;
 use App\DisponibilidadDocente;
+use App\Exports\HorarioExport;
 use App\FrecuenciaHoraria;
 use App\Grupo;
 use App\HorarioDetalle;
@@ -14,6 +15,7 @@ use App\Usuario;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HorariosController extends Controller
 {
@@ -33,8 +35,18 @@ class HorariosController extends Controller
     public function index(Request $request)
     {
         $periodo = $request->periodo_id;
+        $salon = $request->salon;
         $periodos = PeriodoAcademico::orderBy('año', 'DESC')->orderBy('periodo')->get();
-        $horarios = HorarioDetalle::with(['grupos', 'horarioDia'])->periodoo($periodo)->paginate(10);
+        $horarios = HorarioDetalle::periodoo($periodo)
+            ->docentee(Request('docente'))
+            ->asignaturaa(Request('asignatura'))
+            ->whereHas('horarioDia', function ($horario) {
+                $horario->diaa(Request('dia'));
+            })
+            ->whereHas('grupos', function ($grupos) {
+                $grupos->idd(Request('grupo'));
+            })
+            ->paginate(10);
         $request->flash();
         return view('horarios.index', compact('periodos', 'horarios'));
     }
@@ -82,7 +94,19 @@ class HorariosController extends Controller
         }
         $estudiantes = $horario->grupos()->sum('cantidad_estudiantes');
         $factor = pow(10, 1);
-        $cant_horas = $horario->horarioDia()->sum('cantidad_horas');
+        $cant_semanales = 0;
+        $cant_quincenales = 0;
+
+        foreach ($horario->horarioDia()->get() as $horarioDia) {
+            if ($horarioDia->id_frecuencia == 1) {
+                $cant_semanales += $horarioDia->cantidad_horas;
+            } else {
+                $cant_quincenales += $horarioDia->cantidad_horas;
+            }
+        }
+
+        $cant_horas = $cant_semanales + ($cant_quincenales / 2);
+
         $horas = (round($cant_horas * $factor) / $factor);
         return view('horarios.show', compact('horario', 'estudiantes', 'horas', 'esCompartida'));
     }
@@ -242,5 +266,10 @@ class HorariosController extends Controller
         $doc = Usuario::where('id', $docente)->first();
         $asignaturas = $doc->asignaturas()->get(['id_asignatura', 'nombre', 'codigo']);
         return $asignaturas;
+    }
+
+    public function export()
+    {
+        return Excel::download(new HorarioExport, 'ReporteHorario.xlsx');
     }
 }

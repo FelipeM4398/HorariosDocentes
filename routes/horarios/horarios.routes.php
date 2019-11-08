@@ -27,3 +27,6 @@ Route::get('horarios/dias', 'HorariosController@listDias');
 Route::get('horarios/dispo/{periodo}/{docente}/{dia}', 'HorariosController@dispo');
 Route::get('horarios/{periodo}/docentes', 'HorariosController@listDocentes');
 Route::get('horarios/{docente}/asignaturas', 'HorariosController@listAsignaturas');
+
+Route::get('horarios/export', 'HorariosController@export')
+    ->name('horarios.export');

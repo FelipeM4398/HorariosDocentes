@@ -45,6 +45,13 @@ class Grupo extends Model
         }
     }
 
+    public function scopeIdd($query, $id)
+    {
+        if ($id) {
+            return $query->where('id', $id);
+        }
+    }
+
     public function scopePrograma($query, $id)
     {
         if ($id) {

@@ -15,6 +15,17 @@ function multiselect_docente() {
     });
 }
 
+function multiselect_salon() {
+    $('.filter_salon').multiselect({
+        enableFiltering: true,
+        enableCaseInsensitiveFiltering: true,
+        filterPlaceholder: 'Buscar un salón',
+        templates: {
+            ul: '<ul class="multiselect-container dropdown-menu"></ul>'
+        }
+    });
+}
+
 function multiselect_asignatura() {
     $('.filter_asignatura').multiselect({
         enableFiltering: true,
@@ -181,7 +192,7 @@ function listDias() {
                     '<input type="time" name="horas[]" class="form-control" min="07:00" max="21:30">' +
                     '</div>' +
                     '<div>' +
-                    '<input name="cantidad_horas[]" step="any" class="form-control" type="number" placeholder="Cantidad de horas">' +
+                    '<input name="cantidad_horas[]" step="any" class="form-control" type="number" placeholder="Ingrese cantidad de horas">' +
                     '</div>' +
                     '<div class="item-end">' +
                     '<button class="btn btn-danger remove" type="button"><i class="fas fa-minus-circle"></i></button>' +
@@ -235,6 +246,7 @@ function loadDisponibilidad() {
 
 $(document).ready(function() {
     multiselect_grupo();
+    multiselect_salon();
     listGrupos();
     listDias();
     removeItems();

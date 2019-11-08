@@ -15,8 +15,9 @@
 include 'disponibilidad/disponibilidad.routes.php';
 include 'asignaturasDocente/asignaturas.routes.php';
 include 'horarios/horarios.routes.php';
+include 'horarios/horarios_salones.routes.php';
 
-Route::get('/', function() {
+Route::get('/', function () {
     return view('auth/login');
 });
 

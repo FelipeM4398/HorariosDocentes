@@ -43,4 +43,25 @@ class HorarioDetalle extends Model
             return $query->where('id_periodo', '=', $id);
         }
     }
+
+    public function scopeDocentee($query, $id)
+    {
+        if ($id) {
+            return $query->where('id_docente', '=', $id);
+        }
+    }
+
+    public function scopeAsignaturaa($query, $id)
+    {
+        if ($id) {
+            return $query->where('id_asignatura', '=', $id);
+        }
+    }
+
+    public function scopeSalon($query, $salon)
+    {
+        if ($salon) {
+            return $query->whereNotNull('horarios_dias.id_salon');
+        }
+    }
 }
